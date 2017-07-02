@@ -5,7 +5,7 @@
 *************************************/
 
 // Test whether URL code is already in use or not
-function isUnusedCode($testCode, $_this) {
+function isUnusedCode($_this, $testCode) {
     // Create and execute query to get all codes in database
     $get_all_codes_query = "SELECT * 
                             FROM links
@@ -28,6 +28,41 @@ function isUnusedCode($testCode, $_this) {
     }
 }
 
+// Add row to database with data about interaction
+function logInteraction($_this, $type, $code) {
+    // Get user data
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+    preg_match('#\((.*?)\)#', $user_agent, $match);
+    $start = strrpos($user_agent, ')') + 2;
+    $end = strrpos($user_agent, ' ');
+    $browser = substr($user_agent, $start, $end-$start);
+    $operating_system = $match[1];
+
+    $add_interaction_sql = "INSERT INTO interactions
+                            SET interaction_type = :interaction_type,
+                                code = :code,
+                                ip_address = :ip_address,
+                                browser = :browser,
+                                operating_system = :operating_system,
+                                interaction_date = :interaction_date";
+    
+    $stmt = $_this->db->prepare($add_interaction_sql);
+    $stmt->bindParam("interaction_type", $type);
+    $stmt->bindParam("code", $code);
+    $stmt->bindParam("ip_address", $ip_address);
+    $stmt->bindParam("browser", $browser);
+    $stmt->bindParam("operating_system", $operating_system);
+    $stmt->bindParam("interaction_date", date('Y-m-d H:i:s'));
+
+    try {
+        $stmt->execute();
+    } catch (Exception $e) {
+        return $_this->response->withJson($e);
+    }
+    
+}
+
 /*************************************
                 Routes
 *************************************/
@@ -41,6 +76,16 @@ $app->get('/[{name}]', function ($request, $response, $args) {
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
 });*/
+
+// Log home page visit interaction
+$app->post('/page-visit', function ($request, $response, $args) {
+    
+    // Get ServerName user is hitting
+    $server_name = $_SERVER['SERVER_NAME'];
+    
+    // Log "visit page" interaction
+    logInteraction($this, 0, $server_name);
+});
 
 // Return all URLs
 $app->get('/urls', function ($request, $response, $args) {
@@ -88,7 +133,7 @@ $app->post('/url', function ($request, $response, $args) {
         // Generate new URL code
         do {
             $code = substr(md5(microtime()),rand(0,26),3);
-        } while (isUnusedCode($code, $this) == false);
+        } while (isUnusedCode($this, $code) == false);
 
         $insert_url_sql = "INSERT INTO links 
                            SET code = :code,
@@ -118,6 +163,9 @@ $app->post('/url', function ($request, $response, $args) {
         return $this->response->withJson($e);
     }
 
+    // Log "create link" interaction
+    logInteraction($this, 3, $code);
+
     $return = array(
         "code" => $code,
         "date_created" => $currentDateTime
@@ -145,6 +193,9 @@ $app->put('/url', function ($request, $response, $args) {
         return $this->response->withJson($e);
     }
 
+    // Log "remove link" interaction
+    logInteraction($this, 1, $input['code']);
+
     return $this->response->withJson(array("rows affected" => $stmt->rowCount()));
 
 });
@@ -164,6 +215,9 @@ $app->put('/hit/[{code}]', function ($request, $response, $args) {
     } catch (Exception $e) {
         return $this->response->withJson($e);
     }
+
+    // Log "click link" interaction
+    logInteraction($this, 2, $args['code']);
 
     return $this->response->withJson(array("rows affected" => $stmt->rowCount()));
 
