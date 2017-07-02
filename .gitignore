@@ -62,3 +62,7 @@ app/*.js
 app/*/*.js
 app/*/*/*.js
 *.map
+
+# PHP
+.save
+.swp
