@@ -126,3 +126,22 @@ $app->post('/url', function ($request, $response, $args) {
     return $this->response->withJson($return);
 
 });
+
+// Change the visibility state to hidden
+$app->put('/url', function ($request, $response, $args) {
+
+    $input = $request->getParsedBody();
+
+    $set_visible_sql = "UPDATE links
+                        SET visible = 0
+                        WHERE code = :code";
+    
+    $stmt = $this->db->prepare($set_visible_sql);
+    $stmt->bindParam("code", $input['code']);
+
+    try {
+        $stmt->execute();
+    } catch (Exception $e) {
+        return $this->response->withJson($e);
+    }
+});
