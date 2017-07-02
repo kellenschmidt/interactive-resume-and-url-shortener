@@ -144,4 +144,27 @@ $app->put('/url', function ($request, $response, $args) {
     } catch (Exception $e) {
         return $this->response->withJson($e);
     }
+
+    return $this->response->withJson(array("rows affected" => $stmt->rowCount()));
+
+});
+
+// Increment number of page visits when page is visited
+$app->put('/hit/[{code}]', function ($request, $response, $args) {
+
+    $increment_count_sql = "UPDATE links
+                            SET count = count + 1
+                            WHERE code = :code";
+    
+    $stmt = $this->db->prepare($increment_count_sql);
+    $stmt->bindParam("code", $args['code']);
+    
+    try {
+        $stmt->execute();
+    } catch (Exception $e) {
+        return $this->response->withJson($e);
+    }
+
+    return $this->response->withJson(array("rows affected" => $stmt->rowCount()));
+
 });
