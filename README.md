@@ -12,6 +12,7 @@ https://kellenschmidt.com/url
   - Bootstrap 4
 - [Slim Framework](https://www.slimframework.com/) for the API to interact with the database
   - [Apiary](http://docs.urlshortener4.apiary.io/) to document the API
+  - API accessed at [api.kellenschmidt.com](api.kellenschmidt.com)
 - MySQL database
 
 ### Shorten a URL
