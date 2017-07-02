@@ -11,6 +11,7 @@ https://kellenschmidt.com/url
 - Angular 4 for the front-end
   - Bootstrap 4
 - [Slim Framework](https://www.slimframework.com/) for the API to interact with the database
+  - [Apiary](http://docs.urlshortener4.apiary.io/) to document the API
 - MySQL database
 
 ### Shorten a URL
