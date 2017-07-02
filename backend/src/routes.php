@@ -67,15 +67,18 @@ function logInteraction($_this, $type, $code) {
                 Routes
 *************************************/
 
-/*
-// Default Slim route
-$app->get('/[{name}]', function ($request, $response, $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+// Home page
+$app->get('/', function ($request, $response, $args) {
+
+    // Get ServerName user is hitting
+    $server_name = $_SERVER['SERVER_NAME'];
+    
+    // Log "visit page" interaction
+    logInteraction($this, 0, $server_name);
 
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
-});*/
+});
 
 // Log home page visit interaction
 $app->post('/page-visit', function ($request, $response, $args) {
@@ -139,6 +142,7 @@ $app->post('/url', function ($request, $response, $args) {
                            SET code = :code,
                                long_url = :long_url,
                                date_created = :date_created";
+
         $stmt = $this->db->prepare($insert_url_sql);
         $stmt->bindParam("code", $code);
         $stmt->bindParam("long_url", $input['long_url']);
@@ -151,6 +155,7 @@ $app->post('/url', function ($request, $response, $args) {
                            SET date_created = :date_created,
                                visible = 1
                            WHERE code = :code";
+
         $stmt = $this->db->prepare($update_url_sql);
         $stmt->bindParam("date_created", $currentDateTime);
         $code = $code->code;
