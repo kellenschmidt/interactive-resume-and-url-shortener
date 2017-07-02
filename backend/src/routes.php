@@ -4,6 +4,23 @@
                 Functions
 *************************************/
 
+/* Generate a random string, using a cryptographically secure 
+ * pseudorandom number generator (random_int)
+ *
+ * @param int $length      How many characters do we want?
+ * @param string $keyspace A string of all possible characters
+ *                         to select from
+ * @return string
+ */
+ function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_') {
+    $str = '';
+    $max = mb_strlen($keyspace, '8bit') - 1;
+    for ($i = 0; $i < $length; ++$i) {
+        $str .= $keyspace[random_int(0, $max)];
+    }
+    return $str;
+}
+
 // Test whether URL code is already in use or not
 function isUnusedCode($_this, $testCode) {
     // Create and execute query to get all codes in database
@@ -135,7 +152,7 @@ $app->post('/url', function ($request, $response, $args) {
     if($code == NULL) {
         // Generate new URL code
         do {
-            $code = substr(md5(microtime()),rand(0,26),3);
+            $code = random_str(3);
         } while (isUnusedCode($this, $code) == false);
 
         $insert_url_sql = "INSERT INTO links 
