@@ -95,6 +95,7 @@ $app->get('/', function ($request, $response, $args) {
 
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
+    
 });
 
 // Log home page visit interaction
@@ -105,6 +106,28 @@ $app->post('/page-visit', function ($request, $response, $args) {
     
     // Log "visit page" interaction
     logInteraction($this, 0, $server_name);
+
+});
+
+// Get content to put in modal
+$app->get('/modal/[{name}]', function ($request, $response, $args) {
+
+    $get_modal_sql = "SELECT * 
+                      FROM modal_content
+                      WHERE name = :name";
+
+    $stmt = $this->db->prepare($get_modal_sql);
+    $stmt->bindParam("name", $args['name']);
+
+    try {
+        $stmt->execute();
+        $modal = $stmt->fetchObject();
+    } catch (Exception $e) {
+        return $this->response->withJson($e);
+    }
+
+    return $this->response->withJson($modal);
+
 });
 
 // Return all URLs
