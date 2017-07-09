@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LinkInputComponent implements OnInit {
 
+  longUrl : string = "";
+
+  onSubmit() {
+    alert("Submitted!");
+  }
+
   constructor() { }
 
   ngOnInit() {
