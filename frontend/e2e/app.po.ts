@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class URLShortenerAngularPage {
+export class URLShortenerAngular4Page {
   navigateTo() {
     return browser.get('/');
   }
