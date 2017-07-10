@@ -1,31 +1,89 @@
 <!-- Test of angular mdbootstrap -->
-<navbar SideClass="navbar navbar-toggleable-md navbar-dark bg-primary">
-    <logo><a class="logo navbar-brand" href="#">Navbar</a></logo>
+
+<navbar SideClass="navbar navbar-toggleable-md navbar-dark fixed-top stylish-color">
+    <logo><a class="logo navbar-brand" href="#">Kellen's URL Shortener</a></logo>
     <links>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link">Home<span class="sr-only">(current)</span></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">Pricing</a>
-            </li>
-            <li class="nav-item dropdown btn-group" dropdown>
-                <a dropdownToggle ripple-radius type="button" class="nav-link dropdown-toggle">
-                Basic dropdown<span class="caret"></span></a>
-                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="divider dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
+                <a class="nav-link">Sign Up</a>
             </li>
         </ul>
-        <form class="form-inline">
-            <input class="form-control" type="text" placeholder="Search">
-        </form>
-    </links>
+    </links>   
 </navbar>
+
+<main>
+    <div class="white-text deep-orange" id="link-input">
+        <div class="container">
+            <div class="row">
+                <h2 class="col-12">Shorten your links</h2>
+            </div><!-- row -->
+            <form (ngSubmit)="onSubmit()" #linkForm="ngForm">
+                <div class="form-group row">
+                    <div class="col-12 col-sm-8 col-md-9 col-lg-10">
+                        <input class="form-control input-alternate white" type="url" [(ngModel)]="longUrl" placeholder="Your original URL here" name="longUrl" required>
+                    </div>
+                    <button type="submit" class="btn white ml-3 col-8 mx-sm-0 col-sm-4 col-md-3 col-lg-2" [disabled]="!linkForm.form.valid">Shorten URL</button>
+                </div><!-- form-group row -->
+            </form>
+        </div><!-- containter -->
+    </div>
+    <div id="body-triangle" class="z-depth-2"></div>
+
+    <div class="container" id="table">
+        <table class="table table-hover">
+          <thead>
+            <tr class="row">
+              <th class="col-9 col-md-6">Original URL</th>
+              <th class="hidden-sm-down col-md-2">Created</th>
+              <th class="col-3 col-md-3"><span class="hidden-sm-down">Short </span>URL<span class="hidden-md-up"> code</span></th>
+              <th class="hidden-sm-down col-md-1">Clicks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row">
+              <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
+              <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
+              <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
+              <td class="hidden-sm-down col-md-1">7</td>
+            </tr>
+            <tr class="row">
+              <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
+              <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
+              <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
+              <td class="hidden-sm-down col-md-1">7</td>
+            </tr>
+            <tr class="row">
+              <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
+              <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
+              <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
+              <td class="hidden-sm-down col-md-1">7</td>
+            </tr>
+            <tr class="row">
+              <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
+              <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
+              <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
+              <td class="hidden-sm-down col-md-1">7</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div id="footer-triangle" class=z-depth-2></div>
+        
+        <div id="footer-content" class="deep-orange white-text page-footer">
+            <div class="footer-copyright">
+                © 2017 Copyright: <a href="https://kellenschmidt.com" class="white-text"> KellenSchmidt.com </a>
+            </div>
+            <!--/.Copyright-->
+        </div>
+      
+    </footer>
+</main>
+
+
+
+

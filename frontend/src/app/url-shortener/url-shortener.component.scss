@@ -1,0 +1,130 @@
+main {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#link-input {
+    position: relative;
+    padding: 3.5rem 0 0 0;
+    z-index: 0;
+
+    .container {
+        margin: 2rem auto;
+        
+        h2 {
+            margin-bottom: 1rem
+        }
+
+        input {
+            box-sizing: border-box;
+            line-height: 1rem;
+            padding-top: 0.85rem;
+            padding-bottom: 0.85rem;
+            height: auto;
+        }
+
+        .form-group .btn {
+            color: #FF5722 !important;
+            font-weight: bold;
+            
+        }
+
+        input,
+        .form-group .btn {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+}
+
+
+/***** Table ******/
+
+/*
+#links-table {
+ border-collapse: collapse;
+ text-align: left;
+}
+
+th {
+ background: #F5F5F5;
+ font-size: 0.75rem;
+ font-weight: 500;
+//  height: 3rem;
+//  padding: 0 18.125rem 0 1.5rem;
+ color: rgba(0,0,0,0.54);
+}
+
+td {
+ font-size: 0.8125rem;
+//  white-space: nowrap;
+//  padding: 1.0625rem 1.125rem 1.5rem;
+ border-top: 1px solid rgba(0, 0, 0, 0.117647);
+ border-bottom: 1px solid rgba(0, 0, 0, 0.117647);
+}
+
+tfoot {
+ background: #F5F5F5;
+}
+
+a {
+ color: #039be5;
+}
+
+a:hover {
+ color: #039be5;
+}*/
+
+td:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#table {
+    padding-bottom: 17rem;
+}
+
+/***** /Table ******/
+
+.triangle {
+    position: relative;
+    background-color: #FF5722;
+    height: 8.4rem;
+    width: 104vw;
+    z-index: -1;
+}
+
+#body-triangle {
+    @extend .triangle;
+    transform: rotate(-4deg) translate(-2vw, -6.35rem);
+}
+
+
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#footer-triangle {
+    @extend .triangle;
+    transform: rotate(176deg) translate(1vw, -4.0rem);
+}
+
+#footer-content {
+    position: relative;
+    height: 8.4rem;
+}
+
+.footer-copyright {
+    position: relative;
+    bottom: -4.9rem;
+    text-align: center;
+    line-height: 3.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
