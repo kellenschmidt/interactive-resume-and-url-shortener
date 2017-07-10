@@ -8,12 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UrlShortenerComponent implements OnInit {
 
-  longUrl : string = "";
-
-  onSubmit() {
-    alert("Submitted!");
-  }
-
   constructor() { }
 
   ngOnInit() {

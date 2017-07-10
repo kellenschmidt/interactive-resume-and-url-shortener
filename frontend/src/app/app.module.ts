@@ -9,12 +9,18 @@ import { AppComponent } from './app.component';
 import { UrlShortenerComponent } from './url-shortener/url-shortener.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { AppRoutingModule } from './app-routing.module';
+import { LinkTableComponent } from './url-shortener/link-table/link-table.component';
+import { NavbarComponent } from './url-shortener/navbar/navbar.component';
+import { LinkInputComponent } from './url-shortener/link-input/link-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UrlShortenerComponent,
     RedirectComponent,
+    LinkTableComponent,
+    NavbarComponent,
+    LinkInputComponent,
   ],
   imports: [
     BrowserModule,

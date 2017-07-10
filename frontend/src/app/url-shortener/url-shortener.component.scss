@@ -4,74 +4,6 @@ main {
     overflow: hidden;
 }
 
-#link-input {
-    position: relative;
-    padding: 3.5rem 0 0 0;
-    z-index: 0;
-
-    .container {
-        margin: 2rem auto;
-        
-        h2 {
-            margin-bottom: 1rem
-        }
-
-        input {
-            box-sizing: border-box;
-            line-height: 1rem;
-            padding-top: 0.85rem;
-            padding-bottom: 0.85rem;
-            height: auto;
-        }
-
-        .form-group .btn {
-            color: #FF5722 !important;
-            font-weight: bold;
-            
-        }
-
-        input,
-        .form-group .btn {
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
-    }
-
-}
-
-
-/***** Table ******/
-
-th, tfoot td {
- background: #F5F5F5;
- font-size: 0.75rem;
- font-weight: 500;
- color: rgba(0,0,0,0.54);
- border-top: 0;
-}
-
-tbody td {
- font-size: 0.8125rem;
- border-top: 1px solid rgba(0, 0, 0, 0.117647);
- border-bottom: 1px solid rgba(0, 0, 0, 0.117647);
-}
-
-a, a:hover{
- color: #039be5;
-}
-
-td:first-child {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-#table-wrapper {
-    padding: 0 15px 18rem 15px;
-}
-
-/***** /Table ******/
-
 .triangle {
     position: relative;
     background-color: #FF5722;
@@ -85,16 +17,16 @@ td:first-child {
     transform: rotate(-4deg) translate(-2vw, -6.35rem);
 }
 
+#footer-triangle {
+    @extend .triangle;
+    transform: rotate(176deg) translate(1vw, -4.0rem);
+}
+
 footer {
     position: absolute;
     left: 0;
     bottom: 0;
     right: 0;
-}
-
-#footer-triangle {
-    @extend .triangle;
-    transform: rotate(176deg) translate(1vw, -4.0rem);
 }
 
 #footer-content {

@@ -1,0 +1,33 @@
+#link-input {
+    position: relative;
+    padding: 3.5rem 0 0 0;
+    z-index: 0;
+
+    .container {
+        margin: 2rem auto;
+        
+        h2 {
+            margin-bottom: 1rem
+        }
+
+        input {
+            box-sizing: border-box;
+            line-height: 1rem;
+            padding-top: 0.85rem;
+            padding-bottom: 0.85rem;
+            height: auto;
+        }
+
+        .form-group .btn {
+            color: #FF5722 !important;
+            font-weight: bold;
+            
+        }
+
+        input,
+        .form-group .btn {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+    }
+}
