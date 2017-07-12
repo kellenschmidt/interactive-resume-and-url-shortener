@@ -15,11 +15,8 @@ https://kellenschmidt.com/url
 - Angular 2 v4 for the front-end
   - Bootstrap 4 https://v4-alpha.getbootstrap.com
   - MDBootstrap for Angular https://mdbootstrap.com/angular
-- [Slim Framework](https://www.slimframework.com/) for the API to interact with the database
-  - [Apiary](http://docs.urlshortener4.apiary.io/) to document the API
-  - API accessed at [api.kellenschmidt.com](api.kellenschmidt.com)
+- Backend MySQL database interaction via RESTful API
 - Travis CI for build testing https://travis-ci.org
-- MySQL database
 
 ### Shorten a URL
 1. Visit [kellenschmidt.com/url](kellenschmidt.com/url)
