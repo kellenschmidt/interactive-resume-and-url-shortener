@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -26,6 +27,7 @@ import { LinkInputComponent } from './url-shortener/link-input/link-input.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpModule,
     MDBBootstrapModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],

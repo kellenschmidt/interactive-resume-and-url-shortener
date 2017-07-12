@@ -1,38 +1,20 @@
 <div class="container">
-    <div id="table-wrapper" class="z-depth-2">
+    <div id="table-wrapper" class="z-depth-1">
         <table class="table table-hover">
             <thead>
                 <tr class="row">
-                    <th class="col-9 col-md-6">Original URL</th>
+                    <th class="col-9 col-md-5">Original URL</th>
                     <th class="hidden-sm-down col-md-2">Created</th>
-                    <th class="col-3 col-md-3"><span class="hidden-sm-down">Short </span>URL<span class="hidden-md-up"> code</span></th>
+                    <th class="col-3 col-md-4"><span class="hidden-sm-down">Short </span>URL<span class="hidden-md-up"> code</span></th>
                     <th class="hidden-sm-down col-md-1">Clicks</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="row">
-                    <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
-                    <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
-                    <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
-                    <td class="hidden-sm-down col-md-1">7</td>
-                </tr>
-                <tr class="row">
-                    <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
-                    <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
-                    <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
-                    <td class="hidden-sm-down col-md-1">7</td>
-                </tr>
-                <tr class="row">
-                    <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
-                    <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
-                    <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
-                    <td class="hidden-sm-down col-md-1">7</td>
-                </tr>
-                <tr class="row">
-                    <td class="col-9 col-md-6"><a href="#">https://www.codeply.com/go/zJLXypKZxL</a></td>
-                    <td class="hidden-sm-down col-md-2">Jul 9, 2017</td>
-                    <td class="col-3 col-md-3"><a href="#">kellenschmidt.com/hpy</a></td>
-                    <td class="hidden-sm-down col-md-1">7</td>
+                <tr class="row" *ngFor="let linkRow of linkRows; let index = index;">
+                    <td class="col-9 col-md-5"><a href="#">{{linkRow.long_url}}</a></td>
+                    <td class="hidden-sm-down col-md-2">{{linkRow.date_created | date:'mediumDate'}}</td>
+                    <td class="col-3 col-md-4"><a href="#"><span class="hidden-sm-down">https://kellenschmidt.com/</span>{{linkRow.code}}</a></td>
+                    <td class="hidden-sm-down col-md-1">{{linkRow.count}}</td>
                 </tr>
             </tbody>
             <tfoot>

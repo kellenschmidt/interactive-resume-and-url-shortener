@@ -1,3 +1,5 @@
+$background-color: #FF5722;
+
 main {
     position: relative;
     min-height: 100vh;
@@ -6,7 +8,7 @@ main {
 
 .triangle {
     position: relative;
-    background-color: #FF5722;
+    background-color: $background-color;
     height: 8.4rem;
     width: 104vw;
     z-index: -1;
