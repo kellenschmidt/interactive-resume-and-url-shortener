@@ -1,5 +1,9 @@
 # urlshortener.kellenschmidt.com
 
+[![Build Status](https://travis-ci.org/kellenschmidt/kellenschmidt.com.svg?branch=master)](https://travis-ci.org/kellenschmidt/kellenschmidt.com)
+[![Stories in Progress](https://badge.waffle.io/kellenschmidt/urlshortener.kellenschmidt.com.png?label=in%20progress&title=In%20progress)](https://waffle.io/kellenschmidt/urlshortener.kellenschmidt.com?utm_source=badge)
+[![Stories in Ready](https://badge.waffle.io/kellenschmidt/urlshortener.kellenschmidt.com.png?staged%20for%20development&title=Staged%20for%20Development)](https://waffle.io/kellenschmidt/urlshortener.kellenschmidt.com?utm_source=badge)
+
 <img src="https://varahund.files.wordpress.com/2016/06/varning.jpg" width=24/><i>  Currently in progress</i>
 
 Angular version of URL shortener to create, manage, and redirect short URLs
@@ -8,11 +12,13 @@ https://kellenschmidt.com/url
 
 ### Technologies used
 
-- Angular 4 for the front-end
-  - Bootstrap 4
+- Angular 2 v4 for the front-end
+  - Bootstrap 4 https://v4-alpha.getbootstrap.com
+  - MDBootstrap for Angular https://mdbootstrap.com/angular
 - [Slim Framework](https://www.slimframework.com/) for the API to interact with the database
   - [Apiary](http://docs.urlshortener4.apiary.io/) to document the API
   - API accessed at [api.kellenschmidt.com](api.kellenschmidt.com)
+- Travis CI for build testing https://travis-ci.org
 - MySQL database
 
 ### Shorten a URL
