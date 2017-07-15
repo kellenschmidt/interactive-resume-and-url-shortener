@@ -3,7 +3,6 @@ $background-color: #FF5722;
 #link-input {
     background-color: $background-color;
     position: relative;
-    // padding: 3.5rem 0 0 0;
     padding: 1rem 0 0 0;
     z-index: 0;
 
@@ -34,4 +33,58 @@ $background-color: #FF5722;
             margin-bottom: 1rem;
         }
     }
+
+    #new-link {
+        color: black;
+        line-height: 2.5rem;
+        font-size: 1.2rem;
+        margin: 0 0 .5rem 0;
+        background: #eee;
+        padding: .3rem .2rem .3rem .7rem;
+        border-radius: .125rem;
+        display: inline-block;
+
+        a {
+            margin-left: .4em;
+            font-size: .85em;
+            padding: .6rem;
+
+            &:hover {
+                background-color: #ddd;
+                border-radius: 2rem;
+                transition: background-color .15s linear;
+            }
+        }
+
+        &~a {
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Small devices (landscape phones, width: 576px and up) */
+@media (min-width: 576px) {  
+    #link-input #new-link { 
+        font-size: 2rem; 
+        line-height: 2.9rem;
+        padding: .5rem .8rem .5rem 1.125rem;
+    }
+}
+ 
+/* Medium devices (tablets, width: 768px and up) */
+@media (min-width: 768px) {
+    #link-input #new-link { 
+        font-size: 2.2rem; 
+        line-height: 3.1rem;
+    }
+}
+
+/* Large devices (large tablets, width: 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (any laptop or desktop, width: 1200px and up) */
+@media (min-width: 1200px) {  
+
 }

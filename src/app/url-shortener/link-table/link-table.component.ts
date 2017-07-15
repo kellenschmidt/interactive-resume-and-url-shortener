@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import 'rxjs/add/operator/retry';
+import { LinkData } from '../link-data';
 
 @Component({
   moduleId: module.id,
@@ -8,32 +11,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LinkTableComponent implements OnInit {
 
-  siteUrl : string = "https://kellenschmidt.com/"
+  siteUrl: string = "https://kellenschmidt.com/";
+  apiUrl: string = "https://api.kellenschmidt.com";
 
-  linkRows : any[] = [
-        {
-            "code": "abc",
-            "long_url": "https://github.com/mgechev/angular-seed/wiki/Deploying-prod-build-to-Apache-2/",
-            "date_created": "2017-03-24 09:35:16",
-            "count": 4
-        },
-        {
-            "code": "123",
-            "long_url": "https://arjunphp.com/creating-restful-api-slim-framework/",
-            "date_created": "2017-03-29 10:01:34",
-            "count": 1
-        },
-        {
-            "code": "L0l",
-            "long_url": "https://v4-alpha.getbootstrap.com/components/carousel/",
-            "date_created": "2017-04-05 03:57:15",
-            "count": 37
-        },
-    ];
+  linkRows: LinkData[] = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit(): void {
+    // Make the HTTP request:
+    this.http.get<LinkDataResponse>(`${this.apiUrl}/urls`)
+    // Retry this request up to 3 times.
+    .retry(3)
+    // Any errors after the 3rd retry will fall through to the app.
+    .subscribe(
+      (responseBody) => {
+        // Read the result field from the JSON response
+        this.linkRows = responseBody.data;
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.log('Error: GET request for LinkDataResponse failed:', err.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        }
+      } // error
+    ) // http subscribe
+  } // OnInit
+}// LinkTableComponent
 
+interface LinkDataResponse {
+    data: LinkData[];
 }
+
+

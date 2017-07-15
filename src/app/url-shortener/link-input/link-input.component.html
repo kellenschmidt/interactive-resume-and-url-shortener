@@ -1,9 +1,9 @@
 <div class="white-text" id="link-input">
     <div class="container">
         <div class="row">
-            <h2 class="col-12">Shorten your links</h2>
+            <h2 class="col-12">{{title}}</h2>
         </div><!-- .row -->
-        <form (ngSubmit)="onSubmit()" #linkForm="ngForm">
+        <form (ngSubmit)="onSubmit()" #linkForm="ngForm" *ngIf="linkInputMode === true">
             <div class="form-group row">
                 <div class="col-12 col-sm-8 col-md-9 col-lg-10">
                     <input class="form-control input-alternate white" type="url" [(ngModel)]="longUrl" placeholder="Your original URL here" name="longUrl" required>
@@ -11,5 +11,10 @@
                 <button type="submit" class="btn white ml-3 col-8 mx-sm-0 col-sm-4 col-md-3 col-lg-2" [disabled]="!linkForm.form.valid">Shorten URL</button>
             </div><!-- .form-group.row -->
         </form>
+        <div *ngIf="linkInputMode === false">
+            <p id="new-link" class="z-depth-1">{{this.shortUrl}}<a><i class="fa fa-clone"></i></a></p><br>
+            <a (click)="toggleInputMode()">Go back</a>
+        </div>
     </div><!-- .containter -->
+    
 </div><!-- #link-input -->

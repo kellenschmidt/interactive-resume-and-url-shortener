@@ -7,7 +7,7 @@ import { RedirectComponent } from './redirect/redirect.component';
 const appRoutes: Routes = [
   { path: '', component: UrlShortenerComponent },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },
-  { path: '**', component: RedirectComponent }
+  { path: ':code', component: RedirectComponent }
 ];
 
 @NgModule({
