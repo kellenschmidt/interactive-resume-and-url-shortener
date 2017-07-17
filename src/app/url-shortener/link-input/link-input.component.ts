@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { LinkData } from '../link-data';
+import { HttpErrorResponse } from '@angular/common/http';
+import { LinkData } from '../../shared/link-data';
 import { MdSnackBar } from '@angular/material';
+import { LinkRepositoryService } from '../../shared/link-repository.service';
 
 @Component({
   moduleId: module.id,
@@ -11,7 +12,7 @@ import { MdSnackBar } from '@angular/material';
 })
 export class LinkInputComponent implements OnInit {
 
-  apiUrl: string = "https://api.kellenschmidt.com";
+  siteUrl: string = "https://kellenschmidt.com";
   linkInputMode: boolean = true;
   titles: string[] = ["Shorten your links", "Your short URL"];
   title: string = this.titles[0];
@@ -51,20 +52,15 @@ export class LinkInputComponent implements OnInit {
     return longUrl.trim();
   }
 
-  // Send POST request to create short URL
-  postLink(longUrl: string) {
-    this.http.post<LinkData>(`${this.apiUrl}/url`,
-    {
-      "long_url": longUrl
-    })
-    .retry(3)
-    .subscribe(
+  // Set values for new short URL and display
+  addLinkHttp(longUrl: string) {
+    this.linkRepository.addLink(longUrl).subscribe(
       (responseBody) => {
         // Get link data
         this.newLinkData = responseBody;
         // Clear input field
         this.longUrl = "";
-        this.shortUrl = `https://kellenschmidt.com/${this.newLinkData.code}`;
+        this.shortUrl = `${this.siteUrl}/${this.newLinkData.code}`;
         this.toggleInputMode();
       },
       (err: HttpErrorResponse) => {
@@ -82,10 +78,10 @@ export class LinkInputComponent implements OnInit {
 
   onSubmit() {
     let trimmedUrl = this.configLongUrl(this.longUrl)
-    this.postLink(trimmedUrl);
+    this.addLinkHttp(trimmedUrl);
   }
 
-  constructor(private http: HttpClient,
+  constructor(private linkRepository: LinkRepositoryService,
               private snackBar: MdSnackBar) { }
 
   ngOnInit() { }

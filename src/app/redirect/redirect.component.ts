@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import { LinkRepositoryService } from '../shared/link-repository.service';
 
 @Component({
   moduleId: module.id,
@@ -11,12 +12,9 @@ import 'rxjs/add/operator/switchMap';
 })
 export class RedirectComponent implements OnInit {
 
-  apiUrl: string = "https://api.kellenschmidt.com";
-
-  // Make POST request to get long URL and then redirect
-  postRequest(code: string) {
-    this.http.post(`${this.apiUrl}/hit/${code}`, { /* empty request body */ })
-    .subscribe(
+  // Get long URL and then redirect
+  getRedirectLinkHttp(code: string) {
+    this.linkRepository.getRedirectLink(code).subscribe(
       (responseBody) => {
         // Redirect to new URL
         window.location.href = responseBody["long_url"];
@@ -34,11 +32,11 @@ export class RedirectComponent implements OnInit {
     ) // http subscribe
   }
 
-  constructor(private http: HttpClient,
+  constructor(private linkRepository: LinkRepositoryService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     let code = this.route.snapshot.paramMap.get('code');
-    this.postRequest(code);
+    this.getRedirectLinkHttp(code);
   } // ngOnInit
 } // RedirectComponent

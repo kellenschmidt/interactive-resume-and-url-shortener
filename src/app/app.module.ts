@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MdSnackBarModule, MdTooltipModule } from '@angular/material';
+import { MdSnackBarModule, MdTooltipModule, MdMenuModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LinkTableComponent } from './url-shortener/link-table/link-table.component';
 import { NavbarComponent } from './url-shortener/navbar/navbar.component';
 import { LinkInputComponent } from './url-shortener/link-input/link-input.component';
+import { LinkRepositoryService } from './shared/link-repository.service';
 
 @NgModule({
   declarations: [
@@ -32,11 +33,12 @@ import { LinkInputComponent } from './url-shortener/link-input/link-input.compon
     HttpClientModule,
     MdSnackBarModule,
     MdTooltipModule,
+    MdMenuModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [],
+  providers: [LinkRepositoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

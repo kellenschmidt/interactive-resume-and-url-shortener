@@ -17,7 +17,18 @@
                         <a routerLink="/{{linkRow.code}}" #shortUrl><span class="hidden-sm-down">kellenschmidt.com/</span>{{linkRow.code}}</a>
                         <a class="copy-btn" (click)="this.copy(linkRow.code)" mdTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
                     </td>
-                    <td class="hidden-sm-down col-md-1">{{linkRow.count}}</td>
+                    <td class="hidden-sm-down col-md-1">
+                        {{linkRow.count}}
+                        <a md-icon-button [mdMenuTriggerFor]="menu" class="menu-btn float-right">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </a>
+                        <md-menu #menu="mdMenu">
+                            <button md-menu-item (click)="hideLink(linkRow.code)">
+                                <span>Hide URL</span>
+                                <i class="fa fa-eye-slash ml-2"></i>
+                            </button>
+                        </md-menu>
+                    </td>
                 </tr>
             </tbody>
             <tfoot>

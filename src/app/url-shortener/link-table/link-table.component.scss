@@ -30,21 +30,27 @@ td:first-child {
     padding-bottom: 18rem;
 }
 
-.copy-btn {
+.copy-btn, .menu-btn {
     visibility: hidden;
-    margin-left: .2rem;
-    padding: .35rem .465rem;
     border-radius: 1rem;
     transition: background-color .1s linear;
-
+    
     &:hover {
     background-color: #dddddd;
     }
-    
+}
+
+.copy-btn {
+    padding: .35rem .465rem;
+    margin-left: .2rem;
+}
+
+.menu-btn {
+    padding: .1rem .6rem .02rem .6rem;
 }
 
 tr:hover {
-    .copy-btn {
+    .copy-btn, .menu-btn {
         visibility: inherit;
     }
 }
