@@ -12,7 +12,7 @@
             </div><!-- .form-group.row -->
         </form>
         <div *ngIf="linkInputMode === false">
-            <p id="new-link" class="z-depth-1">{{this.shortUrl}}<a (click)="copy(this.shortUrl)"><i class="fa fa-clone"></i></a></p><br>
+            <p id="new-link" class="z-depth-1">{{this.shortUrl}}<a (click)="copy(this.shortUrl)" mdTooltip="Copy short URL"><i class="fa fa-clone"></i></a></p><br>
             <a (click)="toggleInputMode()">Go back</a>
         </div>
     </div><!-- .containter -->

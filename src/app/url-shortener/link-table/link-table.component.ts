@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/retry';
 import { LinkData } from '../link-data';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -34,9 +35,12 @@ export class LinkTableComponent implements OnInit {
 
     document.execCommand('copy');
     document.body.removeChild(selBox);
+
+    let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 2500 });
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private snackBar: MdSnackBar) { }
 
   ngOnInit(): void {
     // Make the HTTP request:

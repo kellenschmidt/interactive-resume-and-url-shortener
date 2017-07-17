@@ -15,7 +15,8 @@
                     <td class="hidden-sm-down col-md-2">{{linkRow.date_created | date:'mediumDate'}}</td>
                     <td class="col-3 col-md-4 col-lg-3">
                         <a routerLink="/{{linkRow.code}}" #shortUrl><span class="hidden-sm-down">kellenschmidt.com/</span>{{linkRow.code}}</a>
-                        <a class="copy-btn" (click)="this.copy(linkRow.code)"><i class="fa fa-clone"></i></a></td>
+                        <a class="copy-btn" (click)="this.copy(linkRow.code)" mdTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
+                    </td>
                     <td class="hidden-sm-down col-md-1">{{linkRow.count}}</td>
                 </tr>
             </tbody>
