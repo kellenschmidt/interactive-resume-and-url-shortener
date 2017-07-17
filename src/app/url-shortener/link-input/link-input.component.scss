@@ -37,7 +37,7 @@ $background-color: #FF5722;
     #new-link {
         color: black;
         line-height: 2.5rem;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
         margin: 0 0 .5rem 0;
         background: #eee;
         padding: .3rem .2rem .3rem .7rem;
@@ -45,12 +45,12 @@ $background-color: #FF5722;
         display: inline-block;
 
         a {
-            margin-left: .4em;
-            font-size: .85em;
-            padding: .6rem;
+            margin-left: .2em;
+            font-size: .8em;
+            padding: .5rem .7rem;
 
             &:hover {
-                background-color: #ddd;
+                background-color: #dddddd;
                 border-radius: 2rem;
                 transition: background-color .15s linear;
             }
@@ -61,6 +61,7 @@ $background-color: #FF5722;
         }
     }
 }
+
 
 /* Small devices (landscape phones, width: 576px and up) */
 @media (min-width: 576px) {  

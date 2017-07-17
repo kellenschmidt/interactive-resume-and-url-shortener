@@ -18,6 +18,25 @@ export class LinkInputComponent implements OnInit {
   shortUrl: string = "";
   newLinkData: LinkData;
 
+  // Copy short URL to clipboard
+  copy(textToCopy: string) {
+    // Temporarily create invisible element on screen to copy text from
+    let selBox = document.createElement('textarea');
+
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = textToCopy;
+
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
   // Toggle display mode between long URL input and short URL output
   toggleInputMode() {
     this.linkInputMode = !this.linkInputMode;

@@ -13,8 +13,28 @@ export class LinkTableComponent implements OnInit {
 
   siteUrl: string = "https://kellenschmidt.com/";
   apiUrl: string = "https://api.kellenschmidt.com";
-
   linkRows: LinkData[] = [];
+
+  // Copy short URL to clipboard
+  copy(code: string) {
+    let textToCopy = "https://kellenschmidt.com/" + code;
+    
+    // Temporarily create invisible element on screen to copy text from
+    let selBox = document.createElement('textarea');
+
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = textToCopy;
+
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
 
   constructor(private http: HttpClient) { }
 

@@ -29,3 +29,22 @@ td:first-child {
 .container {
     padding-bottom: 18rem;
 }
+
+.copy-btn {
+    visibility: hidden;
+    margin-left: .2rem;
+    padding: .35rem .465rem;
+    border-radius: 1rem;
+    transition: background-color .1s linear;
+
+    &:hover {
+    background-color: #dddddd;
+    }
+    
+}
+
+tr:hover {
+    .copy-btn {
+        visibility: inherit;
+    }
+}
