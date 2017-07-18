@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { LinkData } from '../../shared/link-data';
 import { MdSnackBar } from '@angular/material';
 import { LinkRepositoryService } from '../../shared/link-repository.service';
+import { TableHandlerService } from '../table-handler.service';
 
 @Component({
   moduleId: module.id,
@@ -60,8 +61,11 @@ export class LinkInputComponent implements OnInit {
         this.newLinkData = responseBody;
         // Clear input field
         this.longUrl = "";
+        // Set short URL and display
         this.shortUrl = `${this.siteUrl}/${this.newLinkData.code}`;
         this.toggleInputMode();
+        // Add to table
+        this.tableHandler.insert(0, this.newLinkData);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -82,7 +86,8 @@ export class LinkInputComponent implements OnInit {
   }
 
   constructor(private linkRepository: LinkRepositoryService,
-              private snackBar: MdSnackBar) { }
+              private snackBar: MdSnackBar,
+              private tableHandler: TableHandlerService) { }
 
   ngOnInit() { }
 

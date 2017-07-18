@@ -20,6 +20,8 @@ td:first-child {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    // Sketchy, makes the table not get too wide for super long URLs even with ellipsis
+    width: 1vw;
 }
 
 #table-wrapper {

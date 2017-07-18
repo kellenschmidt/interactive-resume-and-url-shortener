@@ -16,6 +16,7 @@ import { LinkTableComponent } from './url-shortener/link-table/link-table.compon
 import { NavbarComponent } from './url-shortener/navbar/navbar.component';
 import { LinkInputComponent } from './url-shortener/link-input/link-input.component';
 import { LinkRepositoryService } from './shared/link-repository.service';
+import { TableHandlerService } from './url-shortener/table-handler.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,10 @@ import { LinkRepositoryService } from './shared/link-repository.service';
     MDBBootstrapModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [LinkRepositoryService],
+  providers: [
+    LinkRepositoryService,
+    TableHandlerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MdSnackBar } from '@angular/material';
 import { LinkRepositoryService } from '../../shared/link-repository.service';
 import { LinkData } from '../../shared/link-data';
+import { TableHandlerService } from '../table-handler.service';
 
 @Component({
   moduleId: module.id,
@@ -13,7 +14,7 @@ import { LinkData } from '../../shared/link-data';
 export class LinkTableComponent implements OnInit {
 
   siteUrl: string = "https://kellenschmidt.com/";
-  linkRows: LinkData[] = [];
+  table: LinkData[];
 
   // Copy short URL to clipboard
   copy(code: string) {
@@ -45,19 +46,15 @@ export class LinkTableComponent implements OnInit {
     let undo = false;
 
     // Copy row to remove
-    let tempLinkRow: LinkData = this.linkRows.find(row => row.code === code);
-    // Get index of row to remove
-    let index = this.linkRows.findIndex(row => row.code === code);
-    // Remove row from array
-    if (index > -1) {
-      this.linkRows.splice(index, 1);
-    }
+    let tempLinkRow: LinkData = this.tableHandler.getByCode(code);
+    // Remove row and get index
+    let index = this.tableHandler.remove(code);
 
     snackBarRef.onAction().subscribe(() => {
       undo = true;
 
       // Add row back into array
-      this.linkRows.splice(index, 0, tempLinkRow);
+      this.tableHandler.insert(index, tempLinkRow);
     });
 
     snackBarRef.afterDismissed().subscribe(() => {
@@ -71,7 +68,7 @@ export class LinkTableComponent implements OnInit {
   hideUrlHttp(code: string) {
     this.linkRepository.hideLink(code).subscribe(
       (responseBody) => {
-        this.getLinksHttp();
+        this.tableHandler.refresh();
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -86,31 +83,11 @@ export class LinkTableComponent implements OnInit {
     ) // http subscribe
   }
 
-  // Get URLs and set equal to array for use in table
-  getLinksHttp() {
-    this.linkRepository.getLinks().subscribe(
-      (responseBody) => {
-        // Read the result field from the JSON response
-        this.linkRows = responseBody.data;
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.log('Error: GET request for LinkDataResponse failed:', err.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        }
-      } // error
-    ) // http subscribe
-  }
-
   constructor(private snackBar: MdSnackBar,
-              private linkRepository: LinkRepositoryService) { }
+              private linkRepository: LinkRepositoryService,
+              public tableHandler: TableHandlerService) { }
 
   ngOnInit(): void {
-    // Refresh table
-    this.getLinksHttp();
+
   } // OnInit
 }// LinkTableComponent
