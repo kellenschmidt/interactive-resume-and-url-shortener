@@ -33,7 +33,6 @@ td:first-child {
 }
 
 .copy-btn, .menu-btn {
-    visibility: hidden;
     border-radius: 1rem;
     transition: background-color .1s linear;
     
@@ -44,15 +43,23 @@ td:first-child {
 
 .copy-btn {
     padding: .35rem .465rem;
-    margin-left: .2rem;
 }
 
 .menu-btn {
+    visibility: hidden;
     padding: .1rem .6rem .02rem .6rem;
 }
 
 tr:hover {
     .copy-btn, .menu-btn {
         visibility: inherit;
+    }
+}
+
+/* Medium devices (large tablets, width: 768 and up) */
+@media (min-width: 768px) {
+    .copy-btn { 
+        visibility: hidden;
+        margin-left: .2rem;
     }
 }
