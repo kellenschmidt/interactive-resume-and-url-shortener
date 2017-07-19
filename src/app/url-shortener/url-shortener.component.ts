@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MdDialog } from '@angular/material';
+import { NotFoundDialogComponent } from './not-found-dialog/not-found-dialog.component';
 
 @Component({
   moduleId: module.id,
@@ -8,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UrlShortenerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+              private dialog: MdDialog) { }
 
   ngOnInit() {
+    if(this.router.url === "/null") {
+      this.dialog.open(NotFoundDialogComponent);
+    }
   }
 
 }

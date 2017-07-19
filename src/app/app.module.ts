@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MdSnackBarModule, MdTooltipModule, MdMenuModule } from '@angular/material';
+import { MdSnackBarModule, MdTooltipModule, MdMenuModule, MdTableModule, MdDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -17,6 +17,8 @@ import { NavbarComponent } from './url-shortener/navbar/navbar.component';
 import { LinkInputComponent } from './url-shortener/link-input/link-input.component';
 import { LinkRepositoryService } from './shared/link-repository.service';
 import { TableHandlerService } from './url-shortener/table-handler.service';
+import { LinkTable2Component } from './url-shortener/link-table-2/link-table-2.component';
+import { NotFoundDialogComponent } from './url-shortener/not-found-dialog/not-found-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { TableHandlerService } from './url-shortener/table-handler.service';
     LinkTableComponent,
     NavbarComponent,
     LinkInputComponent,
+    LinkTable2Component,
+    NotFoundDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,8 @@ import { TableHandlerService } from './url-shortener/table-handler.service';
     MdTooltipModule,
     MdMenuModule,
     BrowserAnimationsModule,
+    MdTableModule,
+    MdDialogModule,
     MDBBootstrapModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],
@@ -43,6 +49,7 @@ import { TableHandlerService } from './url-shortener/table-handler.service';
     LinkRepositoryService,
     TableHandlerService
   ],
+  entryComponents: [NotFoundDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

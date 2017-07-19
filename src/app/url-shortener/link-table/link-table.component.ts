@@ -14,7 +14,6 @@ import { TableHandlerService } from '../table-handler.service';
 export class LinkTableComponent implements OnInit {
 
   siteUrl: string = "https://kellenschmidt.com/";
-  table: LinkData[];
 
   // Copy short URL to clipboard
   copy(code: string) {
@@ -54,7 +53,8 @@ export class LinkTableComponent implements OnInit {
       undo = true;
 
       // Add row back into array
-      this.tableHandler.insert(index, tempLinkRow);
+      // this.tableHandler.insert(index, tempLinkRow);
+      // this.tableHandler.refresh();
     });
 
     snackBarRef.afterDismissed().subscribe(() => {

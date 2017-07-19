@@ -4,7 +4,6 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import 'rxjs/add/observable/of';
 
 @Injectable()
 export class TableHandlerService {
@@ -13,10 +12,6 @@ export class TableHandlerService {
   private _table: ReplaySubject<LinkData[]>;
   table$: Observable<LinkData[]>;
 
-  getObservable(): Observable<LinkData[]> {
-    return Observable.of(this.table);
-  }
-  
   // Get URLs and set equal to array for use in table
   refresh() {
     this.linkRepository.getLinks().subscribe(
@@ -40,6 +35,7 @@ export class TableHandlerService {
 
   insert(index: number, newRow: LinkData) {
     this.table.splice(index, 0, newRow);
+    // this._table.next(this.table);
   }
 
   remove(code: string): number {

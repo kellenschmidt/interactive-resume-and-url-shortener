@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { LinkRepositoryService } from '../shared/link-repository.service';
+import { Location } from '@angular/common';
 
 @Component({
   moduleId: module.id,
@@ -33,7 +34,8 @@ export class RedirectComponent implements OnInit {
   }
 
   constructor(private linkRepository: LinkRepositoryService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private location: Location) { }
 
   ngOnInit() {
     let code = this.route.snapshot.paramMap.get('code');

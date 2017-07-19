@@ -6,7 +6,7 @@ import { RedirectComponent } from './redirect/redirect.component';
 
 const appRoutes: Routes = [
   { path: '', component: UrlShortenerComponent },
-  { path: 'home', redirectTo: '/', pathMatch: 'full' },
+  { path: 'null', component: UrlShortenerComponent },
   { path: ':code', component: RedirectComponent }
 ];
 
