@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { NotFoundDialogComponent } from './not-found-dialog/not-found-dialog.component';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   moduleId: module.id,
@@ -11,13 +12,38 @@ import { NotFoundDialogComponent } from './not-found-dialog/not-found-dialog.com
 })
 export class UrlShortenerComponent implements OnInit {
 
+  private apiUrl = "https://api.kellenschmidt.com";
+
   constructor(private router: Router,
-              private dialog: MdDialog) { }
+              private dialog: MdDialog,
+              private http: HttpClient) { }
 
   ngOnInit() {
     if(this.router.url === "/null") {
       this.dialog.open(NotFoundDialogComponent);
-    }
-  }
+    } else {
+      this.http.post(`${this.apiUrl}/page-visit`,
+      {
+        "site": document.domain,
+        "referrer": document.referrer
+      })
+      .retry(3)
+      .subscribe(
+        (responseBody) => {
+          // Do nothing on success
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.log('Error: POST request to log page visit failed:', err.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          }
+        } // error
+      ) // http subscribe
+    } // http post
+  } // else
 
 }
