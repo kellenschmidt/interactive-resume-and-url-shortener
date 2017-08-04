@@ -1,35 +1,40 @@
-th, tfoot td {
- background: #F5F5F5;
- font-size: 0.75rem;
- font-weight: 500;
- color: rgba(0,0,0,0.54);
- border-top: 0;
+/* Given structure of table */
+.table-container {
+    display: flex;
+    flex-direction: column;
+    // Force scrolling in tables where content is taller than max height
+    // max-height: 500px;
+    min-width: 300px;
+    margin-bottom: 18.5rem;
 }
 
-tbody td {
- font-size: 0.8125rem;
- border-top: 1px solid rgba(0, 0, 0, 0.117647);
- border-bottom: 1px solid rgba(0, 0, 0, 0.117647);
+.table-header {
+    min-height: 64px;
+    display: flex;
+    align-items: baseline;
+    padding: 8px 24px 0;
+    font-size: 20px;
+    justify-content: space-between;
 }
 
-a, a:hover{
- color: #039be5;
+.mat-input-container {
+    font-size: 14px;
+    flex-grow: 1;
+    // For margin modifications see @media below
+    margin-top: 8px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
-td:first-child {
+/* Custom */
+.table-header, md-header-row, md-paginator {
+    background-color: #f5f5f5;
+}
+
+.long-url {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    // Sketchy, makes the table not get too wide for super long URLs even with ellipsis
-    width: 1vw;
-}
-
-#table-wrapper {
-    padding: 0 15px;
-}
-
-.container {
-    padding-bottom: 18rem;
 }
 
 .copy-btn, .menu-btn {
@@ -50,16 +55,65 @@ td:first-child {
     padding: .1rem .6rem .02rem .6rem;
 }
 
-tr:hover {
+md-row:hover {
+    background-color: #f5f5f5;
     .copy-btn, .menu-btn {
         visibility: inherit;
     }
 }
 
+.mat-column-date_created,
+.mat-column-count {
+    display: none;
+}
+
+.mat-column-long_url {
+    flex: 5;
+    padding-right: 1rem;
+}
+
+.mat-column-long_url {
+    flex: 3.1;
+    padding-right: 1rem;
+}
+.mat-column-code {
+    flex: 1;
+}
+
+
+
 /* Medium devices (large tablets, width: 768 and up) */
 @media (min-width: 768px) {
+    .mat-input-container {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
+    .mat-column-date_created,
+    .mat-column-count {
+        display: inherit;
+    }
+
+    .mat-column-long_url {
+        flex: 5;
+        padding-right: 2rem;
+    }
+    .mat-column-date_created {
+        flex: 1.5;
+    }
+    .mat-column-code {
+        flex: 2.9;
+    }
+    .mat-column-count {
+        flex: .5;
+    }
+    
     .copy-btn { 
         visibility: hidden;
         margin-left: .2rem;
+    }
+    
+    #date-column {
+        display: inherit;
     }
 }

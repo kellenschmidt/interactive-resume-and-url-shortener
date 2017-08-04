@@ -13,6 +13,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class UrlShortenerComponent implements OnInit {
 
   private apiUrl = "https://api.kellenschmidt.com";
+  public currentDate = new Date();
 
   constructor(private router: Router,
               private dialog: MdDialog,

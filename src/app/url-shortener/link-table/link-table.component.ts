@@ -1,9 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { MdSnackBar } from '@angular/material';
-import { LinkRepositoryService } from '../../shared/link-repository.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { DataSource } from '@angular/cdk';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LinkData } from '../../shared/link-data';
 import { TableHandlerService } from '../table-handler.service';
+import { MdSnackBar, MdPaginator, MdSort } from '@angular/material';
+import { LinkRepositoryService } from '../../shared/link-repository.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
   moduleId: module.id,
@@ -12,8 +20,74 @@ import { TableHandlerService } from '../table-handler.service';
   styleUrls: ['link-table.component.scss']
 })
 export class LinkTableComponent implements OnInit {
-
+  displayedColumns = ['long_url', 'date_created', 'code', 'count'];
+  tableDatabase = this.tableHandler;
+  dataSource: ExampleDataSource | null;
   siteUrl: string = "https://kellenschmidt.com/";
+
+  @ViewChild('filter') filter: ElementRef;
+  @ViewChild(MdSort) sort: MdSort;
+  @ViewChild(MdPaginator) paginator: MdPaginator;
+
+  constructor(private tableHandler: TableHandlerService,
+              private linkRepository: LinkRepositoryService,
+              private snackBar: MdSnackBar) {}
+
+  ngOnInit() {
+    this.dataSource = new ExampleDataSource(this.tableDatabase, this.sort, this.paginator);
+
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) { return; }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
+  }
+
+  // Menu option to hide link
+  hideLink(code: string) {
+    // Display snackbar with "undo" action
+    let snackBarRef = this.snackBar.open("URL hidden", "Undo", { duration: 5000 });
+    let undo = false;
+
+    // Copy row to remove
+    let tempLinkRow: LinkData = this.tableHandler.getByCode(code);
+    // Remove row and get index
+    let index = this.tableHandler.remove(code);
+
+    snackBarRef.onAction().subscribe(() => {
+      undo = true;
+
+      // Add row back into array
+      this.tableHandler.insert(index, tempLinkRow);
+    });
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      if(undo === false) {
+        this.hideUrlHttp(code);
+      }
+    });
+  }
+
+  // Remove from visibility and reload table
+  hideUrlHttp(code: string) {
+    this.linkRepository.hideLink(code).subscribe(
+      (responseBody) => {
+        // Link has already been removed from table, this just removes it from the database too
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.log('Error: PUT request to hide link failed:', err.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        }
+      } // error
+    ) // http subscribe
+  }
 
   // Copy short URL to clipboard
   copy(code: string) {
@@ -38,56 +112,74 @@ export class LinkTableComponent implements OnInit {
     let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 2500 });
   }
 
-  // Menu option to hide link
-  hideLink(code: string) {
-    // Display snackbar with "undo" action
-    let snackBarRef = this.snackBar.open("URL hidden", "Undo", { duration: 5000 });
-    let undo = false;
+}
 
-    // Copy row to remove
-    let tempLinkRow: LinkData = this.tableHandler.getByCode(code);
-    // Remove row and get index
-    let index = this.tableHandler.remove(code);
+/**
+ * Data source to provide what data should be rendered in the table. Note that the data source
+ * can retrieve its data in any way. In this case, the data source is provided a reference
+ * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
+ * the underlying data. Instead, it only needs to take the data and send the table exactly what
+ * should be rendered.
+ */
+export class ExampleDataSource extends DataSource<any> {
+  constructor(private _tableDatabase: TableHandlerService,
+              private _sort: MdSort,
+              private _paginator: MdPaginator) {
+    super();
+  }
 
-    snackBarRef.onAction().subscribe(() => {
-      undo = true;
+  _filterChange = new BehaviorSubject('');
+  get filter(): string { return this._filterChange.value; }
+  set filter(filter: string) { this._filterChange.next(filter); }
 
-      // Add row back into array
-      // this.tableHandler.insert(index, tempLinkRow);
-      // this.tableHandler.refresh();
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<LinkData[]> {
+
+    const displayDataChanges = [
+      this._tableDatabase.table,
+      this._filterChange,
+      this._sort.mdSortChange,
+      this._paginator.page,
+    ];
+
+    return Observable.merge(...displayDataChanges).map(() => {
+      // Filter data
+      let data = this._tableDatabase.data.slice().filter((item: LinkData) => {
+        let searchStr = (item.long_url + item.code).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+      });
+
+      // Sort data
+      data = this.getSortedData(data);
+
+      // Paginate data
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+      return data.splice(startIndex, this._paginator.pageSize);
     });
+  }
 
-    snackBarRef.afterDismissed().subscribe(() => {
-      if(undo === false) {
-        this.hideUrlHttp(code);
+  disconnect() {}
+
+  /** Returns a sorted copy of the database data. */
+  getSortedData(dataToSort: LinkData[]): LinkData[] {
+    const data = dataToSort
+    if (!this._sort.active || this._sort.direction == '') { return data; }
+
+    return data.sort((a, b) => {
+      let propertyA: number|string = '';
+      let propertyB: number|string = '';
+
+      switch (this._sort.active) {
+        case 'long_url': [propertyA, propertyB] = [a.long_url, b.long_url]; break;
+        case 'date_created': [propertyA, propertyB] = [a.date_created, b.date_created]; break;
+        case 'code': [propertyA, propertyB] = [a.code, b.code]; break;
+        case 'count': [propertyA, propertyB] = [a.count, b.count]; break;
       }
+
+      let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
     });
   }
-
-  // Remove from visibility and reload table
-  hideUrlHttp(code: string) {
-    this.linkRepository.hideLink(code).subscribe(
-      (responseBody) => {
-        this.tableHandler.refresh();
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.log('Error: PUT request to hide link failed:', err.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        }
-      } // error
-    ) // http subscribe
-  }
-
-  constructor(private snackBar: MdSnackBar,
-              private linkRepository: LinkRepositoryService,
-              public tableHandler: TableHandlerService) { }
-
-  ngOnInit(): void {
-
-  } // OnInit
-}// LinkTableComponent
+}

@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
 import { LinkData } from '../shared/link-data';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class TableHandlerService {
 
-  private table: LinkData[];
-  private _table: ReplaySubject<LinkData[]>;
-  table$: Observable<LinkData[]>;
+  /** Stream that emits whenever the data has been modified */
+  table: BehaviorSubject<LinkData[]> = new BehaviorSubject<LinkData[]>([]);
+  get data(): LinkData[] { return this.table.value; }
+
+  constructor(private linkRepository: LinkRepositoryService) {
+    // Load database with links from http request
+    this.getLinks();
+  }
 
   // Get URLs and set equal to array for use in table
-  refresh() {
+  getLinks() {
     this.linkRepository.getLinks().subscribe(
       (responseBody) => {
         // Set table equal to response from GET request
-        this.set(responseBody.data);
-        this._table.next(this.table);
+        this.table.next(responseBody.data);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -33,43 +36,35 @@ export class TableHandlerService {
     ) // http subscribe
   }
 
+  // Adds a new link to the database
   insert(index: number, newRow: LinkData) {
-    this.table.splice(index, 0, newRow);
-    // this._table.next(this.table);
+    let copiedData = this.data.slice();
+    copiedData.splice(index, 0, newRow);
+    this.table.next(copiedData);
   }
 
+  // Remove link from the database with the given code
   remove(code: string): number {
     // Get index of row to remove
-    let index = this.table.findIndex(row => row.code === code);
+    let index = this.data.findIndex(row => row.code === code);
     // Remove row from array
     if (index > -1) {
-      this.table.splice(index, 1);
+      let copiedData = this.data.slice();
+      copiedData.splice(index, 1);
+      this.table.next(copiedData);
     }
     // Return index of removed element
     return index;
   }
 
-  set(newTable: LinkData[]) {
-    this.table = newTable;
-  }
-
+  // Get the LinkData for a given code
   getByCode(code: string): LinkData {
-    return this.table.find(row => row.code === code);
+    return this.data.find(row => row.code === code);
   }
 
-  getAll() {
-    return this.table;
-  }
-
-  get(startIndex: number, count: number) {
-    return this.table.slice(startIndex, startIndex+count);
-  }
-
-  constructor(private linkRepository: LinkRepositoryService) {
-    this._table = new ReplaySubject<LinkData[]>();
-    this.table$ = this._table.asObservable();
-    // Initialize table
-    this.refresh();
+  // Get an array of LinkData objects for the given range of indexes
+  get(startIndex: number, count: number): LinkData[] {
+    return this.data.slice(startIndex, startIndex + count);
   }
 
 }
