@@ -17,7 +17,7 @@
 
     <ng-container cdkColumnDef="date_created" id="date-column">
       <md-header-cell *cdkHeaderCellDef md-sort-header>Date Created</md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.date_created | date:'mediumDate'}} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{formatDate(row.date_created) | date:'mediumDate'}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="code">

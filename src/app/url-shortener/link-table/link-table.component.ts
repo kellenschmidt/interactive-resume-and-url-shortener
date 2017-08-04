@@ -112,6 +112,12 @@ export class LinkTableComponent implements OnInit {
     let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 2500 });
   }
 
+  // Convert date from SQL format to Angular DatePipe compatible format
+  formatDate(oldDate: string): string {
+    // Replace '-' with '/'
+    return oldDate.replace(/-/g, "/");
+  }
+
 }
 
 /**
