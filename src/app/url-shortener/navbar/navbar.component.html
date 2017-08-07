@@ -2,14 +2,123 @@
     <navbar SideClass="navbar navbar-toggleable-md navbar-dark">
         <logo><a class="logo navbar-brand" href="#">Kellen's URL Shortener</a></logo>
         <links>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto" *ngIf="!currentUser">
                 <li class="nav-item">
-                    <!-- <a class="nav-link">Login</a> -->
+                    <a class="nav-link waves-light" (click)="form.show(); loginTab = true" ripple-radius>Login</a>
                 </li>
                 <li class="nav-item">
-                    <!-- <a class="nav-link">Sign Up</a> -->
+                    <a class="nav-link" (click)="form.show(); loginTab = false">Sign Up</a> 
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" *ngIf="currentUser">
+                <li class="nav-item dropdown" dropdown>
+                    <a dropdownToggle ripple-radius class="nav-link dropdown-toggle waves-light p-0" ripple-radius>
+                        <span>{{currentUser.name}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
+                    </a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a class="dropdown-item waves-light" ripple-radius (click)="logout()">Logout</a>
+                    </div>
                 </li>
             </ul>
         </links>   
     </navbar>
 </div>
+
+<div bsModal #form="bs-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="new-tabs">
+                <div class="modal-header primary-color white-text">
+                    <nav class="nav nav-tabs">
+                        <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': loginTab}" (click)="loginTab=true"><i class="fa fa-user mr-2"></i>Login</a>
+                        <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': !loginTab}" (click)="loginTab=false"><i class="fa fa-user-plus mr-2"></i>Sign Up</a>
+                    </nav>
+                </div>
+            </div>
+            
+
+            <div *ngIf="loginTab">
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="md-form form-sm">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input mdbActive type="text" id="form30" class="form-control">
+                        <label for="form30">Email</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-lock prefix"></i>
+                        <input mdbActive type="password" id="form31" class="form-control">
+                        <label for="form31">Password</label>
+                    </div>
+
+                    <div class="text-center mt-2">
+                        <button class="btn btn-primary waves-light" ripple-radius>Log in<i class="fa fa-sign-in ml-2"></i></button>
+                    </div>
+
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <div class="options text-center text-md-right mt-1">
+                        <p>Not a member? <a href="#" (click)="loginTab=false">Sign Up.</a></p>
+                        <p>Forgot <a href="#">Password?</a></p>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" ripple-radius>Close</button>
+                </div>
+            </div>
+            <div *ngIf="!loginTab">
+                <!--Body-->
+                <div class="modal-body">
+                    
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-address-card prefix"></i>
+                        <input mdbActive type="text" id="name-input" class="form-control">
+                        <label for="name-input">Name</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-mobile prefix"></i>
+                        <input mdbActive type="text" id="phone-input" class="form-control">
+                        <label for="phone-input">Phone</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input mdbActive type="text" id="email-input" class="form-control">
+                        <label for="email-input">Email</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-lock prefix"></i>
+                        <input mdbActive type="password" id="pass-input" class="form-control">
+                        <label for="pass-input">Password</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-lock prefix"></i>
+                        <input mdbActive type="password" id="pass-conf-input" class="form-control">
+                        <label for="pass-conf-input">Confirm Password</label>
+                    </div>
+
+                    <div class="text-center mt-2">
+                        <button class="btn btn-primary waves-light" ripple-radius>Sign up<i class="fa fa-sign-in ml-2"></i></button>
+                    </div>
+
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <div class="options text-center text-md-right mt-1">
+                        <p>Already have an account? <a href="#" (click)="loginTab=true">Log In.</a></p>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" ripple-radius>Close</button>
+                </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: Subscription From-->

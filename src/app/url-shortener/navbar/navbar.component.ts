@@ -8,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  loginTab = false;
+  currentUser = {"name": "Kellen Schmidt"};
+
+  logout() {
+
+  }
+
   constructor() { }
 
   ngOnInit() {
