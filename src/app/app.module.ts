@@ -19,6 +19,7 @@ import { LinkInputComponent } from './url-shortener/link-input/link-input.compon
 import { LinkRepositoryService } from './shared/link-repository.service';
 import { TableHandlerService } from './url-shortener/table-handler.service';
 import { NotFoundDialogComponent } from './url-shortener/not-found-dialog/not-found-dialog.component';
+import { AuthenticationService } from './shared/authentication.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NotFoundDialogComponent } from './url-shortener/not-found-dialog/not-fo
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     LinkRepositoryService,
+    AuthenticationService,
     TableHandlerService
   ],
   entryComponents: [NotFoundDialogComponent],

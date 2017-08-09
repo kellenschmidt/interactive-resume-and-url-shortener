@@ -73,34 +73,33 @@
                 <!--Body-->
                 <div class="modal-body">
                     
-
                     <div class="md-form form-sm">
                         <i class="fa fa-address-card prefix"></i>
-                        <input mdbActive type="text" id="name-input" class="form-control">
+                        <input mdbActive type="text" id="name-input" class="form-control" [(ngModel)]="name">
                         <label for="name-input">Name</label>
                     </div>
 
                     <div class="md-form form-sm">
                         <i class="fa fa-mobile prefix"></i>
-                        <input mdbActive type="text" id="phone-input" class="form-control">
+                        <input mdbActive type="text" id="phone-input" class="form-control" [(ngModel)]="phone">
                         <label for="phone-input">Phone</label>
                     </div>
 
                     <div class="md-form form-sm">
                         <i class="fa fa-envelope prefix"></i>
-                        <input mdbActive type="text" id="email-input" class="form-control">
+                        <input mdbActive type="text" id="email-input" class="form-control" [(ngModel)]="email">
                         <label for="email-input">Email</label>
                     </div>
 
                     <div class="md-form form-sm">
                         <i class="fa fa-lock prefix"></i>
-                        <input mdbActive type="password" id="pass-input" class="form-control">
+                        <input mdbActive type="password" id="pass-input" class="form-control"[(ngModel)]="password">
                         <label for="pass-input">Password</label>
                     </div>
 
                     <div class="md-form form-sm">
                         <i class="fa fa-lock prefix"></i>
-                        <input mdbActive type="password" id="pass-conf-input" class="form-control">
+                        <input mdbActive type="password" id="pass-conf-input" class="form-control" [(ngModel)]="passwordConfirm">
                         <label for="pass-conf-input">Confirm Password</label>
                     </div>
 
