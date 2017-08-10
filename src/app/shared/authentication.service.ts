@@ -3,11 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { LinkData } from './link-data';
 import 'rxjs/add/operator/retry';
+import { User } from './user';
 
 @Injectable()
 export class AuthenticationService {
 
   private apiUrl = "https://api.kellenschmidt.com";
+
+  currentUser: User;
 
   // Register for a new account
   register(email: string, name: string, phone: number, password: string): Observable<any> {
@@ -38,10 +41,18 @@ export class AuthenticationService {
       // Empty request body
     },
     {
-      headers: new HttpHeaders().set('Authentication', localStorage.getItem('jwt')),
-    }
-  )
+      headers: new HttpHeaders().set('Authorization', this.getJwt()),
+    })
     .retry(3)
+  }
+
+  // Get JWT or return falsey if jwt doesn't exist
+  getJwt() {
+    if(localStorage.getItem('jwt') === 'undefined') {
+      return "";
+    } else {
+      return localStorage.getItem('jwt');
+    }
   }
 
   constructor(private http: HttpClient) { }

@@ -1,0 +1,17 @@
+<form (ngSubmit)="loginHttp()" #loginForm="ngForm">
+    <div class="md-form form-sm">
+        <i class="fa fa-envelope prefix"></i>
+        <input mdbActive type="text" id="login-email" class="form-control" [(ngModel)]="modelEmail" name="email" required>
+        <label for="login-email">Email</label>
+    </div>
+
+    <div class="md-form form-sm">
+        <i class="fa fa-lock prefix"></i>
+        <input mdbActive type="password" id="login-pass" class="form-control" [(ngModel)]="modelPassword" name="password" required>
+        <label for="login-pass">Password</label>
+    </div>
+
+    <div class="text-center mt-2">
+        <button class="btn btn-primary waves-light" type="submit" [disabled]="!loginForm.form.valid" ripple-radius>Log in<i class="fa fa-sign-in ml-2"></i></button>
+    </div>    
+</form>

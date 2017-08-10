@@ -1,0 +1,37 @@
+<form (ngSubmit)="registerHttp()" #registerForm="ngForm">
+    <div class="md-form form-sm">
+        <i class="fa fa-address-card prefix"></i>
+        <input mdbActive type="text" id="register-name" class="form-control" [(ngModel)]="modelUser.name" name="name" required maxlength="255">
+        <label for="register-name">Name</label>
+    </div>
+
+    <div class="md-form form-sm">
+        <i class="fa fa-mobile prefix"></i>
+        <input mdbActive type="text" id="register-phone" class="form-control" [(ngModel)]="modelUser.phone" name="phone" required maxlength="13">
+        <label for="register-phone">Phone</label>
+    </div>
+
+    <div class="md-form form-sm">
+        <i class="fa fa-envelope prefix"></i>
+        <input mdbActive type="text" id="register-email" class="form-control" [(ngModel)]="modelUser.email" name="email" required maxlength="255">
+        <label for="register-email">Email</label>
+    </div>
+
+    <div class="md-form form-sm">
+        <i class="fa fa-lock prefix"></i>
+        <input mdbActive type="password" id="register-pass" class="form-control"[(ngModel)]="modelUser.password" name="password" required minlength="8" maxlength="127">
+        <label for="register-pass">Password</label>
+    </div>
+
+    <div class="md-form form-sm">
+        <i class="fa fa-lock prefix"></i>
+        <input mdbActive type="password" id="register-pass-conf" class="form-control" [(ngModel)]="passwordConfirm" name="passwordConfirm" required minlength="8" maxlength="127">
+        <label for="register-pass-conf">Confirm Password</label>
+    </div>
+
+    <div class="g-recaptcha" data-sitekey="6Ld8USwUAAAAAIaBv0RYrkOlHpTPSiG4v6x0Oysb"></div>    
+
+    <div class="text-center mt-2">
+        <button class="btn btn-primary waves-light" type="submit" [disabled]="!registerForm.form.valid" ripple-radius>Sign up<i class="fa fa-sign-in ml-2"></i></button>
+    </div>
+</form>

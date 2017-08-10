@@ -10,13 +10,13 @@
                     <a class="nav-link" (click)="form.show(); loginTab = false">Sign Up</a> 
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto" *ngIf="currentUser">
+            <ul class="navbar-nav ml-auto" *ngIf="authentication.currentUser">
                 <li class="nav-item dropdown" dropdown>
                     <a dropdownToggle ripple-radius class="nav-link dropdown-toggle waves-light p-0" ripple-radius>
-                        <span>{{currentUser.name}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
+                        <span>{{authentication.currentUser.name}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
                     </a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" ripple-radius (click)="logout()">Logout</a>
+                        <a class="dropdown-item waves-light" ripple-radius (click)="logoutHttp()">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -38,26 +38,12 @@
                     </nav>
                 </div>
             </div>
-            
 
             <div *ngIf="loginTab">
                 <!--Body-->
                 <div class="modal-body">
-                    <div class="md-form form-sm">
-                        <i class="fa fa-envelope prefix"></i>
-                        <input mdbActive type="text" id="form30" class="form-control">
-                        <label for="form30">Email</label>
-                    </div>
-
-                    <div class="md-form form-sm">
-                        <i class="fa fa-lock prefix"></i>
-                        <input mdbActive type="password" id="form31" class="form-control">
-                        <label for="form31">Password</label>
-                    </div>
-
-                    <div class="text-center mt-2">
-                        <button class="btn btn-primary waves-light" ripple-radius>Log in<i class="fa fa-sign-in ml-2"></i></button>
-                    </div>
+                    
+                    <ks-login-form></ks-login-form>
 
                 </div>
                 <!--Footer-->
@@ -69,45 +55,12 @@
                     <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" ripple-radius>Close</button>
                 </div>
             </div>
+            
             <div *ngIf="!loginTab">
                 <!--Body-->
                 <div class="modal-body">
-                    
-                    <div class="md-form form-sm">
-                        <i class="fa fa-address-card prefix"></i>
-                        <input mdbActive type="text" id="name-input" class="form-control" [(ngModel)]="name">
-                        <label for="name-input">Name</label>
-                    </div>
 
-                    <div class="md-form form-sm">
-                        <i class="fa fa-mobile prefix"></i>
-                        <input mdbActive type="text" id="phone-input" class="form-control" [(ngModel)]="phone">
-                        <label for="phone-input">Phone</label>
-                    </div>
-
-                    <div class="md-form form-sm">
-                        <i class="fa fa-envelope prefix"></i>
-                        <input mdbActive type="text" id="email-input" class="form-control" [(ngModel)]="email">
-                        <label for="email-input">Email</label>
-                    </div>
-
-                    <div class="md-form form-sm">
-                        <i class="fa fa-lock prefix"></i>
-                        <input mdbActive type="password" id="pass-input" class="form-control"[(ngModel)]="password">
-                        <label for="pass-input">Password</label>
-                    </div>
-
-                    <div class="md-form form-sm">
-                        <i class="fa fa-lock prefix"></i>
-                        <input mdbActive type="password" id="pass-conf-input" class="form-control" [(ngModel)]="passwordConfirm">
-                        <label for="pass-conf-input">Confirm Password</label>
-                    </div>
-
-                    <div class="g-recaptcha" data-sitekey="6Ld8USwUAAAAAIaBv0RYrkOlHpTPSiG4v6x0Oysb"></div>
-
-                    <div class="text-center mt-2">
-                        <button class="btn btn-primary waves-light" ripple-radius>Sign up<i class="fa fa-sign-in ml-2"></i></button>
-                    </div>
+                    <ks-register-form></ks-register-form>
 
                 </div>
                 <!--Footer-->

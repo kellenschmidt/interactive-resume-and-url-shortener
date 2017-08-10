@@ -20,6 +20,8 @@ import { LinkRepositoryService } from './shared/link-repository.service';
 import { TableHandlerService } from './url-shortener/table-handler.service';
 import { NotFoundDialogComponent } from './url-shortener/not-found-dialog/not-found-dialog.component';
 import { AuthenticationService } from './shared/authentication.service';
+import { RegisterFormComponent } from './url-shortener/navbar/register-form/register-form.component';
+import { LoginFormComponent } from './url-shortener/navbar/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AuthenticationService } from './shared/authentication.service';
     NavbarComponent,
     LinkInputComponent,
     NotFoundDialogComponent,
+    RegisterFormComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,

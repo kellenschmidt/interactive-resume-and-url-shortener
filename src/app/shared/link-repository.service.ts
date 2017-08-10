@@ -17,7 +17,7 @@ export class LinkRepositoryService {
       "long_url": longUrl
     },
     {
-      headers: new HttpHeaders().set('Authentication', localStorage.getItem('jwt')),
+      headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
     .retry(3)
   }
@@ -29,7 +29,7 @@ export class LinkRepositoryService {
       "code": code
     },
     {
-      headers: new HttpHeaders().set('Authentication', localStorage.getItem('jwt')),
+      headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
     .retry(3)
   }
@@ -38,9 +38,8 @@ export class LinkRepositoryService {
   getLinks(): Observable<LinkDataResponse> {
     return this.http.get<LinkDataResponse>(`${this.apiUrl}/urls`,
     {
-      headers: new HttpHeaders().set('Authentication', localStorage.getItem('jwt')),
+      headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    // Retry this request up to 3 times.
     .retry(3)
   }
 
@@ -51,6 +50,15 @@ export class LinkRepositoryService {
       // Empty request body
     })
     .retry(3)
+  }
+
+  // Get JWT or return falsey if jwt doesn't exist
+  getJwt() {
+    if(localStorage.getItem('jwt') === 'undefined') {
+      return "";
+    } else {
+      return localStorage.getItem('jwt');
+    }
   }
 
   constructor(private http: HttpClient) { }
