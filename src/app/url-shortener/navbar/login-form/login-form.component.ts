@@ -21,10 +21,8 @@ export class LoginFormComponent implements OnInit {
     this.authentication.login(this.modelEmail, this.modelPassword).subscribe(
       (responseBody) => {
         // Store token in local storage
-        localStorage.setItem('jwt', responseBody.token);
-
-        // localStorage.setItem('auth', JSON.stringify(responseBody));
-
+        localStorage.setItem('auth', JSON.stringify(responseBody));
+        
         // Set values for new user using http response values
         this.authentication.currentUser.initializeUser(responseBody.user);
 

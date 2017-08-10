@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { LinkData } from './link-data';
 import 'rxjs/add/operator/retry';
 import { User } from './user';
+import { AuthenticationData } from './authentication-data';
 
 @Injectable()
 export class AuthenticationService {
@@ -13,8 +14,8 @@ export class AuthenticationService {
   currentUser: User = new User("" ,"", undefined, "", undefined, undefined, false);
 
   // Register for a new account
-  register(email: string, name: string, phone: number, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/urlshortener/register`,
+  register(email: string, name: string, phone: number, password: string): Observable<AuthenticationData> {
+    return this.http.post<AuthenticationData>(`${this.apiUrl}/urlshortener/register`,
     {
       "email": email,
       "name": name,
@@ -25,8 +26,8 @@ export class AuthenticationService {
   }
 
   // Login to an existing account
-  login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/urlshortener/login`,
+  login(email: string, password: string): Observable<AuthenticationData> {
+    return this.http.post<AuthenticationData>(`${this.apiUrl}/urlshortener/login`,
     {
       "email": email,
       "password": password
@@ -48,23 +49,27 @@ export class AuthenticationService {
 
   // Get JWT or return falsey if jwt doesn't exist
   getJwt() {
-    if(localStorage.getItem('jwt') === 'undefined') {
+    if(localStorage.getItem('auth') == null) {
       return "";
     } else {
-      return localStorage.getItem('jwt');
+      var storedAuth: AuthenticationData = JSON.parse(localStorage.getItem('auth'));
+      return storedAuth.token;
     }
-    // if(JSON.parse(localStorage.getItem('auth')).token === 'undefined') {
-    //   return "";
-    // } else {
-    //   return JSON.parse(localStorage.getItem('auth')).token
-    // }
   }
 
-  constructor(private http: HttpClient) { }
+  getUser() {
+    if(localStorage.getItem('auth') == null) {
+      return "";
+    } else {
+      var storedAuth: AuthenticationData = JSON.parse(localStorage.getItem('auth'));
+      return storedAuth.user;
+    }
+  }
 
-}
+  constructor(private http: HttpClient) {
+    if(this.getUser()) {
+      this.currentUser.initializeUser(this.getUser());
+    }
+  }
 
-export interface AuthResponse {
-  token: string;
-  user: User;
 }

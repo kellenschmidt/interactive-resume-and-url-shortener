@@ -21,8 +21,8 @@ export class NavbarComponent implements OnInit {
         // Reset currentUser
         this.authentication.currentUser.reset();
 
-        // Remove JWT from local storage
-        localStorage.removeItem('jwt');
+        // Remove authentication from local storage
+        localStorage.removeItem('auth');
 
         // Refresh the links in the links table
         this.refreshTable();

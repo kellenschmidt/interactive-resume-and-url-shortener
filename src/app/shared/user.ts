@@ -1,6 +1,7 @@
 export class User {
 
   constructor (
+    public user_id: number,
     public email: string,
     public name: string,
     public phone: number,
@@ -11,6 +12,7 @@ export class User {
   ) {}
 
   reset() {
+    this.user_id = undefined;
     this.email = "";
     this.name = "";
     this.phone = undefined;
@@ -21,7 +23,7 @@ export class User {
   }
   
   initializeUser(userObj: any) {
-
+    this.user_id = userObj.user_id;
     this.email = userObj.email;
     this.name = userObj.name;
     this.phone = userObj.phone;

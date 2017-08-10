@@ -3,6 +3,7 @@ import { LinkData } from './link-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/retry';
+import { AuthenticationData } from './authentication-data';
 
 
 @Injectable()
@@ -54,16 +55,12 @@ export class LinkRepositoryService {
 
   // Get JWT or return falsey if jwt doesn't exist
   getJwt() {
-    if(localStorage.getItem('jwt') === 'undefined') {
+    if(localStorage.getItem('auth') == null) {
       return "";
     } else {
-      return localStorage.getItem('jwt');
+      var storedAuth: AuthenticationData = JSON.parse(localStorage.getItem('auth'));
+      return storedAuth.token;
     }
-    // if(JSON.parse(localStorage.getItem('auth')).token === 'undefined') {
-    //   return "";
-    // } else {
-    //   return JSON.parse(localStorage.getItem('auth')).token
-    // }
   }
 
   constructor(private http: HttpClient) { }

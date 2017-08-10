@@ -13,7 +13,7 @@ export class RegisterFormComponent implements OnInit {
 
   @Output() onRegister = new EventEmitter<boolean>();
 
-  modelUser: User = new User("" ,"", undefined, "", undefined, undefined, false);
+  modelUser: User = new User(undefined, "" ,"", undefined, "", undefined, undefined, false);
   passwordConfirm: string = "";
 
   // Create new user and set values
@@ -21,10 +21,10 @@ export class RegisterFormComponent implements OnInit {
     this.authentication.register(this.modelUser.email, this.modelUser.name, this.modelUser.phone, this.modelUser.password).subscribe(
       (responseBody) => {
         // Store token in local storage
-        localStorage.setItem('jwt', responseBody.token);
+        localStorage.setItem('auth', JSON.stringify(responseBody));
 
         // Set values for new user using values from model
-        this.authentication.currentUser.initializeUser(this.modelUser);
+        this.authentication.currentUser.initializeUser(responseBody.user);
 
         // Emit event to tell parent component to close modal
         this.onRegister.emit(true);
@@ -46,7 +46,7 @@ export class RegisterFormComponent implements OnInit {
   } //registerHttp
 
   clearForm() {
-    this.modelUser = new User("", "", undefined, "", undefined, undefined, false);
+    this.modelUser.reset();
     this.passwordConfirm = "";
   }
 
