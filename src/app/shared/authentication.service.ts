@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   private apiUrl = "https://api.kellenschmidt.com";
 
-  currentUser: User;
+  currentUser: User = new User("" ,"", undefined, "", undefined, undefined, false);
 
   // Register for a new account
   register(email: string, name: string, phone: number, password: string): Observable<any> {
@@ -25,8 +25,8 @@ export class AuthenticationService {
   }
 
   // Login to an existing account
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/urlshortener/login`,
+  login(email: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/urlshortener/login`,
     {
       "email": email,
       "password": password
@@ -53,8 +53,18 @@ export class AuthenticationService {
     } else {
       return localStorage.getItem('jwt');
     }
+    // if(JSON.parse(localStorage.getItem('auth')).token === 'undefined') {
+    //   return "";
+    // } else {
+    //   return JSON.parse(localStorage.getItem('auth')).token
+    // }
   }
 
   constructor(private http: HttpClient) { }
 
+}
+
+export interface AuthResponse {
+  token: string;
+  user: User;
 }

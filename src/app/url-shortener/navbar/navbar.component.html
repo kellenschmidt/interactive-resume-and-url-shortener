@@ -2,7 +2,7 @@
     <navbar SideClass="navbar navbar-toggleable-md navbar-dark">
         <logo><a class="logo navbar-brand" href="#">Kellen's URL Shortener</a></logo>
         <links>
-            <ul class="navbar-nav ml-auto" *ngIf="!currentUser">
+            <ul class="navbar-nav ml-auto" *ngIf="!authentication.currentUser.email">
                 <li class="nav-item">
                     <a class="nav-link waves-light" (click)="form.show(); loginTab = true" ripple-radius>Login</a>
                 </li>
@@ -10,7 +10,7 @@
                     <a class="nav-link" (click)="form.show(); loginTab = false">Sign Up</a> 
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto" *ngIf="authentication.currentUser">
+            <ul class="navbar-nav ml-auto" *ngIf="authentication.currentUser.email">
                 <li class="nav-item dropdown" dropdown>
                     <a dropdownToggle ripple-radius class="nav-link dropdown-toggle waves-light p-0" ripple-radius>
                         <span>{{authentication.currentUser.name}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
@@ -43,7 +43,7 @@
                 <!--Body-->
                 <div class="modal-body">
                     
-                    <ks-login-form></ks-login-form>
+                    <ks-login-form (onLogin)="form.hide(); refreshTable()"></ks-login-form>
 
                 </div>
                 <!--Footer-->
@@ -55,12 +55,12 @@
                     <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" ripple-radius>Close</button>
                 </div>
             </div>
-            
+
             <div *ngIf="!loginTab">
                 <!--Body-->
                 <div class="modal-body">
 
-                    <ks-register-form></ks-register-form>
+                    <ks-register-form (onRegister)="form.hide(); refreshTable()"></ks-register-form>
 
                 </div>
                 <!--Footer-->

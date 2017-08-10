@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../shared/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../shared/user';
+import { TableHandlerService } from '../table-handler.service';
 
 @Component({
   moduleId: module.id,
@@ -19,6 +20,12 @@ export class NavbarComponent implements OnInit {
       (responseBody) => {
         // Reset currentUser
         this.authentication.currentUser.reset();
+
+        // Remove JWT from local storage
+        localStorage.removeItem('jwt');
+
+        // Refresh the links in the links table
+        this.refreshTable();
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -33,7 +40,14 @@ export class NavbarComponent implements OnInit {
     ) // http subscribe
   } //logoutHttp
 
-  constructor(public authentication: AuthenticationService) { }
+  // Resend http request to update links in table
+  refreshTable() {
+    console.log("Refreshing table.");
+    this.tableHandler.getLinks();
+  }
+
+  constructor(public authentication: AuthenticationService,
+              private tableHandler: TableHandlerService) { }
 
   ngOnInit() {
   }

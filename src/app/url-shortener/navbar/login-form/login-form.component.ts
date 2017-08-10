@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../shared/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from '../../../shared/authentication.service';
@@ -11,6 +11,8 @@ import { AuthenticationService } from '../../../shared/authentication.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  @Output() onLogin = new EventEmitter<boolean>();
+
   modelEmail = "";
   modelPassword = ""; 
 
@@ -19,17 +21,21 @@ export class LoginFormComponent implements OnInit {
     this.authentication.login(this.modelEmail, this.modelPassword).subscribe(
       (responseBody) => {
         // Store token in local storage
-        console.log("Response body: " + responseBody);
-        localStorage.setItem('jwt', responseBody['token']);
-        console.log("Token from storage: " + localStorage.getItem('jwt'));
+        localStorage.setItem('jwt', responseBody.token);
+
+        // localStorage.setItem('auth', JSON.stringify(responseBody));
 
         // Set values for new user using http response values
-        this.authentication.currentUser.initializeUser(responseBody);
+        this.authentication.currentUser.initializeUser(responseBody.user);
+
+        // Emit event to tell parent component to close modal
+        this.onLogin.emit(true);
 
         // Clear old values in form
         this.modelEmail = this.modelPassword = "";
       },
       (err: HttpErrorResponse) => {
+        console.log("Error detected: " + err);
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
           console.log('Error: POST request to login failed:', err.error.message);

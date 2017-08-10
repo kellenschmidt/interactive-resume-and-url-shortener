@@ -59,6 +59,11 @@ export class LinkRepositoryService {
     } else {
       return localStorage.getItem('jwt');
     }
+    // if(JSON.parse(localStorage.getItem('auth')).token === 'undefined') {
+    //   return "";
+    // } else {
+    //   return JSON.parse(localStorage.getItem('auth')).token
+    // }
   }
 
   constructor(private http: HttpClient) { }

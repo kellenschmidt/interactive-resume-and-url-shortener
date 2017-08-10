@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../../../shared/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../../shared/user';
@@ -11,6 +11,8 @@ import { User } from '../../../shared/user';
 })
 export class RegisterFormComponent implements OnInit {
 
+  @Output() onRegister = new EventEmitter<boolean>();
+
   modelUser: User = new User("" ,"", undefined, "", undefined, undefined, false);
   passwordConfirm: string = "";
 
@@ -19,10 +21,13 @@ export class RegisterFormComponent implements OnInit {
     this.authentication.register(this.modelUser.email, this.modelUser.name, this.modelUser.phone, this.modelUser.password).subscribe(
       (responseBody) => {
         // Store token in local storage
-        localStorage.setItem('jwt', responseBody['token']);
+        localStorage.setItem('jwt', responseBody.token);
 
         // Set values for new user using values from model
         this.authentication.currentUser.initializeUser(this.modelUser);
+
+        // Emit event to tell parent component to close modal
+        this.onRegister.emit(true);
 
         // Clear old values in form
         this.modelUser.reset();

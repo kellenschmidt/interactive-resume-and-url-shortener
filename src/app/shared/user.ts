@@ -21,6 +21,7 @@ export class User {
   }
   
   initializeUser(userObj: any) {
+
     this.email = userObj.email;
     this.name = userObj.name;
     this.phone = userObj.phone;
