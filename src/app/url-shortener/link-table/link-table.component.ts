@@ -29,7 +29,7 @@ export class LinkTableComponent implements OnInit {
   @ViewChild(MdSort) sort: MdSort;
   @ViewChild(MdPaginator) paginator: MdPaginator;
 
-  constructor(private tableHandler: TableHandlerService,
+  constructor(public tableHandler: TableHandlerService,
               private linkRepository: LinkRepositoryService,
               private snackBar: MdSnackBar) {}
 

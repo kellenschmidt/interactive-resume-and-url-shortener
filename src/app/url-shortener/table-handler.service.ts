@@ -38,9 +38,20 @@ export class TableHandlerService {
 
   // Adds a new link to the database
   insert(index: number, newRow: LinkData) {
+    // Create copy of existing array
     let copiedData = this.data.slice();
+
+    // Get index of matching row in table if one exists
+    let duplicateIndex = copiedData.findIndex(x => x.code == newRow.code);
+    if(duplicateIndex > -1) {
+      // Remove old row from table
+      copiedData.splice(duplicateIndex, 1);
+    }
+
+    // Add new row to table
     copiedData.splice(index, 0, newRow);
     this.table.next(copiedData);
+    
   }
 
   // Remove link from the database with the given code
