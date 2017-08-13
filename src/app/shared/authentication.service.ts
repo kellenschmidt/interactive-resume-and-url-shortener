@@ -11,7 +11,7 @@ export class AuthenticationService {
 
   private apiUrl = "https://api.kellenschmidt.com";
 
-  currentUser: User = new User("" ,"", undefined, "", undefined, undefined, false);
+  currentUser: User = new User(undefined, "" ,"", undefined, "", undefined, undefined, false);
 
   // Register for a new account
   register(email: string, name: string, phone: number, password: string): Observable<AuthenticationData> {

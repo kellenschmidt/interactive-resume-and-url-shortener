@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../../../shared/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../../shared/user';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MyValidators } from '../../../shared/my-validators';
 
 @Component({
   moduleId: module.id,
@@ -13,12 +15,11 @@ export class RegisterFormComponent implements OnInit {
 
   @Output() onRegister = new EventEmitter<boolean>();
 
-  modelUser: User = new User(undefined, "" ,"", undefined, "", undefined, undefined, false);
-  passwordConfirm: string = "";
+  registerForm: FormGroup;
 
   // Create new user and set values
   registerHttp() {
-    this.authentication.register(this.modelUser.email, this.modelUser.name, this.modelUser.phone, this.modelUser.password).subscribe(
+    this.authentication.register(this.email.value, this.name.value, this.phone.value.replace(/[^\+\d][^\d]*/g, ""), this.password.value).subscribe(
       (responseBody) => {
         // Store token in local storage
         localStorage.setItem('auth', JSON.stringify(responseBody));
@@ -30,7 +31,7 @@ export class RegisterFormComponent implements OnInit {
         this.onRegister.emit(true);
 
         // Clear old values in form
-        this.modelUser.reset();
+        this.registerForm.reset();
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -45,12 +46,41 @@ export class RegisterFormComponent implements OnInit {
     ) // http subscribe
   } //registerHttp
 
-  clearForm() {
-    this.modelUser.reset();
-    this.passwordConfirm = "";
+  createForm() {
+    this.registerForm = this.fb.group({
+      name: ["", [
+        Validators.required,
+      ]],
+      phone: ["", [
+        Validators.required,
+      ]],
+      email: ["", [
+        Validators.required,
+        Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
+      ]],
+      password: ["", [
+        Validators.required,
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
+      ]],
+      passwordConfirm: ["", [
+        Validators.required,
+      ]],
+    },
+    {
+      validator: MyValidators.matchPassword
+    });
   }
 
-  constructor(private authentication: AuthenticationService) { }
+  get name() { return this.registerForm.get('name'); }
+  get phone() { return this.registerForm.get('phone'); }
+  get email() { return this.registerForm.get('email'); }
+  get password() { return this.registerForm.get('password'); }
+  get passwordConfirm() { return this.registerForm.get('passwordConfirm'); }
+
+  constructor(public authentication: AuthenticationService,
+              private fb: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit() {
   }

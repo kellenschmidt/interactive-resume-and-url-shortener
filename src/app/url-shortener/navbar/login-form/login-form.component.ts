@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../shared/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from '../../../shared/authentication.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   moduleId: module.id,
@@ -13,16 +14,15 @@ export class LoginFormComponent implements OnInit {
 
   @Output() onLogin = new EventEmitter<boolean>();
 
-  modelEmail = "";
-  modelPassword = ""; 
+  loginForm: FormGroup;
 
   // Login as existing user and set values
   loginHttp() {
-    this.authentication.login(this.modelEmail, this.modelPassword).subscribe(
+    this.authentication.login(this.email.value, this.password.value).subscribe(
       (responseBody) => {
         // Store token in local storage
         localStorage.setItem('auth', JSON.stringify(responseBody));
-        
+
         // Set values for new user using http response values
         this.authentication.currentUser.initializeUser(responseBody.user);
 
@@ -30,7 +30,7 @@ export class LoginFormComponent implements OnInit {
         this.onLogin.emit(true);
 
         // Clear old values in form
-        this.modelEmail = this.modelPassword = "";
+        this.loginForm.reset();
       },
       (err: HttpErrorResponse) => {
         console.log("Error detected: " + err);
@@ -46,7 +46,25 @@ export class LoginFormComponent implements OnInit {
     ) // http subscribe
   } //loginHttp
 
-  constructor(public authentication: AuthenticationService) { }
+  createForm() {
+    this.loginForm = this.fb.group({
+      email: ["", [
+        Validators.required,
+        Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
+      ]],
+      password: ["", [
+        Validators.required,
+      ]],
+    });
+  }
+
+  get email() { return this.loginForm.get('email'); }
+  get password() { return this.loginForm.get('password'); }
+
+  constructor(public authentication: AuthenticationService,
+              private fb: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit() {
   }

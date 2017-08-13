@@ -1,37 +1,71 @@
-<form (ngSubmit)="registerHttp()" #registerForm="ngForm">
-    <div class="md-form form-sm">
-        <i class="fa fa-address-card prefix"></i>
-        <input mdbActive type="text" id="register-name" class="form-control" [(ngModel)]="modelUser.name" name="name" required maxlength="255">
-        <label for="register-name">Name</label>
+<form (ngSubmit)="registerHttp()" [formGroup]="registerForm" novalidate>
+    <div class="input-row mb-1">
+        <i class="fa fa-address-card prefix mr-2"></i>
+        <md-input-container>
+            <input mdInput placeholder="Name" formControlName="name" maxlength="255">
+            <md-error *ngIf="name.hasError('required')">
+                Name is required
+            </md-error>
+        </md-input-container>
     </div>
 
-    <div class="md-form form-sm">
-        <i class="fa fa-mobile prefix"></i>
-        <input mdbActive type="text" id="register-phone" class="form-control" [(ngModel)]="modelUser.phone" name="phone" required maxlength="13">
-        <label for="register-phone">Phone</label>
+    <div class="input-row mb-1">
+        <i class="fa fa-mobile prefix mr-2"></i>
+        <md-input-container>
+            <input mdInput placeholder="Phone" formControlName="phone" maxlength="21">
+            <md-error *ngIf="phone.hasError('required')">
+                Phone is required
+            </md-error>
+            <md-error *ngIf="phone.hasError('pattern')">
+                Please enter a valid phone number
+            </md-error>
+        </md-input-container>
     </div>
 
-    <div class="md-form form-sm">
-        <i class="fa fa-envelope prefix"></i>
-        <input mdbActive type="text" id="register-email" class="form-control" [(ngModel)]="modelUser.email" name="email" required maxlength="255">
-        <label for="register-email">Email</label>
+    <div class="input-row mb-1">
+        <i class="fa fa-envelope prefix mr-2"></i>
+        <md-input-container>
+            <input mdInput placeholder="Email" formControlName="email" maxlength="255">
+            <md-error *ngIf="email.hasError('required')">
+                Email is required
+            </md-error>
+            <md-error *ngIf="email.hasError('pattern')">
+                Please enter a valid email address
+            </md-error>
+        </md-input-container>
     </div>
 
-    <div class="md-form form-sm">
-        <i class="fa fa-lock prefix"></i>
-        <input mdbActive type="password" id="register-pass" class="form-control"[(ngModel)]="modelUser.password" name="password" required minlength="8" maxlength="127">
-        <label for="register-pass">Password</label>
+    <div class="input-row mb-2">
+        <i class="fa fa-lock prefix mr-2"></i>
+        <md-input-container>
+            <input mdInput placeholder="Password" formControlName="password" maxlength="128">
+            <md-hint align="start">Use at least 8 characters including letters, numbers, and symbols</md-hint>
+            <md-hint align="end">{{password.value.length}} / 128</md-hint>
+            <md-error *ngIf="password.hasError('required')">
+                Password is required
+            </md-error>
+            <md-error *ngIf="password.hasError('pattern')">
+                Please enter a valid password
+            </md-error>
+        </md-input-container>
     </div>
 
-    <div class="md-form form-sm">
-        <i class="fa fa-lock prefix"></i>
-        <input mdbActive type="password" id="register-pass-conf" class="form-control" [(ngModel)]="passwordConfirm" name="passwordConfirm" required minlength="8" maxlength="127">
-        <label for="register-pass-conf">Confirm Password</label>
+    <div class="input-row mb-1">
+        <i class="fa fa-lock prefix mr-2"></i>
+        <md-input-container>
+            <input mdInput placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128">
+            <md-error *ngIf="passwordConfirm.hasError('required')">
+                Confirm password is required
+            </md-error>
+            <md-error *ngIf="passwordConfirm.hasError('matchPassword')">
+                Passwords do not match
+            </md-error>
+        </md-input-container>
     </div>
 
     <div class="g-recaptcha" data-sitekey="6Ld8USwUAAAAAIaBv0RYrkOlHpTPSiG4v6x0Oysb"></div>    
 
     <div class="text-center mt-2">
-        <button class="btn btn-primary waves-light" type="submit" [disabled]="!registerForm.form.valid" ripple-radius>Sign up<i class="fa fa-sign-in ml-2"></i></button>
+        <button class="btn btn-primary waves-light" type="submit" [disabled]="!registerForm.valid" ripple-radius>Sign up<i class="fa fa-sign-in ml-2"></i></button>
     </div>
 </form>

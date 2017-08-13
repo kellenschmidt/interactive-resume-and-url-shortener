@@ -1,17 +1,28 @@
-<form (ngSubmit)="loginHttp()" #loginForm="ngForm">
-    <div class="md-form form-sm">
-        <i class="fa fa-envelope prefix"></i>
-        <input mdbActive type="text" id="login-email" class="form-control" [(ngModel)]="modelEmail" name="email" required>
-        <label for="login-email">Email</label>
+<form (ngSubmit)="loginHttp()" [formGroup]="loginForm" novalidate>
+    <div class="input-row mb-1">
+        <i class="fa fa-envelope prefix mr-2"></i>
+        <md-input-container>
+            <input mdInput placeholder="Email" formControlName="email" maxlength="255">
+            <md-error *ngIf="email.hasError('pattern')">
+                Please enter a valid email address
+            </md-error>
+            <md-error *ngIf="email.hasError('required')">
+                Email is required
+            </md-error>
+        </md-input-container>
+    </div>
+    
+    <div class="input-row">
+        <i class="fa fa-lock prefix mr-2"></i>
+        <md-input-container>
+            <input mdInput placeholder="Password" formControlName="password" maxlength="127">
+            <md-error *ngIf="email.hasError('required')">
+                Password is required
+            </md-error>
+        </md-input-container>
     </div>
 
-    <div class="md-form form-sm">
-        <i class="fa fa-lock prefix"></i>
-        <input mdbActive type="password" id="login-pass" class="form-control" [(ngModel)]="modelPassword" name="password" required>
-        <label for="login-pass">Password</label>
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-primary waves-light" type="submit" [disabled]="!loginForm.valid">Log in<i class="fa fa-sign-in ml-2"></i></button>
     </div>
-
-    <div class="text-center mt-2">
-        <button class="btn btn-primary waves-light" type="submit" [disabled]="!loginForm.form.valid" ripple-radius>Log in<i class="fa fa-sign-in ml-2"></i></button>
-    </div>    
 </form>

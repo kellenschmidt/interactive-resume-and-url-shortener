@@ -1,0 +1,14 @@
+.input-row {
+    display: flex;
+    
+    .fa {
+        font-size: 1.3rem;
+        width: 1.4rem;
+        padding-top: 1.4rem;
+        text-align: center;
+    }
+}
+
+md-input-container {
+    flex-grow: 1;
+}
