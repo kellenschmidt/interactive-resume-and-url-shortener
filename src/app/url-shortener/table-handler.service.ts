@@ -10,6 +10,7 @@ export class TableHandlerService {
   /** Stream that emits whenever the data has been modified */
   table: BehaviorSubject<LinkData[]> = new BehaviorSubject<LinkData[]>([]);
   get data(): LinkData[] { return this.table.value; }
+  tableLoaded: boolean = false;
 
   constructor(private linkRepository: LinkRepositoryService) {
     // Load database with links from http request
@@ -22,6 +23,9 @@ export class TableHandlerService {
       (responseBody) => {
         // Set table equal to response from GET request
         this.table.next(responseBody.data);
+
+        // Set tableLoaded (remove progress spinner)
+        this.tableLoaded = true;
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

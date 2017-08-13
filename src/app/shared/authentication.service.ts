@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { LinkData } from './link-data';
 import 'rxjs/add/operator/retry';
@@ -47,6 +47,18 @@ export class AuthenticationService {
     .retry(1)
   }
 
+  // Authenticate an existing JWT
+  authenticate(): Observable<boolean> {
+    return this.http.post<boolean>(`${this.apiUrl}/urlshortener/authenticate`,
+    {
+      // Empty request body
+    },
+    {
+      headers: new HttpHeaders().set('Authorization', this.getJwt()),
+    })
+    .retry(1)
+  }
+
   // Get JWT or return falsey if jwt doesn't exist
   getJwt() {
     if(localStorage.getItem('auth') == null) {
@@ -66,10 +78,28 @@ export class AuthenticationService {
     }
   }
 
+  authenticateUser() {
+    this.authenticate().subscribe(
+      (responseBody) => {
+        // If user is authenticated then populate user data
+        if(responseBody === true) {
+          this.currentUser.initializeUser(this.getUser());
+        }
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.log('Error: POST request to authenticate failed:', err.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        }
+      } // error
+    ) // http subscribe
+  } //authenticateUser
+
   constructor(private http: HttpClient) {
-    if(this.getUser()) {
-      this.currentUser.initializeUser(this.getUser());
-    }
+    this.authenticateUser();
   }
 
 }

@@ -24,6 +24,7 @@ export class LinkTableComponent implements OnInit {
   tableDatabase = this.tableHandler;
   dataSource: ExampleDataSource | null;
   siteUrl: string = "https://kellenschmidt.com/";
+  spinnerSettings = { color: 'primary', mode: 'indeterminate' };
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdSort) sort: MdSort;

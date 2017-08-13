@@ -50,9 +50,17 @@
     <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
 
-  <div id="no-links-placeholder" *ngIf="tableHandler.data.length == 0" class="text-center pt-4">
+  <div id="table-loading-spinner" *ngIf="!tableHandler.tableLoaded" class="mx-auto">
+    <md-progress-spinner
+      class="my-5"
+      [color]="spinnerSettings.color"
+      [mode]="spinnerSettings.mode">
+    </md-progress-spinner>
+  </div>
+
+  <div id="no-links-placeholder" *ngIf="(tableHandler.data.length == 0 && tableHandler.tableLoaded)" class="text-center pt-5">
     <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/no-links-placeholder2.png" class="pb-3" height="170">
-    <p class="pb-1">You haven't created any links yet. Try creating a new link above.</p>
+    <p class="pb-4">You haven't created any links yet. Try creating a new link above.</p>
   </div>
 
   <md-paginator #paginator
