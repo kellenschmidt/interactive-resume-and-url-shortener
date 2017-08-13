@@ -22,7 +22,7 @@ export class AuthenticationService {
       "phone": phone,
       "password": password
     })
-    .retry(3)
+    .retry(1)
   }
 
   // Login to an existing account
@@ -32,7 +32,7 @@ export class AuthenticationService {
       "email": email,
       "password": password
     })
-    .retry(3)
+    .retry(1)
   }
 
   // Logout of an existing account
@@ -44,7 +44,7 @@ export class AuthenticationService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(3)
+    .retry(1)
   }
 
   // Get JWT or return falsey if jwt doesn't exist

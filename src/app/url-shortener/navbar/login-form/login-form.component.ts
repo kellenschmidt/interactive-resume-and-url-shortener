@@ -15,6 +15,7 @@ export class LoginFormComponent implements OnInit {
   @Output() onLogin = new EventEmitter<boolean>();
 
   loginForm: FormGroup;
+  formError: string;
 
   // Login as existing user and set values
   loginHttp() {
@@ -31,16 +32,15 @@ export class LoginFormComponent implements OnInit {
 
         // Clear old values in form
         this.loginForm.reset();
+        this.formError = "";
       },
       (err: HttpErrorResponse) => {
-        console.log("Error detected: " + err);
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
           console.log('Error: POST request to login failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          this.formError = err.error['error'];
         }
       } // error
     ) // http subscribe

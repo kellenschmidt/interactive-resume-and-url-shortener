@@ -63,7 +63,11 @@
         </md-input-container>
     </div>
 
-    <div class="g-recaptcha" data-sitekey="6Ld8USwUAAAAAIaBv0RYrkOlHpTPSiG4v6x0Oysb"></div>    
+    <div class="g-recaptcha" data-sitekey="6Ld8USwUAAAAAIaBv0RYrkOlHpTPSiG4v6x0Oysb"></div>
+
+    <div *ngIf="formError" class="alert alert-danger mt-3 mb-4" role="alert">
+        {{formError}}
+    </div>
 
     <div class="text-center mt-2">
         <button class="btn btn-primary waves-light" type="submit" [disabled]="!registerForm.valid" ripple-radius>Sign up<i class="fa fa-sign-in ml-2"></i></button>

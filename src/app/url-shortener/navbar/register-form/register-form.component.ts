@@ -16,6 +16,7 @@ export class RegisterFormComponent implements OnInit {
   @Output() onRegister = new EventEmitter<boolean>();
 
   registerForm: FormGroup;
+  formError: string;
 
   // Create new user and set values
   registerHttp() {
@@ -32,6 +33,7 @@ export class RegisterFormComponent implements OnInit {
 
         // Clear old values in form
         this.registerForm.reset();
+        this.formError = "";
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -39,8 +41,7 @@ export class RegisterFormComponent implements OnInit {
           console.log('Error: POST request to register failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          this.formError = err.error['error'];
         }
       } // error
     ) // http subscribe
