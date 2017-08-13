@@ -22,10 +22,10 @@
 
     <ng-container cdkColumnDef="code">
       <md-header-cell *cdkHeaderCellDef md-sort-header>
-        <span class="hidden-sm-down">Short&nbsp;</span>URL<span class="hidden-md-up">&nbsp;code</span>
+        <span class="d-none d-md-inline-block">Short&nbsp;</span>URL<span class="d-inline-block d-md-none">&nbsp;code</span>
       </md-header-cell>
       <md-cell *cdkCellDef="let row">
-        <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="hidden-sm-down">kellenschmidt.com/</span>{{row.code}}</a>
+        <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">kellenschmidt.com/</span>{{row.code}}</a>
         <a class="copy-btn" (click)="this.copy(row.code)" mdTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
       </md-cell>
     </ng-container>

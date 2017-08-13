@@ -16,19 +16,19 @@ $background-color: #FF5722;
         input {
             box-sizing: border-box;
             line-height: 1rem;
-            padding-top: 0.85rem;
-            padding-bottom: 0.85rem;
+            padding-top: 0.80rem;
+            padding-bottom: 0.80rem;
             height: auto;
         }
 
-        .form-group .btn {
+        form .btn {
             color: $background-color !important;
             font-weight: bold;
-            
+            // See media query below for margin modification
         }
 
         input,
-        .form-group .btn {
+        form .btn {
             margin-top: 0;
             margin-bottom: 1rem;
         }
@@ -63,11 +63,15 @@ $background-color: #FF5722;
 }
 
 /* Small devices (landscape phones, width: 576px and up) */
-@media (min-width: 576px) {  
+@media (min-width: 576px) {
     #link-input #new-link { 
         font-size: 2rem; 
         line-height: 2.9rem;
         padding: .5rem .8rem .5rem 1.125rem;
+    }
+
+    form .btn {
+        margin-left: 0 !important;
     }
 }
  

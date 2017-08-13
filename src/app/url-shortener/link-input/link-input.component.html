@@ -4,11 +4,11 @@
             <h2 class="col-12">{{title}}</h2>
         </div><!-- .row -->
         <form (ngSubmit)="onSubmit()" #linkForm="ngForm" *ngIf="linkInputMode === true">
-            <div class="form-group row">
+            <div class="row">
                 <div class="col-12 col-sm-8 col-md-9 col-lg-10">
                     <input class="form-control input-alternate white" type="url" [(ngModel)]="longUrl" placeholder="Your original URL here" name="longUrl" required>
                 </div>
-                <button type="submit" class="btn white ml-3 col-8 mx-sm-0 col-sm-4 col-md-3 col-lg-2" [disabled]="!linkForm.form.valid">Shorten URL</button>
+                <button type="submit" class="btn white ml-3 mr-0 col-8 col-sm-4 col-md-3 col-lg-2" [disabled]="!linkForm.form.valid">Shorten URL</button>
             </div><!-- .form-group.row -->
         </form>
         <div *ngIf="linkInputMode === false">
