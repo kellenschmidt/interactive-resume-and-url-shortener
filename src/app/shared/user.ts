@@ -8,7 +8,8 @@ export class User {
     public password: string,
     public creation_date: number,
     public updated_date: number,
-    public verified_phone: boolean
+    public verified_phone: boolean,
+    public verified_email: boolean
   ) {}
 
   reset() {
@@ -20,6 +21,7 @@ export class User {
     this.creation_date = undefined;
     this.updated_date = undefined;
     this.verified_phone = undefined;
+    this.verified_email = undefined;
   }
   
   initializeUser(userObj: any) {
@@ -31,5 +33,6 @@ export class User {
     this.creation_date = userObj.creation_date;
     this.updated_date = userObj.updated_date;
     this.verified_phone = userObj.verified_phone;
+    this.verified_email = userObj.verified_email;
   }
 }

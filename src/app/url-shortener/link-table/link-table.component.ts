@@ -83,7 +83,6 @@ export class LinkTableComponent implements OnInit {
           console.log('Error: PUT request to hide link failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
       } // error

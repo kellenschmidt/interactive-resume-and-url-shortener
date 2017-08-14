@@ -33,7 +33,6 @@ export class NavbarComponent implements OnInit {
           console.log('Error: POST request to logout failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
       } // error
@@ -42,7 +41,6 @@ export class NavbarComponent implements OnInit {
 
   // Resend http request to update links in table
   refreshTable() {
-    console.log("Refreshing table.");
     this.tableHandler.getLinks();
   }
 

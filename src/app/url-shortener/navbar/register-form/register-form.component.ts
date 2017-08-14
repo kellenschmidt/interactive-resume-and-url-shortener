@@ -33,6 +33,8 @@ export class RegisterFormComponent implements OnInit {
 
         // Clear old values in form
         this.registerForm.reset();
+        // Reset value of password to avoid null value error when displaying current inputted length in form
+        this.registerForm.controls['password'].setValue("");
         this.formError = "";
       },
       (err: HttpErrorResponse) => {

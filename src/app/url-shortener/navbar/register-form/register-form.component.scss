@@ -12,3 +12,14 @@
 md-input-container {
     flex-grow: 1;
 }
+
+#password-input-row {
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 576px) {
+    #password-input-row {
+        margin-bottom: .5rem;
+    }
+     
+}

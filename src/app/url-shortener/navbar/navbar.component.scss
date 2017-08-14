@@ -11,6 +11,10 @@ $background-color: #FF5722;
     .dropdown-toggle::after {
         display: none;
     }
+
+    .dropdown-menu a:hover {
+        color: black !important;
+    }
 }
 
 .new-tabs {
