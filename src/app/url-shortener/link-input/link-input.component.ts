@@ -68,12 +68,16 @@ export class LinkInputComponent implements OnInit {
         this.tableHandler.insert(0, this.newLinkData);
       },
       (err: HttpErrorResponse) => {
+        // If request returns an error because unauthenticated
+        if(err.error['error'] !== undefined) {
+          let snackBarRef = this.snackBar.open('Authentication error, re-login and try again.', "", { duration: 4000 });
+        }
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
           console.log('Error: POST request for LinkData failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          console.log(`Backend returned code ${err.status}, error was: ${err.error['error']}`);
         }
       } // error
     ) // http subscribe

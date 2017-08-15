@@ -58,8 +58,13 @@
     </md-progress-spinner>
   </div>
 
-  <div id="no-links-placeholder" *ngIf="(tableHandler.data.length == 0 && tableHandler.tableLoaded)" class="text-center pt-5">
-    <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/no-links-placeholder2.png" class="pb-3" height="170">
+  <div *ngIf="tableHandler.tableAuthError" class="table-placeholder text-center pt-5">
+    <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/placeholder1" class="pb-3" height="170">
+    <p class="pb-4 px-4">An authorization error occurred. Please log out and log back in.</p>
+  </div>
+
+  <div *ngIf="(tableHandler.data.length == 0 && tableHandler.tableLoaded && !tableHandler.tableAuthError)" class="table-placeholder text-center pt-5">
+    <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/placeholder2" class="pb-3" height="170">
     <p class="pb-4 px-4">You haven't created any links yet. Try creating a new link above.</p>
   </div>
 

@@ -5,6 +5,7 @@ import { LinkData } from './link-data';
 import 'rxjs/add/operator/retry';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
+import { TableHandlerService } from '../url-shortener/table-handler.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -35,18 +36,6 @@ export class AuthenticationService {
     .retry(1)
   }
 
-  // Logout of an existing account
-  logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/urlshortener/logout`,
-    {
-      // Empty request body
-    },
-    {
-      headers: new HttpHeaders().set('Authorization', this.getJwt()),
-    })
-    .retry(1)
-  }
-
   // Authenticate an existing JWT
   authenticate(): Observable<boolean> {
     return this.http.post<boolean>(`${this.apiUrl}/urlshortener/authenticate`,
@@ -57,6 +46,17 @@ export class AuthenticationService {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
     .retry(1)
+  }
+
+  logout() {
+    // Reset currentUser
+    this.currentUser.reset();
+    
+    // Remove authentication from local storage
+    localStorage.removeItem('auth');
+
+    // Refresh the links in the links table
+    this.tableHandler.getLinks();
   }
 
   // Get JWT or return falsey if jwt doesn't exist
@@ -78,12 +78,14 @@ export class AuthenticationService {
     }
   }
 
-  authenticateUser() {
+  authenticateHttp() {
     this.authenticate().subscribe(
       (responseBody) => {
         // If user is authenticated then populate user data
-        if(responseBody === true) {
+        if(responseBody['authenticated'] === true) {
           this.currentUser.initializeUser(this.getUser());
+        } else {
+          this.logout();
         }
       },
       (err: HttpErrorResponse) => {
@@ -98,8 +100,9 @@ export class AuthenticationService {
     ) // http subscribe
   } //authenticateUser
 
-  constructor(private http: HttpClient) {
-    this.authenticateUser();
+  constructor(private http: HttpClient,
+              private tableHandler: TableHandlerService) {
+    this.authenticateHttp();
   }
 
 }

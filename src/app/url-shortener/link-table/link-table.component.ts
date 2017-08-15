@@ -66,24 +66,31 @@ export class LinkTableComponent implements OnInit {
 
     snackBarRef.afterDismissed().subscribe(() => {
       if(undo === false) {
-        this.hideUrlHttp(code);
+        this.hideUrlHttp(code, index, tempLinkRow);
       }
     });
   }
 
   // Remove from visibility and reload table
-  hideUrlHttp(code: string) {
+  // index and tempLinkRow properties used to add link back to table if auth error occurs
+  hideUrlHttp(code: string, index: number, tempLinkRow: LinkData) {
     this.linkRepository.hideLink(code).subscribe(
       (responseBody) => {
         // Link has already been removed from table, this just removes it from the database too
       },
       (err: HttpErrorResponse) => {
+        // If request returns an error because unauthenticated
+        if(err.error['error'] !== undefined) {
+          let snackBarRef = this.snackBar.open('Authentication error, re-login and try again.', "", { duration: 4000 });
+          // Add row back into array
+          this.tableHandler.insert(index, tempLinkRow);
+        }
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
           console.log('Error: PUT request to hide link failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          console.log(`Backend returned code ${err.status}, error was: ${err.error['error']}`);
         }
       } // error
     ) // http subscribe

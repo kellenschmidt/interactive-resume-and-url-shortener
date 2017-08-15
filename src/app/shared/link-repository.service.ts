@@ -20,7 +20,7 @@ export class LinkRepositoryService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(3)
+    .retry(1)
   }
 
   // Hide short URL from table
@@ -32,7 +32,7 @@ export class LinkRepositoryService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(3)
+    .retry(1)
   }
 
   // Get all short URLs
@@ -41,7 +41,7 @@ export class LinkRepositoryService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(3)
+    .retry(1)
   }
 
   // Get long URL and increment click count
@@ -50,7 +50,7 @@ export class LinkRepositoryService {
     { 
       // Empty request body
     })
-    .retry(3)
+    .retry(1)
   }
 
   // Get JWT or return falsey if jwt doesn't exist

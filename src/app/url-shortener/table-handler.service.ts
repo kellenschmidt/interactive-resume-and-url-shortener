@@ -3,6 +3,7 @@ import { LinkData } from '../shared/link-data';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MdSnackBar } from '@angular/material';
 
 @Injectable()
 export class TableHandlerService {
@@ -11,8 +12,12 @@ export class TableHandlerService {
   table: BehaviorSubject<LinkData[]> = new BehaviorSubject<LinkData[]>([]);
   get data(): LinkData[] { return this.table.value; }
   tableLoaded: boolean = false;
+  tableAuthError: boolean = false;
 
-  constructor(private linkRepository: LinkRepositoryService) {
+  constructor(private linkRepository: LinkRepositoryService,
+              private snackBar: MdSnackBar) {
+    // Turn loading spinner on
+    this.tableLoaded = false;
     // Load database with links from http request
     this.getLinks();
   }
@@ -24,17 +29,24 @@ export class TableHandlerService {
         // Set table equal to response from GET request
         this.table.next(responseBody.data);
 
-        // Set tableLoaded (remove progress spinner)
+        // Set tableLoaded (remove loading spinner) and tableAuthError (remove placeholder)
         this.tableLoaded = true;
+        this.tableAuthError = false;
       },
       (err: HttpErrorResponse) => {
+        // Set authError and loaded to display error placeholder in table
+        this.tableAuthError = true;
+        this.tableLoaded = true;
+        // If request returns an error because unauthenticated
+        if(err.error['error'] !== undefined) {
+          let snackBarRef = this.snackBar.open('Authentication error, re-login and try again.', "", { duration: 4000 });
+        }
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
           console.log('Error: GET request for LinkDataResponse failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          console.log(`Backend returned code ${err.status}, error was: ${err.error['error']}`);
         }
       } // error
     ) // http subscribe
