@@ -25,6 +25,7 @@ export class LinkTableComponent implements OnInit {
   dataSource: ExampleDataSource | null;
   siteUrl: string = "https://kellenschmidt.com/";
   spinnerSettings = { color: 'primary', mode: 'indeterminate' };
+  iOSDevice: boolean = false;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdSort) sort: MdSort;
@@ -44,6 +45,8 @@ export class LinkTableComponent implements OnInit {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
+
+    this.iOSDevice = navigator.userAgent.match(/iphone|ipad|ipod/i) !== null;
   }
 
   // Menu option to hide link

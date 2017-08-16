@@ -26,7 +26,7 @@
       </md-header-cell>
       <md-cell *cdkCellDef="let row">
         <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">kellenschmidt.com/</span>{{row.code}}</a>
-        <a class="copy-btn" (click)="this.copy(row.code)" mdTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
+        <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" mdTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
       </md-cell>
     </ng-container>
 

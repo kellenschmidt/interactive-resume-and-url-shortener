@@ -16,6 +16,12 @@ export class RegisterFormComponent implements OnInit {
   @Output() onRegister = new EventEmitter<boolean>();
 
   registerForm: FormGroup;
+  public maskConfig = {
+    mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+    guide: false,
+    placeholderChar: '\u2000',
+    keepCharPositions: false,
+  };
 
   // Create new user and set values
   registerHttp() {

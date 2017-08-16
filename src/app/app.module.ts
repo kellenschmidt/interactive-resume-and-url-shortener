@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MdSnackBarModule, MdTooltipModule, MdMenuModule, MdTableModule, MdDialogModule, MdPaginatorModule, MdSortModule, MdInputModule, MdProgressSpinnerModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkTableModule } from '@angular/cdk';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -52,6 +53,7 @@ import { LoginFormComponent } from './url-shortener/navbar/login-form/login-form
     MdInputModule,
     ReactiveFormsModule,
     MdProgressSpinnerModule,
+    TextMaskModule,
     MDBBootstrapModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],

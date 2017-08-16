@@ -20,9 +20,11 @@ export class LinkInputComponent implements OnInit {
   longUrl: string = "";
   shortUrl: string = "";
   newLinkData: LinkData;
+  iOSDevice: boolean = false;
 
   // Copy short URL to clipboard
   copy(textToCopy: string) {
+
     // Temporarily create invisible element on screen to copy text from
     let selBox = document.createElement('textarea');
 
@@ -92,6 +94,8 @@ export class LinkInputComponent implements OnInit {
               private snackBar: MdSnackBar,
               private tableHandler: TableHandlerService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.iOSDevice = navigator.userAgent.match(/iphone|ipad|ipod/i) !== null;
+  }
 
 } // LinkInputComponent
