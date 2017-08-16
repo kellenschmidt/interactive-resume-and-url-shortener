@@ -7,8 +7,12 @@
         padding-top: 1.4rem;
         text-align: center;
     }
-}
 
-md-input-container {
-    flex-grow: 1;
+    md-input-container {
+        flex-grow: 1;
+
+        .password {
+            -webkit-text-security: disc;
+        }
+    }
 }

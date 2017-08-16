@@ -21,9 +21,9 @@
                 </li>
                 <li class="nav-item d-list-item d-sm-none">
                     <span class="navbar-text white-text mt-1">
-                        <b>Welcome, {{authentication.currentUser.name}}</b>
+                        <i class="fa fa-user-circle mr-2"></i><b>{{authentication.currentUser.name}}</b>
                     </span>
-                    <a class="nav-link waves-light" ripple-radius (click)="logout()">Logout</a>
+                    <a class="nav-link waves-light ml-1" ripple-radius (click)="logout()">Logout</a>
                 </li>
             </ul>
         </links>

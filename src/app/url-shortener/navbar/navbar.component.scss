@@ -17,29 +17,34 @@ $background-color: #FF5722;
     }
 }
 
-.new-tabs {
-    display: flex;
+#loginRegisterModal {
+    // Make modal scroll
+    overflow: auto;
 
-    .nav-item {
-        flex: 1 0;
-    }
-
-    .modal-header {
-        padding: .7rem;
-        width: 100%;
-        align-items: inherit;
-    }
-
-    .nav-tabs,
-    .nav-link,
-    .nav-link:hover,
-    .nav-link.active,
-    .nav .nav-link {
-        border: 0;
-    }
-
-    .nav-tabs .nav-link.active {
-        background-color: rgba(255,255,255,.2);
-        color: white;
+    .new-tabs {
+        display: flex;
+    
+        .nav-item {
+            flex: 1 0;
+        }
+    
+        .modal-header {
+            padding: .7rem;
+            width: 100%;
+            align-items: inherit;
+        }
+    
+        .nav-tabs,
+        .nav-link,
+        .nav-link:hover,
+        .nav-link.active,
+        .nav .nav-link {
+            border: 0;
+        }
+    
+        .nav-tabs .nav-link.active {
+            background-color: rgba(255,255,255,.2);
+            color: white;
+        }
     }
 }

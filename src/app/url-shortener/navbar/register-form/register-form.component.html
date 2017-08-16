@@ -32,13 +32,16 @@
             <md-error *ngIf="email.hasError('pattern')">
                 Please enter a valid email address
             </md-error>
+            <md-error *ngIf="email.hasError('emailAlreadyExists')">
+                Email already exists
+            </md-error>
         </md-input-container>
     </div>
 
     <div class="input-row" id="password-input-row">
         <i class="fa fa-lock prefix mr-2"></i>
         <md-input-container>
-            <input mdInput placeholder="Password" formControlName="password" maxlength="128">
+            <input mdInput placeholder="Password" formControlName="password" maxlength="128" class="password">
             <md-hint align="start">Use at least 8 characters including letters, numbers, and symbols</md-hint>
             <md-hint align="end">{{password.value.length}} / 128</md-hint>
             <md-error *ngIf="password.hasError('required')">
@@ -53,7 +56,7 @@
     <div class="input-row mb-3">
         <i class="fa fa-lock prefix mr-2"></i>
         <md-input-container>
-            <input mdInput placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128">
+            <input mdInput placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128" class="password">
             <md-error *ngIf="passwordConfirm.hasError('required')">
                 Confirm password is required
             </md-error>

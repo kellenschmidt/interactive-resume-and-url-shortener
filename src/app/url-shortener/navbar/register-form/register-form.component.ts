@@ -16,11 +16,10 @@ export class RegisterFormComponent implements OnInit {
   @Output() onRegister = new EventEmitter<boolean>();
 
   registerForm: FormGroup;
-  formError: string;
 
   // Create new user and set values
   registerHttp() {
-    this.authentication.register(this.email.value, this.name.value, this.phone.value.replace(/[^\+\d][^\d]*/g, ""), this.password.value).subscribe(
+    this.authentication.register(this.email.value, this.name.value.trim(), this.phone.value.replace(/[^\+\d][^\d]*/g, "").trim(), this.password.value).subscribe(
       (responseBody) => {
         // Store token in local storage
         localStorage.setItem('auth', JSON.stringify(responseBody));
@@ -35,7 +34,6 @@ export class RegisterFormComponent implements OnInit {
         this.registerForm.reset();
         // Reset value of password to avoid null value error when displaying current inputted length in form
         this.registerForm.controls['password'].setValue("");
-        this.formError = "";
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -43,7 +41,7 @@ export class RegisterFormComponent implements OnInit {
           console.log('Error: POST request to register failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          this.formError = err.error['error'];
+          this.registerForm.get(err.error['element']).setErrors( {[err.error['error']]: true} );
         }
       } // error
     ) // http subscribe

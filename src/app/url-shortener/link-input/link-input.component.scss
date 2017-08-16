@@ -7,7 +7,7 @@ $background-color: #FF5722;
     z-index: 0;
 
     .container {
-        margin: 2rem auto;
+        margin: .75rem auto;
         
         h2 {
             margin-bottom: 1rem
@@ -64,10 +64,16 @@ $background-color: #FF5722;
 
 /* Small devices (landscape phones, width: 576px and up) */
 @media (min-width: 576px) {
-    #link-input #new-link { 
-        font-size: 2rem; 
-        line-height: 2.9rem;
-        padding: .5rem .8rem .5rem 1.125rem;
+    #link-input {
+        .container {
+            margin: 1.25rem auto;
+        }
+
+        #new-link { 
+            font-size: 2rem; 
+            line-height: 2.9rem;
+            padding: .5rem .8rem .5rem 1.125rem;
+        }
     }
 
     form .btn {
@@ -77,15 +83,23 @@ $background-color: #FF5722;
  
 /* Medium devices (tablets, width: 768px and up) */
 @media (min-width: 768px) {
-    #link-input #new-link { 
-        font-size: 2.2rem; 
-        line-height: 3.1rem;
+    #link-input {
+        .container {
+            margin: 1.5rem auto;
+        }
+
+        #new-link { 
+            font-size: 2.2rem; 
+            line-height: 3.1rem;
+        }
     }
 }
 
 /* Large devices (large tablets, width: 992px and up) */
 @media (min-width: 992px) {
-
+    #link-input .container {
+        margin: 2rem auto;
+    }
 }
 
 /* Extra large devices (any laptop or desktop, width: 1200px and up) */

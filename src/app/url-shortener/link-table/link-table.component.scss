@@ -33,6 +33,7 @@
 
 .table-placeholder {
     border-bottom: solid 1px rgba(0,0,0,.12);
+    padding: 2rem 0 .6rem;
 
     p {
         font-size: 1.25rem;
@@ -129,5 +130,9 @@ md-row:hover {
     
     #date-column {
         display: inherit;
+    }
+
+    .table-placeholder {
+        padding: 2.5rem 0 .9rem;
     }
 }
