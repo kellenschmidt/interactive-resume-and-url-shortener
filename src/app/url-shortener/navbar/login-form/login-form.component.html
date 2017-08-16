@@ -2,7 +2,7 @@
     <div class="input-row mb-1">
         <i class="fa fa-envelope prefix mr-2"></i>
         <md-input-container>
-            <input mdInput placeholder="Email" formControlName="email" maxlength="255">
+            <input mdInput type="email" placeholder="Email" formControlName="email" maxlength="255">
             <md-error *ngIf="email.hasError('pattern')">
                 Please enter a valid email address
             </md-error>
@@ -18,7 +18,7 @@
     <div class="input-row mb-3">
         <i class="fa fa-lock prefix mr-2"></i>
         <md-input-container>
-            <input mdInput placeholder="Password" formControlName="password" maxlength="127" class="password">
+            <input mdInput type="password" placeholder="Password" formControlName="password" maxlength="127">
             <md-error *ngIf="password.hasError('required')">
                 Password is required
             </md-error>

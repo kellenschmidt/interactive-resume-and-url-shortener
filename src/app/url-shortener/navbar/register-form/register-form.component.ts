@@ -25,7 +25,7 @@ export class RegisterFormComponent implements OnInit {
 
   // Create new user and set values
   registerHttp() {
-    this.authentication.register(this.email.value, this.name.value.trim(), this.phone.value.replace(/[^\+\d][^\d]*/g, "").trim(), this.password.value).subscribe(
+    this.authentication.register(this.email.value, this.name.value.trim(), this.phone.value.replace(/[^\+\d][^\d]*/g, ""), this.password.value).subscribe(
       (responseBody) => {
         // Store token in local storage
         localStorage.setItem('auth', JSON.stringify(responseBody));

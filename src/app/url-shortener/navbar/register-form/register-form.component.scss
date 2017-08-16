@@ -11,8 +11,13 @@
     md-input-container {
         flex-grow: 1;
 
-        .password {
-            -webkit-text-security: disc;
+        input {
+            height: 1.5rem;
+            border-bottom: 0;
+
+            &:focus:not([readonly]) {
+                box-shadow: none;
+            }
         }
     }    
 }
