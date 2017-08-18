@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { LinkData } from '../../shared/link-data';
+import { LinkData } from '../shared/link-data';
 import { MdSnackBar } from '@angular/material';
-import { LinkRepositoryService } from '../../shared/link-repository.service';
-import { TableHandlerService } from '../table-handler.service';
+import { LinkRepositoryService } from '../shared/link-repository.service';
+import { TableHandlerService } from '../shared/table-handler.service';
 
 @Component({
   moduleId: module.id,

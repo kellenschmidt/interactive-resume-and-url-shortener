@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthenticationService } from '../../../shared/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { User } from '../../../shared/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MyValidators } from '../../../shared/my-validators';
+import { MyValidators } from '../shared/my-validators';
+import { AuthenticationService } from '../shared/authentication.service';
+import { User } from '../shared/user';
 
 @Component({
   moduleId: module.id,

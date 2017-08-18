@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
-import { NotFoundDialogComponent } from './not-found-dialog/not-found-dialog.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { NotFoundDialogComponent } from './not-found-dialog/not-found-dialog.component';
 
 @Component({
   moduleId: module.id,

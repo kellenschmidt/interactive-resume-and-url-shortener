@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataSource } from '@angular/cdk';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { LinkData } from '../../shared/link-data';
-import { TableHandlerService } from '../table-handler.service';
+import { LinkData } from '../shared/link-data';
+import { TableHandlerService } from '../shared/table-handler.service';
 import { MdSnackBar, MdPaginator, MdSort } from '@angular/material';
-import { LinkRepositoryService } from '../../shared/link-repository.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { LinkRepositoryService } from '../shared/link-repository.service';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';

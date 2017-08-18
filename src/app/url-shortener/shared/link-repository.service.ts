@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { LinkData } from './link-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { LinkData } from './link-data';
+import { AuthenticationData } from '../../user-authentication/shared/authentication-data';
 import 'rxjs/add/operator/retry';
-import { AuthenticationData } from './authentication-data';
-
 
 @Injectable()
 export class LinkRepositoryService {

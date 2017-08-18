@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { LinkData } from '../shared/link-data';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { LinkRepositoryService } from '../shared/link-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MdSnackBar } from '@angular/material';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { LinkData } from '../shared/link-data';
+import { LinkRepositoryService } from '../shared/link-repository.service';
 
 @Injectable()
 export class TableHandlerService {
