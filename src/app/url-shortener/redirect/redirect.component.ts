@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { LinkRepositoryService } from '../shared/link-repository.service';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -13,12 +14,26 @@ import 'rxjs/add/operator/switchMap';
 })
 export class RedirectComponent implements OnInit {
 
+  dialogRef: MdDialogRef<any>;
+  @ViewChild("notFoundTemplate") private notFoundDialog: TemplateRef<any>;
+
+  // Close the dialog box and return to previous page
+  close() {
+    this.dialogRef.close();
+    this.location.back();
+  }
+
   // Get long URL and then redirect
   getRedirectLinkHttp(code: string) {
     this.linkRepository.getRedirectLink(code).subscribe(
       (responseBody) => {
-        // Redirect to new URL
-        window.location.href = responseBody["long_url"];
+        if(responseBody["long_url"] !== null) {
+          // Redirect to new URL
+          window.location.href = responseBody["long_url"];
+        } else {
+          // Open "Not Found" dialog box
+          this.dialogRef = this.dialog.open(this.notFoundDialog);
+        }
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -26,7 +41,6 @@ export class RedirectComponent implements OnInit {
           console.log('Error: PUT request for long URL failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
       } // error
@@ -35,7 +49,8 @@ export class RedirectComponent implements OnInit {
 
   constructor(private linkRepository: LinkRepositoryService,
               private route: ActivatedRoute,
-              private location: Location) { }
+              private location: Location,
+              private dialog: MdDialog) { }
 
   ngOnInit() {
     let code = this.route.snapshot.paramMap.get('code');

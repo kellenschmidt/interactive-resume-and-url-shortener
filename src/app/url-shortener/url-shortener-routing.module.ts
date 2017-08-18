@@ -4,24 +4,14 @@ import { UrlShortenerComponent } from './url-shortener.component';
 import { RedirectComponent } from './redirect/redirect.component';
 
 const urlShortenerRoutes: Routes = [
-  { path: 'urlshortener',
+  { path: '',
     component: UrlShortenerComponent,
     children: [
-        {
-            path: ':code',
-            component: RedirectComponent,
-        },
-        {
-            path: 'null',
-            component: UrlShortenerComponent,
-        },
+      {
+        path: ':code',
+        component: RedirectComponent,
+      },
     ],
-    
-  },
-  { 
-    path: 'url',
-    redirectTo: '/urlshortener',
-    pathMatch: 'full'
   },
 ];
 

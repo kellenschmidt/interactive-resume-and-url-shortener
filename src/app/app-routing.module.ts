@@ -5,8 +5,14 @@ import { UrlShortenerComponent } from './url-shortener/url-shortener.component';
 import { RedirectComponent } from './url-shortener/redirect/redirect.component';
 
 const appRoutes: Routes = [
-  { path: '', component: UrlShortenerComponent },
-  { path: '**', component: UrlShortenerComponent }
+  { path: '', redirectTo: 'url-shortener', pathMatch: 'full' },
+  { path: 'about', redirectTo: 'interactive-resume', pathMatch: 'full' },
+  { path: 'kellen', redirectTo: 'interactive-resume', pathMatch: 'full' },
+  { path: 'interactive-resume', component: UrlShortenerComponent },
+  { path: 'url', redirectTo: 'url-shortener', pathMatch: 'full' },
+  { path: 'urls', redirectTo: 'url-shortener', pathMatch: 'full' },
+  { path: 'url-shortener', loadChildren: 'app/url-shortener/url-shortener.module#UrlShortenerModule' },
+  { path: '**', redirectTo: 'interactive-resume', pathMatch: 'full' }
 ];
 
 @NgModule({

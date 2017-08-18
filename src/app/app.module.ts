@@ -4,8 +4,6 @@ import { AppComponent } from './app.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { UrlShortenerModule } from './url-shortener/url-shortener.module';
-import { UserAuthenticationModule } from './user-authentication/user-authentication.module';
-import { AngularMaterialModule } from './shared/angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -17,10 +15,8 @@ import 'hammerjs';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AngularMaterialModule,
     UrlShortenerModule,
-    UserAuthenticationModule,
+    AppRoutingModule,
     MDBBootstrapModule.forRoot(),
   ],
   providers: [],

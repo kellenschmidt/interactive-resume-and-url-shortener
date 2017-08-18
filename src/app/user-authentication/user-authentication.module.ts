@@ -24,6 +24,10 @@ import { AuthenticationService } from './shared/authentication.service';
     HttpClientModule,
     TextMaskModule,
   ],
+  exports: [
+    RegisterFormComponent,
+    LoginFormComponent,
+  ],
   providers: [
     AuthenticationService,
   ],
