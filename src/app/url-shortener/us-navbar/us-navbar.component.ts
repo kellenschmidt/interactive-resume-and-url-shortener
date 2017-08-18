@@ -5,11 +5,11 @@ import { TableHandlerService } from '../shared/table-handler.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'ks-navbar',
-  templateUrl: 'navbar.component.html',
-  styleUrls: ['navbar.component.scss']
+  selector: 'ks-us-navbar',
+  templateUrl: 'us-navbar.component.html',
+  styleUrls: ['us-navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class USNavbarComponent implements OnInit {
 
   loginTab = false;
 
