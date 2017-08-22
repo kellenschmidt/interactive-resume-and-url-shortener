@@ -1,0 +1,39 @@
+<mdb-navbar SideClass="navbar navbar-expand-sm navbar-dark rainbow-background">
+  
+  <logo><a class="navbar-brand" href="#">Kellen Schmidt</a></logo>
+
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="active">
+          <a class="nav-item nav-link waves-light" mdbRippleRadius href="#about-me">About Me</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link waves-light" mdbRippleRadius href="#education-title">Education</a>
+      </li>
+      <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbRippleRadius class="nav-link dropdown-toggle waves-light" mdbRippleRadius>Projects<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown" role="menu">
+              <small class="dropdown-title">Links</small>
+              <a class="dropdown-item waves-light" routerLink="url-shortener" mdbRippleRadius>
+                URL Shortener
+                <small class="grey-text ml-2">Web</small>
+              </a>
+              <a class="dropdown-item waves-light" href="https://play.google.com/store/apps/details?id=com.kellenschmidt.materialtipcalculator" target="_blank" rel="noopener" mdbRippleRadius>
+                Tip Calculator
+                <small class="grey-text ml-2">Android</small>
+              </a>
+              <div class="divider dropdown-divider"></div>
+              <small class="dropdown-title">Descriptions</small>
+              <a class="dropdown-item waves-light" mdbRippleRadius href="#projects">All Projects</a>
+          </div>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link waves-light" mdbRippleRadius href="#work-experience">Work Experience</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link waves-light" mdbRippleRadius href="#skills">Skills</a>
+      </li>
+    </ul>
+  </links>
+
+</mdb-navbar>

@@ -1,10 +1,10 @@
 <div id="nav-wrapper">
-    <navbar SideClass="navbar navbar-expand-sm navbar-dark">
+    <mdb-navbar SideClass="navbar navbar-expand-sm navbar-dark">
         <logo><a class="logo navbar-brand" href="#">Kellen's URL Shortener</a></logo>
         <links>
             <ul class="navbar-nav ml-auto" *ngIf="!authentication.currentUser.email">
                 <li class="nav-item">
-                    <a class="nav-link waves-light" (click)="form.show(); loginTab = true" ripple-radius>Login</a>
+                    <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" (click)="form.show(); loginTab = false">Sign Up</a> 
@@ -12,25 +12,25 @@
             </ul>
             <ul class="navbar-nav ml-auto" *ngIf="authentication.currentUser.email">
                 <li class="nav-item dropdown d-none d-sm-block" dropdown>
-                    <a dropdownToggle ripple-radius class="nav-link dropdown-toggle waves-light p-0" ripple-radius>
+                    <a dropdownToggle mdbRippleRadius class="nav-link dropdown-toggle waves-light p-0" mdbRippleRadius>
                         <span>{{authentication.currentUser.name}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
                     </a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" ripple-radius (click)="logout()">Logout</a>
+                        <a class="dropdown-item waves-light" mdbRippleRadius (click)="logout()">Logout</a>
                     </div>
                 </li>
                 <li class="nav-item d-list-item d-sm-none">
                     <span class="navbar-text white-text mt-1">
                         <i class="fa fa-user-circle mr-2"></i><b>{{authentication.currentUser.name}}</b>
                     </span>
-                    <a class="nav-link waves-light ml-1" ripple-radius (click)="logout()">Logout</a>
+                    <a class="nav-link waves-light ml-1" mdbRippleRadius (click)="logout()">Logout</a>
                 </li>
             </ul>
         </links>
-    </navbar>
+    </mdb-navbar>
 </div>
 
-<div bsModal #form="bs-modal" class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div mdbModal #form="mdb-modal" class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -58,7 +58,7 @@
                         <p>Not a member? <a href="#" (click)="loginTab=false">Sign Up.</a></p>
                         <!-- <p>Forgot <a href="#">Password?</a></p> -->
                     </div>
-                    <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" ripple-radius>Close</button>
+                    <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" mdbRippleRadius>Close</button>
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
                     <div class="options text-center text-md-right mt-1">
                         <p>Already have an account? <a href="#" (click)="loginTab=true">Log In.</a></p>
                     </div>
-                    <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" ripple-radius>Close</button>
+                    <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal" (click)="form.hide()" mdbRippleRadius>Close</button>
                 </div>
             </div>
         </div>

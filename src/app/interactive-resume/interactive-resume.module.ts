@@ -9,10 +9,12 @@ import { AngularMaterialModule } from '../shared/angular-material.module';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 import { InteractiveResumeRoutingModule } from './interactive-resume-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { IRNavbarComponent } from './ir-navbar/ir-navbar.component';
 
 @NgModule({
   declarations: [
-    InteractiveResumeComponent
+    InteractiveResumeComponent,
+    IRNavbarComponent
   ],
   imports: [
     CommonModule,

@@ -2,5 +2,30 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
-    font-weight: 400;
+  font-weight: 400;
+}
+
+// Color changing text animation
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(-360deg);
+  }
+}
+  
+// Fade rainbow of colors for background
+.rainbow-background {
+  background-image: linear-gradient(135deg,#f35626,#feab3a); 
+  animation: hue 30s infinite linear;
+}
+
+// Fade rainbow of colors on text
+.rainbow-font {
+  color: #f35626;
+  background-image: linear-gradient(135deg,#f35626,#feab3a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: hue 30s infinite linear;
 }
