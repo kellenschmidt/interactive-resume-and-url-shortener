@@ -5,6 +5,7 @@ import { IRNavbarComponent } from './ir-navbar/ir-navbar.component';
 import { TitlePageComponent } from './title-page/title-page.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { EducationComponent } from './education/education.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -16,14 +17,14 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CloudinaryModule } from '@cloudinary/angular-4.x';
 import * as Cloudinary from 'cloudinary-core';
 
-
 @NgModule({
   declarations: [
     InteractiveResumeComponent,
     IRNavbarComponent,
     TitlePageComponent,
     AboutMeComponent,
-    EducationComponent
+    EducationComponent,
+    ProjectsComponent
   ],
   imports: [
     CommonModule,
