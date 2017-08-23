@@ -54,6 +54,8 @@ export class RedirectComponent implements OnInit {
 
   ngOnInit() {
     let code = this.route.snapshot.paramMap.get('code');
-    this.getRedirectLinkHttp(code);
+    if(code !== '') {
+      this.getRedirectLinkHttp(code);
+    }
   } // ngOnInit
 } // RedirectComponent
