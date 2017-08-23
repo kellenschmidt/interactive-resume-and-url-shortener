@@ -15,6 +15,19 @@ export class InteractiveResumeComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    // Determine if browser is iOS Safari
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPhone|iPad|iPod/i);
+    var webkit = !!ua.match(/WebKit/i);
+    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
+    // If device/browser is iOS Safari then set background-attachment to compatible value
+    if(iOSSafari) {
+      document.getElementById("background-fallback").style.display = "inherit";
+    } else {
+      document.getElementById("background-fallback").style.display = "none";
+    }
+
     this.http.post(`${this.apiUrl}/page-visit`,
     {
       "site": document.domain,

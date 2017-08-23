@@ -1,0 +1,56 @@
+// "Hey I'm Kellen Schmidt"
+#name {
+  font-size: 13vmin;
+  font-weight: 500;
+}
+
+// "Front-end web developer extraordinaire"
+#description {
+  font-size: 7vmin;
+  font-weight: 400;
+}
+
+/*  Down scroll arrow  */
+#title-scroll-down {
+  animation: bouncing 1.3s infinite ease-in-out;
+  position: fixed;
+  opacity: 0.75;
+}
+
+/* Small devices (landscape phones, width: 576px and up) */
+@media (min-width: 576px) {  
+  #name-and-description {margin-left: 2rem;}
+}
+ 
+/* Medium devices (tablets, width: 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  #name {font-size:9.5vmin;}
+  #description {font-size:5vmin;}
+}
+
+@media (min-width: 768px) and (orientation: portrait){
+  #name {font-size:9vmin;}
+  #description {font-size:4.7vmin;}
+}
+ 
+/* Large devices (large tablets, width: 992px and up) */
+@media (min-width: 992px) {
+  #name {font-size:9vmin;}
+  #description {font-size:4.4vmin;}
+}
+
+@media (min-width: 992px) and (orientation: portrait) {
+  #name {font-size:9.1vmin;}
+  #description {font-size:4.8vmin;}
+}
+
+/* Extra large devices (any laptop or desktop, width: 1200px and up) */
+@media (min-width: 1200px) {  
+  #name {font-size:8.95vmin;}
+  #description {font-size:4.7vmin;}
+}
+
+@media (min-width: 1200px) and (max-aspect-ratio: 15/10) {
+  #name {font-size:7.1vmin;}
+  #description {font-size:3.8vmin;}
+}

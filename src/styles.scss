@@ -29,3 +29,10 @@ body {
   -webkit-background-clip: text;
   animation: hue 30s infinite linear;
 }
+
+//  Bouncing annimation for down arrow
+@keyframes bouncing {
+  0% {bottom: 0.5rem;}
+  50% {bottom: 1.25rem;}
+  100% {bottom: 0.5rem;}
+}

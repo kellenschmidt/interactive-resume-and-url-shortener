@@ -1,0 +1,36 @@
+// Colors for social icons
+.li-ic, .li-ic:hover {
+  color: #0077B5;
+}
+.github-ic, .github-ic:hover {
+  color: black;
+}
+.email-ic, .email-ic:hover {
+  color: #ea4335;
+}
+.fb-ic, .fb-ic:hover {
+  color: #3b5998;
+}
+.ig-ic, .ig-ic:hover {
+  color: #833ab4;
+}
+
+// Social media icons
+.social-icon {
+  // See _media.css for width-specific modifications
+  font-size: 100%;
+  line-height: 130%;
+  transition: font-size 0.15s, line-height 0.15s; 
+  &:hover {
+    font-size: 130%;
+    line-height: 100%;
+  }
+  @media(max-width: 768px) {
+    font-size: 130%;
+    line-height: 100%;
+  }
+}
+
+p.lead {
+  font-weight: 400;
+}
