@@ -1,25 +1,6 @@
 // Note: The card in each .row with the longest .modal-body content will have relative position,
 // all other cards should be given absolute position and a bottom value to move their buttons to 
 // the bottom of their cards (19px represents the approx padding bottom on the buttons)
-// See _media.css for these width-specific modifications 
-// #url-shortener-btn {
-//   background-color: #FE993A;
-// }
-// #geodeals-btn {
-//   background-color: #FD55CD;
-// }
-// #groceryquest-btn {
-//   background-color: #905FFF;
-// }
-// #wikibooks-btn {
-//   background-color: #398BFF;
-// }
-// #material-tip-calculator-btn {
-//   background-color: #25DFB1; 
-// }
-// #robot-competition-btn {
-//   background-color: #35A608;
-// }
 
 // External link icon
 a.card-title {
@@ -54,17 +35,21 @@ a.card-title {
   margin-bottom: 0;
 }
 
-.modal-body {
-  p {
-    margin-bottom: 1.5rem;
-  }
-  ul {
-    margin: 0 2rem 1.5rem 2rem;
-    li {
-      list-style-type: disc;
+#learnMoreModal {
+  // Make modal scroll
+  overflow: auto;
+  .modal-body {
+    p {
+      margin-bottom: 1.5rem;
     }
     ul {
-      margin-bottom: 0;
+      margin: 0 2rem 1.5rem 2rem;
+      li {
+        list-style-type: disc;
+      }
+      ul {
+        margin-bottom: 0;
+      }
     }
   }
 }

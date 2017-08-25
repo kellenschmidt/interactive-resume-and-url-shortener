@@ -16,6 +16,7 @@ import { InteractiveResumeRoutingModule } from './interactive-resume-routing.mod
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CloudinaryModule } from '@cloudinary/angular-4.x';
 import * as Cloudinary from 'cloudinary-core';
+import { CardRepositoryService } from './shared/card-repository.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import * as Cloudinary from 'cloudinary-core';
     CloudinaryModule.forRoot(Cloudinary, {cloud_name: "kellenscloud", secure: true}),
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [],
+  providers: [
+    CardRepositoryService
+  ],
 })
 export class InteractiveResumeModule { }
