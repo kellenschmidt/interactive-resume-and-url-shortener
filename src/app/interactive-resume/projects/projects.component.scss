@@ -38,28 +38,4 @@ a.card-title {
 #learnMoreModal {
   // Make modal scroll
   overflow: auto;
-  .modal-body {
-    p {
-      margin-bottom: 1.5rem;
-    }
-    ul {
-      margin: 0 2rem 1.5rem 2rem;
-      li {
-        list-style-type: disc;
-      }
-      ul {
-        margin-bottom: 0;
-      }
-    }
-  }
-}
-
-.google-play-btn {
-  height: 4rem;
-}
-
-.google-play-words {
-  font-size: 0.6875rem;
-  margin: 0 0 0 0.75rem;
-  color: #636c72;
 }
