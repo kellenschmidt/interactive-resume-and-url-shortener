@@ -12,7 +12,7 @@
     <!--Title-->
     <a *ngIf="project.router_link" class="h4 card-title d-inline-block" routerLink="{{project.router_link}}">{{project.title}}<i class="fa fa-external-link ml-2 small"></i></a>
     <a *ngIf="project.link" class="h4 card-title d-inline-block" href="{{project.link}}" target="_blank" rel="noopener">{{project.title}}<i class="fa fa-external-link ml-2 small"></i></a>
-    <h4 *ngIf="!project.link && !project.router_link" class="card-title">{{project.title}}</h4>
+    <h4 *ngIf="!project.link && !project.router_link" class="card-title" [innerHTML]="project.title"></h4>
     <!--Text-->
     <p class="card-text">{{project.caption}}</p>
     <button class="btn waves-light" mdbRippleRadius [style.background-color]="project.theme_color" id="{{project.id}}-btn" (click)="this.loadModalBody(project.description); learnMoreModal.show()">Learn More</button>
@@ -22,7 +22,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title w-100">{{project.title}}</h3>
+            <h3 class="modal-title w-100" [innerHTML]="stripTrailingHtml(project.title)"></h3>
             <button type="button" class="close" (click)="learnMoreModal.hide()">
             <span aria-hidden="true">&times;</span>
             </button>

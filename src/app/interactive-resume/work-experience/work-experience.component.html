@@ -1,3 +1,6 @@
-<p>
-  work-experience works!
-</p>
+<h1 class="mb-5" id="work-experience">Work Experience</h1>
+<div class="row mb-5">
+  <div *ngFor="let job of jobs" class="col-md-6 mb-4 d-flex align-items-stretch">
+    <ks-project-card [project]="job"></ks-project-card>
+  </div>
+</div>

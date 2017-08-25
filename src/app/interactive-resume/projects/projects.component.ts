@@ -4,10 +4,9 @@ import { CardRepositoryService } from '../shared/card-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-projects',
-  templateUrl: 'projects.component.html',
-  styleUrls: ['projects.component.scss']
+  templateUrl: './projects.component.html',
+  styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
 
@@ -23,13 +22,13 @@ export class ProjectsComponent implements OnInit {
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
-          console.log('Error: PUT request for long URL failed:', err.error.message);
+          console.log('Error: PUT request for projects failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
       } // error
-    ) // http subscribe
+    ); // http subscribe
   }
 
 }

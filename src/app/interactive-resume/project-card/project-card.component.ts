@@ -23,6 +23,15 @@ export class ProjectCardComponent implements OnInit {
     }
   }
 
+  stripTrailingHtml(input: string): string {
+    let firstHtml = input.indexOf('<');
+    if(firstHtml > 0) {
+      return input.substring(0, firstHtml);
+    } else {
+      return input;
+    }
+  }
+
   constructor() { }
 
   ngOnInit() {
