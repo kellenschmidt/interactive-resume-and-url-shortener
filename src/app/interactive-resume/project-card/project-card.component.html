@@ -1,0 +1,54 @@
+<div class="card h-100" id="{{project.id}}">
+  <!--Card image-->
+  <div class="view hm-white-slight waves-light" mdbRippleRadius>
+    <img src="https://res.cloudinary.com/kellenscloud/image/upload/v{{project.image_version}}/c_scale,f_auto,q_auto/{{project.id}}-feature-graphic" class="img-fluid">
+    <a>
+      <div class="mask"></div>
+    </a>
+  </div>
+  <!--/.Card image-->
+  <!--Card content-->
+  <div class="card-body">
+    <!--Title-->
+    <a *ngIf="project.router_link" class="h4 card-title d-inline-block" routerLink="{{project.router_link}}">{{project.title}}<i class="fa fa-external-link ml-2 small"></i></a>
+    <a *ngIf="project.link" class="h4 card-title d-inline-block" href="{{project.link}}" target="_blank" rel="noopener">{{project.title}}<i class="fa fa-external-link ml-2 small"></i></a>
+    <h4 *ngIf="!project.link && !project.router_link" class="card-title">{{project.title}}</h4>
+    <!--Text-->
+    <p class="card-text">{{project.caption}}</p>
+    <button class="btn waves-light" mdbRippleRadius [style.background-color]="project.theme_color" id="{{project.id}}-btn" (click)="this.loadModalBody(project.description); learnMoreModal.show()">Learn More</button>
+
+    <!--Modal-->
+    <div mdbModal #learnMoreModal="mdb-modal" class="modal fade" id="learnMoreModal" tabindex="-1" role="dialog" aria-labelledby="learnMoreModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title w-100">{{project.title}}</h3>
+            <button type="button" class="close" (click)="learnMoreModal.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Modal body for url-shortener modal -->
+            <div *ngIf="project.id === 'url-shortener'">
+              <div #beforeTabs></div>
+              <md-tab-group>
+                <md-tab label="ANGULAR VERSION"><div #angularTab>Loading...</div></md-tab>
+                <md-tab label="PHP VERSION"><div #phpTab>Loading...</div></md-tab>
+              </md-tab-group>
+            </div>
+            <!-- Modal body for all other modals -->
+            <div *ngIf="project.id !== 'url-shortener'" #normalModalBody [innerHTML]="project.description"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn waves-light" [style.background-color]="project.theme_color" (click)="learnMoreModal.hide()" mdbRippleRadius>Close</button>
+            <a *ngIf="project.router_link" class="btn btn-primary waves-light" mdbRippleRadius routerLink="{{project.router_link}}">Visit<i class="fa fa-external-link"></i></a>
+            <a *ngIf="project.link" class="btn btn-primary waves-light" href="{{project.link}}" target="_blank" rel="noopener">Visit<i class="fa fa-external-link"></i></a>
+            <a class="btn btn-elegant waves-light" mdbRippleRadius id="github-link" href="{{project.github_link}}" target="_blank" rel="noopener">View on GitHub<i class="fa fa-github "></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.Modal-->
+  </div>
+  <!--/.Card content-->
+</div>
