@@ -12,3 +12,13 @@ export interface Card {
     description: string,
     visible: number,
 }
+
+export interface Skill {
+    chip_id: number,
+    id: string,
+    category: string,
+    title: string,
+    image_version: string,
+    color: string,
+    visible: number,
+}

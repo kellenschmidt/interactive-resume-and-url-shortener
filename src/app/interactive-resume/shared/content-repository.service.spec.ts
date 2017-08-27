@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CardRepositoryService } from './card-repository.service';
+import { ContentRepositoryService } from './content-repository.service';
 
 describe('CardRepositoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CardRepositoryService]
+      providers: [ContentRepositoryService]
     });
   });
 
-  it('should be created', inject([CardRepositoryService], (service: CardRepositoryService) => {
+  it('should be created', inject([ContentRepositoryService], (service: ContentRepositoryService) => {
     expect(service).toBeTruthy();
   }));
 });

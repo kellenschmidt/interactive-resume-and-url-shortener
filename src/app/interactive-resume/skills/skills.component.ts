@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from '../shared/types';
+import { Skill } from '../shared/types';
 import { ContentRepositoryService } from '../shared/content-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'ks-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  selector: 'ks-skills',
+  templateUrl: './skills.component.html',
+  styleUrls: ['./skills.component.scss']
 })
-export class ProjectsComponent implements OnInit {
+export class SkillsComponent implements OnInit {
 
-  public projects: Card[];
+  public skills: Skill[] = [];
 
   constructor(private contentRepository: ContentRepositoryService) { }
 
   ngOnInit() {
-    this.contentRepository.getCards(0).subscribe(
+    this.contentRepository.getChips().subscribe(
       (responseBody) => {
-        this.projects = responseBody['data'];
+        this.skills = responseBody['data'];
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
-          console.log('Error: GET request for projects failed:', err.error.message);
+          console.log('Error: GET request for chips failed:', err.error.message);
         } else {
           // The backend returned an unsuccessful response code.
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
@@ -30,5 +30,5 @@ export class ProjectsComponent implements OnInit {
       } // error
     ); // http subscribe
   }
-
+  
 }

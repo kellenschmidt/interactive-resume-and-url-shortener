@@ -8,6 +8,7 @@ import { EducationComponent } from './education/education.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
 import { ProjectCardComponent } from './project-card/project-card.component';
+import { SkillsComponent } from './skills/skills.component';
 
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -19,7 +20,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CloudinaryModule } from '@cloudinary/angular-4.x';
 import * as Cloudinary from 'cloudinary-core';
 
-import { CardRepositoryService } from './shared/card-repository.service';
+import { ContentRepositoryService } from './shared/content-repository.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CardRepositoryService } from './shared/card-repository.service';
     EducationComponent,
     ProjectsComponent,
     WorkExperienceComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    SkillsComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,7 @@ import { CardRepositoryService } from './shared/card-repository.service';
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
-    CardRepositoryService
+    ContentRepositoryService
   ],
 })
 export class InteractiveResumeModule { }

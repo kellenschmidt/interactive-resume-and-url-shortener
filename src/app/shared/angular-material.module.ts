@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { MdSnackBarModule, MdTooltipModule, MdMenuModule, MdTableModule, MdDialogModule, MdPaginatorModule, MdSortModule, MdInputModule, MdProgressSpinnerModule, MdTabsModule } from '@angular/material';
+import { MdSnackBarModule, MdTooltipModule, MdMenuModule, MdTableModule, MdDialogModule, MdPaginatorModule, MdSortModule, MdInputModule, MdProgressSpinnerModule, MdTabsModule, MdChipsModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk';
 
 @NgModule({
@@ -18,6 +18,7 @@ import { CdkTableModule } from '@angular/cdk';
     MdInputModule,
     MdProgressSpinnerModule,
     MdTabsModule,
+    MdChipsModule,
     CdkTableModule,
   ],
   exports: [

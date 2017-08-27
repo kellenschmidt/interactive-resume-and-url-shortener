@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Card } from '../shared/card';
+import { Card } from '../shared/types';
 
 @Component({
   selector: 'ks-project-card',
