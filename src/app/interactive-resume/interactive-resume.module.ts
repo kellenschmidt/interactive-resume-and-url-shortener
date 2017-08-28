@@ -9,6 +9,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { SkillsComponent } from './skills/skills.component';
+import { CoursesComponent } from './courses/courses.component';
 
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -32,7 +33,8 @@ import { ContentRepositoryService } from './shared/content-repository.service';
     ProjectsComponent,
     WorkExperienceComponent,
     ProjectCardComponent,
-    SkillsComponent
+    SkillsComponent,
+    CoursesComponent
   ],
   imports: [
     CommonModule,

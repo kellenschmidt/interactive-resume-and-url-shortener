@@ -1,0 +1,73 @@
+<h1 id="courses" class="mt-5">Courses</h1>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <a class="icon-button" (click)="carouselRef.previousSlide()"><i class="fa fa-chevron-left rainbow-font"></i><span class="rainbow-background"></span></a>
+        <a class="icon-button" (click)="carouselRef.nextSlide()"><i class="fa fa-chevron-right rainbow-font"></i><span class="rainbow-background"></span></a>
+    </div>
+</div>
+
+<!--Carousel Wrapper-->
+<mdb-carousel #carouselRef [animation]="'slide'">
+  <!--First slide-->
+  <mdb-slide>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <h6>CSE 3345</h6>
+            <h2>Graphical User Interface Design</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <h6>CSE 5345</h6>
+            <h2>Advanced App Programming</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <h6>CSE 3330</h6>
+            <h2>Databases</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mdb-slide>
+  <!--/First slide-->
+  <!--Third slide-->
+  <mdb-slide>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <h6>CSE 3345</h6>
+            <h2>Graphical User Interface Design</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <h6>CSE 5345</h6>
+            <h2>Advanced App Programming</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <h6>CSE 3330</h6>
+            <h2>Databases</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mdb-slide>
+  <!--/Third slide-->
+</mdb-carousel>
+<!--/.Carousel Wrapper-->

@@ -1,0 +1,56 @@
+mdb-slide .row {
+  padding: .25rem;
+}
+
+// Wrapper
+.icon-button {
+    background-color: white;
+    display: inline-block;
+    font-size: 1.5rem;
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    border-radius: 3rem;
+    margin: 0.5rem 0.5rem 1rem;
+    position: relative;
+}
+
+// Circle
+.icon-button span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 0;
+    width: 0;
+    border-radius: 0;
+    margin: 0;
+    transition: all 0.3s;
+}
+.icon-button:hover span {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 3rem;
+    margin: -1.5rem;
+}
+
+// Icons
+.icon-button i {
+    background: none;
+    // color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    transition: all 0.3s;
+}
+
+.icon-button:hover .fa-chevron-left,
+.icon-button:hover .fa-chevron-right {
+    background-image: linear-gradient(135deg, white, white);
+    // Makes button icon white on hover
+    -webkit-text-fill-color: transparent;       // Only for webkit
+}
