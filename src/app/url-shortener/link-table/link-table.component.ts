@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { DataSource } from '@angular/cdk';
+import { DataSource } from '@angular/cdk/collections';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

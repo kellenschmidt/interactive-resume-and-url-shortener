@@ -12,6 +12,6 @@
 <div *ngFor="let skill of skills" [ngClass]="{'d-inline-block': (skill.id !== 'category-heading'), 'my-4': (skill.id === 'category-heading')}">
   <h4 *ngIf="skill.id === 'category-heading'" class="d-block">{{skill.title}}</h4>
   <div *ngIf="skill.id !== 'category-heading'" class="chip d-inline-block" [style.background-color]="skill.color">
-    <img src="https://res.cloudinary.com/kellenscloud/image/upload/v{{skill.image_version}}/c_scale,f_auto,q_auto,w_120/{{skill.id}}-chip" width="40">{{skill.title}}
+    <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_120/{{skill.id}}-chip" width="40">{{skill.title}}
   </div>
 </div>

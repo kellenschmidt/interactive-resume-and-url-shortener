@@ -21,6 +21,16 @@ $background-color: #FF6600;
     // Make modal scroll
     overflow: auto;
 
+    .modal-footer a.link {
+        color: #0275d8;
+        text-decoration: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        &:hover {
+            color: #0056b3;
+        }
+    }
+
     .new-tabs {
         display: flex;
     
@@ -33,6 +43,8 @@ $background-color: #FF6600;
             width: 100%;
             align-items: inherit;
         }
+
+        
     
         .nav-tabs,
         .nav-link,

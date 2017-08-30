@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { MdSnackBarModule, MdTooltipModule, MdMenuModule, MdTableModule, MdDialogModule, MdPaginatorModule, MdSortModule, MdInputModule, MdProgressSpinnerModule, MdTabsModule, MdChipsModule } from '@angular/material';
-import { CdkTableModule } from '@angular/cdk';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [],
