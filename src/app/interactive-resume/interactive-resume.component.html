@@ -1,6 +1,6 @@
 <div id="title-page-wallpaper">
   <!-- Backgound image fallback for iOS Safari -->
-  <div id="background-fallback">
+  <div id="background-fallback" [style.display]="iOSSafari ? 'inherit' : 'none'">
     <div id="background-fallback-image"></div>
   </div>
 

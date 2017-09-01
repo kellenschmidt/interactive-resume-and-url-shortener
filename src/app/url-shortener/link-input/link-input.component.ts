@@ -6,10 +6,9 @@ import { LinkRepositoryService } from '../shared/link-repository.service';
 import { TableHandlerService } from '../shared/table-handler.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-link-input',
-  templateUrl: 'link-input.component.html',
-  styleUrls: ['link-input.component.scss']
+  templateUrl: './link-input.component.html',
+  styleUrls: ['./link-input.component.scss']
 })
 export class LinkInputComponent implements OnInit {
 

@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-url-shortener',
-  templateUrl: 'url-shortener.component.html',
-  styleUrls: ['url-shortener.component.scss']
+  templateUrl: './url-shortener.component.html',
+  styleUrls: ['./url-shortener.component.scss']
 })
 export class UrlShortenerComponent implements OnInit {
 
   private apiUrl = "https://api.kellenschmidt.com";
   public currentDate = new Date();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("URL Shortener  |  Kellen Schmidt");
+
     this.http.post(`${this.apiUrl}/page-visit`,
     {
       "site": document.domain,

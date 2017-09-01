@@ -7,10 +7,9 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-redirect',
-  templateUrl: 'redirect.component.html',
-  styleUrls: ['redirect.component.scss']
+  templateUrl: './redirect.component.html',
+  styleUrls: ['./redirect.component.scss']
 })
 export class RedirectComponent implements OnInit {
 

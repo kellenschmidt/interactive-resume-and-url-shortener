@@ -14,10 +14,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-link-table',
-  templateUrl: 'link-table.component.html',
-  styleUrls: ['link-table.component.scss']
+  templateUrl: './link-table.component.html',
+  styleUrls: ['./link-table.component.scss']
 })
 export class LinkTableComponent implements OnInit {
   displayedColumns = ['long_url', 'date_created', 'code', 'count'];

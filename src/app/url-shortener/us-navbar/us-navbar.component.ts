@@ -4,10 +4,9 @@ import { AuthenticationService } from '../../user-authentication/shared/authenti
 import { TableHandlerService } from '../shared/table-handler.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-us-navbar',
-  templateUrl: 'us-navbar.component.html',
-  styleUrls: ['us-navbar.component.scss']
+  templateUrl: './us-navbar.component.html',
+  styleUrls: ['./us-navbar.component.scss']
 })
 export class USNavbarComponent implements OnInit {
 

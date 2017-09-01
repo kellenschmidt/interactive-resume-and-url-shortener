@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { InteractiveResumeModule } from './interactive-resume/interactive-resume.module';
 import { UrlShortenerModule } from './url-shortener/url-shortener.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,7 @@ import 'hammerjs';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
   ],
-  providers: [],
+  providers: [ Title ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

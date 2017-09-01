@@ -1,32 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-interactive-resume',
-  templateUrl: 'interactive-resume.component.html',
-  styleUrls: ['interactive-resume.component.scss']
+  templateUrl: './interactive-resume.component.html',
+  styleUrls: ['./interactive-resume.component.scss']
 })
 export class InteractiveResumeComponent implements OnInit {
 
   private apiUrl = "https://api.kellenschmidt.com";
   public currentDate = new Date();
+  public iOSSafari
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Interactive Resume  |  Kellen Schmidt");
+
     // Determine if browser is iOS Safari
     var ua = window.navigator.userAgent;
     var iOS = !!ua.match(/iPhone|iPad|iPod/i);
     var webkit = !!ua.match(/WebKit/i);
-    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+    this.iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
     // If device/browser is iOS Safari then set background-attachment to compatible value
-    if(iOSSafari) {
-      document.getElementById("background-fallback").style.display = "inherit";
-    } else {
-      document.getElementById("background-fallback").style.display = "none";
-    }
+    // if(iOSSafari) {
+    //   document.getElementById("background-fallback").style.display = "inherit";
+    // } else {
+    //   document.getElementById("background-fallback").style.display = "none";
+    // }
 
     this.http.post(`${this.apiUrl}/page-visit`,
     {
