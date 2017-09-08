@@ -10,6 +10,7 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { SkillsComponent } from './skills/skills.component';
 import { CoursesComponent } from './courses/courses.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 import { InteractiveResumeRoutingModule } from './interactive-resume-routing.module';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CloudinaryModule } from '@cloudinary/angular-4.x';
 import * as Cloudinary from 'cloudinary-core';
@@ -34,12 +36,14 @@ import { ContentRepositoryService } from './shared/content-repository.service';
     WorkExperienceComponent,
     ProjectCardComponent,
     SkillsComponent,
-    CoursesComponent
+    CoursesComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
     AngularMaterialModule,
     InteractiveResumeRoutingModule,
+    Ng2PageScrollModule,
     MDBBootstrapModule.forRoot(),
     CloudinaryModule.forRoot(Cloudinary, {cloud_name: "kellenscloud", secure: true}),
   ],
