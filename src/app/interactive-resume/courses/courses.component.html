@@ -8,66 +8,38 @@
 </div>
 
 <!--Carousel Wrapper-->
-<mdb-carousel #carouselRef [animation]="'slide'">
-  <!--First slide-->
-  <mdb-slide>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <h6>CSE 3345</h6>
-            <h2>Graphical User Interface Design</h2>
+<mdb-carousel #carouselRef [animation]="'slide'" id="coursesCarousel">
+  <div *ngFor="let courseGroup of courseGroups">
+    <!--First slide-->
+    <mdb-slide>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-block p-3">
+              <h6>{{courseGroup[0].number}}</h6>
+              <h2>{{courseGroup[0].name}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-block p-3">
+                <h6>{{courseGroup[1].number}}</h6>
+                <h2>{{courseGroup[1].name}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-block p-3">
+                <h6>{{courseGroup[2].number}}</h6>
+                <h2>{{courseGroup[2].name}}</h2>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <h6>CSE 5345</h6>
-            <h2>Advanced App Programming</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <h6>CSE 3330</h6>
-            <h2>Databases</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </mdb-slide>
-  <!--/First slide-->
-  <!--Third slide-->
-  <mdb-slide>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <h6>CSE 3345</h6>
-            <h2>Graphical User Interface Design</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <h6>CSE 5345</h6>
-            <h2>Advanced App Programming</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <h6>CSE 3330</h6>
-            <h2>Databases</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </mdb-slide>
-  <!--/Third slide-->
+    </mdb-slide>
+    <!--/First slide-->
+  </div>
 </mdb-carousel>
 <!--/.Carousel Wrapper-->

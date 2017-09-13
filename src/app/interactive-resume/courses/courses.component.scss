@@ -1,5 +1,15 @@
 mdb-slide .row {
-  padding: .25rem;
+  padding: .2rem;
+}
+
+#coursesCarousel div.carousel ol.carousel-indicators {
+    bottom: -2.5rem !important;
+    li {
+        background-color: gray;
+        &.active {
+            background-color: black;
+        }
+    }
 }
 
 // Wrapper
