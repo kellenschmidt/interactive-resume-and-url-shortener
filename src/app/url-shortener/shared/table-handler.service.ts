@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LinkData } from '../shared/link-data';
 import { LinkRepositoryService } from '../shared/link-repository.service';
@@ -15,7 +15,7 @@ export class TableHandlerService {
   tableAuthError: boolean = false;
 
   constructor(private linkRepository: LinkRepositoryService,
-              private snackBar: MdSnackBar) {
+              private snackBar: MatSnackBar) {
     // Turn loading spinner on
     this.tableLoaded = false;
     // Load database with links from http request

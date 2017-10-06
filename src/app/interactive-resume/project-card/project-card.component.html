@@ -31,10 +31,10 @@
             <!-- Modal body for url-shortener modal -->
             <div *ngIf="project.id === 'url-shortener'">
               <div #beforeTabs></div>
-              <md-tab-group>
-                <md-tab label="ANGULAR VERSION"><div #angularTab>Loading...</div></md-tab>
-                <md-tab label="PHP VERSION"><div #phpTab>Loading...</div></md-tab>
-              </md-tab-group>
+              <mat-tab-group>
+                <mat-tab label="ANGULAR VERSION"><div #angularTab>Loading...</div></mat-tab>
+                <mat-tab label="PHP VERSION"><div #phpTab>Loading...</div></mat-tab>
+              </mat-tab-group>
             </div>
             <!-- Modal body for all other modals -->
             <div *ngIf="project.id !== 'url-shortener'" #normalModalBody [innerHTML]="project.description"></div>

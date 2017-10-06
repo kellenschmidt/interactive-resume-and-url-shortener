@@ -1,37 +1,37 @@
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { MdSnackBarModule, MdTooltipModule, MdMenuModule, MdTableModule, MdDialogModule, MdPaginatorModule, MdSortModule, MdInputModule, MdProgressSpinnerModule, MdTabsModule, MdChipsModule } from '@angular/material';
+import { MatSnackBarModule, MatTooltipModule, MatMenuModule, MatTableModule, MatDialogModule, MatPaginatorModule, MatSortModule, MatInputModule, MatProgressSpinnerModule, MatTabsModule, MatChipsModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MdSnackBarModule,
-    MdTooltipModule,
-    MdMenuModule,
-    MdTableModule,
-    MdDialogModule,
-    MdPaginatorModule,
-    MdSortModule,
-    MdInputModule,
-    MdProgressSpinnerModule,
-    MdTabsModule,
-    MdChipsModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatTableModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatChipsModule,
     CdkTableModule,
   ],
   exports: [
-    MdSnackBarModule,
-    MdTooltipModule,
-    MdMenuModule,
-    MdTableModule,
-    MdDialogModule,
-    MdPaginatorModule,
-    MdSortModule,
-    MdInputModule,
-    MdProgressSpinnerModule,
-    MdTabsModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatTableModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
     CdkTableModule,
   ],
 })

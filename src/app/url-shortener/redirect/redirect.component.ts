@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { LinkRepositoryService } from '../shared/link-repository.service';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -13,7 +13,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class RedirectComponent implements OnInit {
 
-  dialogRef: MdDialogRef<any>;
+  dialogRef: MatDialogRef<any>;
   @ViewChild("notFoundTemplate") private notFoundDialog: TemplateRef<any>;
 
   // Close the dialog box and return to previous page
@@ -49,7 +49,7 @@ export class RedirectComponent implements OnInit {
   constructor(private linkRepository: LinkRepositoryService,
               private route: ActivatedRoute,
               private location: Location,
-              private dialog: MdDialog) { }
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     let code = this.route.snapshot.paramMap.get('code');

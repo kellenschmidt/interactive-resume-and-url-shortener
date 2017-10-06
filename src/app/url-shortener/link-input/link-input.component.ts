@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LinkData } from '../shared/link-data';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { TableHandlerService } from '../shared/table-handler.service';
 
@@ -90,7 +90,7 @@ export class LinkInputComponent implements OnInit {
   }
 
   constructor(private linkRepository: LinkRepositoryService,
-              private snackBar: MdSnackBar,
+              private snackBar: MatSnackBar,
               private tableHandler: TableHandlerService) { }
 
   ngOnInit() {

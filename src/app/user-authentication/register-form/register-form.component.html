@@ -1,69 +1,69 @@
 <form (ngSubmit)="registerHttp()" [formGroup]="registerForm" novalidate>
     <div class="input-row mb-1">
         <i class="fa fa-address-card prefix mr-2"></i>
-        <md-input-container>
-            <input mdInput placeholder="Name" formControlName="name" maxlength="255">
-            <md-error *ngIf="name.hasError('required')">
+        <mat-input-container>
+            <input matInput placeholder="Name" formControlName="name" maxlength="255">
+            <mat-error *ngIf="name.hasError('required')">
                 Name is required
-            </md-error>
-        </md-input-container>
+            </mat-error>
+        </mat-input-container>
     </div>
 
     <div class="input-row mb-1">
         <i class="fa fa-mobile prefix mr-2"></i>
-        <md-input-container>
-            <input mdInput type="tel" [textMask]="maskConfig" placeholder="Phone" formControlName="phone">
-            <md-error *ngIf="phone.hasError('required')">
+        <mat-input-container>
+            <input matInput type="tel" [textMask]="maskConfig" placeholder="Phone" formControlName="phone">
+            <mat-error *ngIf="phone.hasError('required')">
                 Phone is required
-            </md-error>
-            <md-error *ngIf="phone.hasError('pattern')">
+            </mat-error>
+            <mat-error *ngIf="phone.hasError('pattern')">
                 Please enter a valid phone number
-            </md-error>
-        </md-input-container>
+            </mat-error>
+        </mat-input-container>
     </div>
 
     <div class="input-row mb-1">
         <i class="fa fa-envelope prefix mr-2"></i>
-        <md-input-container>
-            <input mdInput type="email" placeholder="Email" formControlName="email" maxlength="255">
-            <md-error *ngIf="email.hasError('required')">
+        <mat-input-container>
+            <input matInput type="email" placeholder="Email" formControlName="email" maxlength="255">
+            <mat-error *ngIf="email.hasError('required')">
                 Email is required
-            </md-error>
-            <md-error *ngIf="email.hasError('pattern')">
+            </mat-error>
+            <mat-error *ngIf="email.hasError('pattern')">
                 Please enter a valid email address
-            </md-error>
-            <md-error *ngIf="email.hasError('emailAlreadyExists')">
+            </mat-error>
+            <mat-error *ngIf="email.hasError('emailAlreadyExists')">
                 Email already exists
-            </md-error>
-        </md-input-container>
+            </mat-error>
+        </mat-input-container>
     </div>
 
     <div class="input-row" id="password-input-row">
         <i class="fa fa-lock prefix mr-2"></i>
-        <md-input-container>
-            <input mdInput type="password" placeholder="Password" formControlName="password" maxlength="128">
-            <md-hint align="start">Use at least 8 characters including letters, numbers, and symbols</md-hint>
-            <md-hint align="end">{{password.value.length}} / 128</md-hint>
-            <md-error *ngIf="password.hasError('required')">
+        <mat-input-container>
+            <input matInput type="password" placeholder="Password" formControlName="password" maxlength="128">
+            <mat-hint align="start">Use at least 8 characters including letters, numbers, and symbols</mat-hint>
+            <mat-hint align="end">{{password.value.length}} / 128</mat-hint>
+            <mat-error *ngIf="password.hasError('required')">
                 Password is required
-            </md-error>
-            <md-error *ngIf="password.hasError('pattern')">
+            </mat-error>
+            <mat-error *ngIf="password.hasError('pattern')">
                 Please enter a valid password
-            </md-error>
-        </md-input-container>
+            </mat-error>
+        </mat-input-container>
     </div>
 
     <div class="input-row mb-3">
         <i class="fa fa-lock prefix mr-2"></i>
-        <md-input-container>
-            <input mdInput type="password" placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128">
-            <md-error *ngIf="passwordConfirm.hasError('required')">
+        <mat-input-container>
+            <input matInput type="password" placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128">
+            <mat-error *ngIf="passwordConfirm.hasError('required')">
                 Confirm password is required
-            </md-error>
-            <md-error *ngIf="passwordConfirm.hasError('matchPassword')">
+            </mat-error>
+            <mat-error *ngIf="passwordConfirm.hasError('matchPassword')">
                 Passwords do not match
-            </md-error>
-        </md-input-container>
+            </mat-error>
+        </mat-input-container>
     </div>
 
     <div class="text-center mt-2">

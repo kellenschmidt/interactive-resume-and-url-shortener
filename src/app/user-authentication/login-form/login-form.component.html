@@ -1,31 +1,31 @@
 <form (ngSubmit)="loginHttp()" [formGroup]="loginForm" novalidate>
     <div class="input-row mb-1">
         <i class="fa fa-envelope prefix mr-2"></i>
-        <md-input-container>
-            <input mdInput type="email" placeholder="Email" formControlName="email" maxlength="255">
-            <md-error *ngIf="email.hasError('pattern')">
+        <mat-input-container>
+            <input matInput type="email" placeholder="Email" formControlName="email" maxlength="255">
+            <mat-error *ngIf="email.hasError('pattern')">
                 Please enter a valid email address
-            </md-error>
-            <md-error *ngIf="email.hasError('required')">
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
                 Email is required
-            </md-error>
-            <md-error *ngIf="email.hasError('noUserGivenEmail')">
+            </mat-error>
+            <mat-error *ngIf="email.hasError('noUserGivenEmail')">
                 No user with the given email
-            </md-error>
-        </md-input-container>
+            </mat-error>
+        </mat-input-container>
     </div>
     
     <div class="input-row mb-3">
         <i class="fa fa-lock prefix mr-2"></i>
-        <md-input-container>
-            <input mdInput type="password" placeholder="Password" formControlName="password" maxlength="127">
-            <md-error *ngIf="password.hasError('required')">
+        <mat-input-container>
+            <input matInput type="password" placeholder="Password" formControlName="password" maxlength="127">
+            <mat-error *ngIf="password.hasError('required')">
                 Password is required
-            </md-error>
-            <md-error *ngIf="password.hasError('wrongPassword')">
+            </mat-error>
+            <mat-error *ngIf="password.hasError('wrongPassword')">
                 Wrong password. Try again
-            </md-error>
-        </md-input-container>
+            </mat-error>
+        </mat-input-container>
     </div>
 
     <div class="text-center mt-2 mb-2">
