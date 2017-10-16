@@ -1,8 +1,7 @@
 # urlshortener.kellenschmidt.com
 
 [![Build Status](https://travis-ci.org/kellenschmidt/kellenschmidt.com.svg?branch=master)](https://travis-ci.org/kellenschmidt/kellenschmidt.com)
-[![Stories in Progress](https://badge.waffle.io/kellenschmidt/urlshortener.kellenschmidt.com.png?label=in%20progress&title=In%20progress)](https://waffle.io/kellenschmidt/urlshortener.kellenschmidt.com?utm_source=badge)
-[![Stories in Ready](https://badge.waffle.io/kellenschmidt/urlshortener.kellenschmidt.com.png?staged%20for%20development&title=Staged%20for%20Development)](https://waffle.io/kellenschmidt/urlshortener.kellenschmidt.com?utm_source=badge)
+[![Waffle.io](https://badge.waffle.io/kellenschmidt/urlshortener.kellenschmidt.com.png?staged%20for%20development&title=Staged%20for%20Development)](https://waffle.io/kellenschmidt/urlshortener.kellenschmidt.com?utm_source=badge)
 
 Angular version of URL shortener to create, manage, and redirect short URLs
 
@@ -10,11 +9,11 @@ https://kellenschmidt.com/url
 
 ### Technologies used
 
-- Angular 2 v4 for the front-end
+- Angular 4 for the front-end
   - Bootstrap 4 https://getbootstrap.com
   - MDBootstrap for Angular https://mdbootstrap.com/angular
   - Material Angular https://material.angular.io
-- Backend MySQL database interaction via RESTful API
+- Backend MySQL database interaction via RESTful API https://api.kellenschmidt.com
 
 ### Shorten a URL
 1. Visit [kellenschmidt.com/url](kellenschmidt.com/url)
