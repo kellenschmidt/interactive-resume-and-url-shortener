@@ -8,15 +8,10 @@ h1 {
 
 md-dialog-content {
     font-size: 1rem;
-
 }
 
 button {
     font-size: .8rem;
-}
-
-/* Small devices (landscape phones, width: 576px and up) */
-@media (min-width: 576px) {
 }
  
 /* Medium devices (tablets, width: 768px and up) */
@@ -35,15 +30,7 @@ button {
 
     button {
         font-size: .9rem;
-        margin-top: .5rem;
+        margin-top: 1rem;
         margin-bottom: .5rem;
     }
-}
-
-/* Large devices (large tablets, width: 992px and up) */
-@media (min-width: 992px) {
-}
-
-/* Extra large devices (any laptop or desktop, width: 1200px and up) */
-@media (min-width: 1200px) {  
 }
