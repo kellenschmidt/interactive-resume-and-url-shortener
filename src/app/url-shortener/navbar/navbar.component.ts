@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   // Logout of current account and reset values
   logout() {
     this.authentication.logout();
+    this.refreshTable();
   }
 
   // Resend http request to update links in table

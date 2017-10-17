@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { LinkData } from '../../url-shortener/shared/link-data';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
-import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 import 'rxjs/add/operator/retry';
 
 @Injectable()
@@ -54,9 +53,6 @@ export class AuthenticationService {
     
     // Remove authentication from local storage
     localStorage.removeItem('auth');
-
-    // Refresh the links in the links table
-    this.tableHandler.getLinks();
   }
 
   // Get JWT or return falsey if jwt doesn't exist
@@ -100,8 +96,7 @@ export class AuthenticationService {
     ) // http subscribe
   } // authenticateUser
 
-  constructor(private http: HttpClient,
-              private tableHandler: TableHandlerService) {
+  constructor(private http: HttpClient) {
     this.authenticateHttp();
   }
 
