@@ -1,61 +1,61 @@
 <div class="table-container mat-elevation-z3 container p-0">
 
   <div class="table-header">
-    <md-input-container>
-      <input mdInput #filter placeholder="Filter by long URL or short URL code">
-    </md-input-container>
+    <mat-input-container>
+      <input matInput #filter placeholder="Filter by long URL or short URL code">
+    </mat-input-container>
   </div>
 
-  <md-table #table [dataSource]="dataSource" mdSort>
+  <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container cdkColumnDef="long_url">
-      <md-header-cell *cdkHeaderCellDef md-sort-header>Long URL</md-header-cell>
-      <md-cell *cdkCellDef="let row" class="long-url">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>Long URL</mat-header-cell>
+      <mat-cell *cdkCellDef="let row" class="long-url">
         <a href="{{row.long_url}}" target="_blank" rel="noopener">{{row.long_url}}</a>
-      </md-cell>
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="date_created" id="date-column">
-      <md-header-cell *cdkHeaderCellDef md-sort-header>Date Created</md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{formatDate(row.date_created) | date:'mediumDate'}} </md-cell>
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>Date Created</mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{formatDate(row.date_created) | date:'mediumDate'}} </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="code">
-      <md-header-cell *cdkHeaderCellDef md-sort-header>
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>
         <span class="d-none d-md-inline-block">Short&nbsp;</span>URL<span class="d-inline-block d-md-none">&nbsp;code</span>
-      </md-header-cell>
-      <md-cell *cdkCellDef="let row">
+      </mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
         <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">kellenschmidt.com/</span>{{row.code}}</a>
-        <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" mdTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
-      </md-cell>
+        <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" matTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="count">
-      <md-header-cell *cdkHeaderCellDef md-sort-header>Count</md-header-cell>
-      <md-cell *cdkCellDef="let row" class="justify-content-between">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>Count</mat-header-cell>
+      <mat-cell *cdkCellDef="let row" class="justify-content-between">
         {{row.count}}
-        <a md-icon-button [mdMenuTriggerFor]="menu" class="menu-btn">
+        <a mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn">
           <i class="fa fa-ellipsis-v"></i>
         </a>
-        <md-menu #menu="mdMenu">
-          <button md-menu-item (click)="hideLink(row.code)">
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="hideLink(row.code)">
             <span>Hide URL</span>
             <i class="fa fa-eye-slash ml-2"></i>
           </button>
-        </md-menu>
-      </md-cell>
+        </mat-menu>
+      </mat-cell>
     </ng-container>
 
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
+    <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
   <div id="table-loading-spinner" *ngIf="!tableHandler.tableLoaded" class="mx-auto">
-    <md-progress-spinner
+    <mat-progress-spinner
       class="my-5"
       [color]="spinnerSettings.color"
       [mode]="spinnerSettings.mode">
-    </md-progress-spinner>
+    </mat-progress-spinner>
   </div>
 
   <div *ngIf="tableHandler.tableAuthError" class="table-placeholder text-center">
@@ -68,10 +68,10 @@
     <p class="px-4">You haven't created any links yet. Try creating a new link above.</p>
   </div>
 
-  <md-paginator #paginator
+  <mat-paginator #paginator
                 [length]="tableDatabase.data.length"
                 [pageIndex]="0"
                 [pageSize]="7"
                 [pageSizeOptions]="[5, 10, 25, 100]">
-  </md-paginator>
+  </mat-paginator>
 </div>

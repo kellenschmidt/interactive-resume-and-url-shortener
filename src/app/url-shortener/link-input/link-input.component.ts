@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { LinkData } from '../../shared/link-data';
-import { MdSnackBar } from '@angular/material';
-import { LinkRepositoryService } from '../../shared/link-repository.service';
-import { TableHandlerService } from '../table-handler.service';
+import { LinkData } from '../shared/link-data';
+import { MatSnackBar } from '@angular/material';
+import { LinkRepositoryService } from '../shared/link-repository.service';
+import { TableHandlerService } from '../shared/table-handler.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-link-input',
-  templateUrl: 'link-input.component.html',
-  styleUrls: ['link-input.component.scss']
+  templateUrl: './link-input.component.html',
+  styleUrls: ['./link-input.component.scss']
 })
 export class LinkInputComponent implements OnInit {
 
@@ -91,7 +90,7 @@ export class LinkInputComponent implements OnInit {
   }
 
   constructor(private linkRepository: LinkRepositoryService,
-              private snackBar: MdSnackBar,
+              private snackBar: MatSnackBar,
               private tableHandler: TableHandlerService) { }
 
   ngOnInit() {

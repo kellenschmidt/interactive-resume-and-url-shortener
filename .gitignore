@@ -66,3 +66,11 @@ app/*/*/*.js
 # PHP
 .save
 .swp
+
+# Angular Testing
+e2e
+.spec.ts
+test.ts
+karma.conf.js
+protractor.conf.js
+tsconfig.spec.json

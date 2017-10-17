@@ -20,8 +20,8 @@ export class User {
     this.password = "";
     this.creation_date = undefined;
     this.updated_date = undefined;
-    this.verified_phone = undefined;
-    this.verified_email = undefined;
+    this.verified_phone = false;
+    this.verified_email = false;
   }
   
   initializeUser(userObj: any) {

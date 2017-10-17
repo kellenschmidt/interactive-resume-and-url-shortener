@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { DataSource } from '@angular/cdk';
+import { DataSource } from '@angular/cdk/collections';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { LinkData } from '../../shared/link-data';
-import { TableHandlerService } from '../table-handler.service';
-import { MdSnackBar, MdPaginator, MdSort } from '@angular/material';
-import { LinkRepositoryService } from '../../shared/link-repository.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { LinkData } from '../shared/link-data';
+import { TableHandlerService } from '../shared/table-handler.service';
+import { MatSnackBar, MatPaginator, MatSort, MatTable } from '@angular/material';
+import { LinkRepositoryService } from '../shared/link-repository.service';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -14,10 +14,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-link-table',
-  templateUrl: 'link-table.component.html',
-  styleUrls: ['link-table.component.scss']
+  templateUrl: './link-table.component.html',
+  styleUrls: ['./link-table.component.scss']
 })
 export class LinkTableComponent implements OnInit {
   displayedColumns = ['long_url', 'date_created', 'code', 'count'];
@@ -28,12 +27,12 @@ export class LinkTableComponent implements OnInit {
   iOSDevice: boolean = false;
 
   @ViewChild('filter') filter: ElementRef;
-  @ViewChild(MdSort) sort: MdSort;
-  @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public tableHandler: TableHandlerService,
               private linkRepository: LinkRepositoryService,
-              private snackBar: MdSnackBar) {}
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.dataSource = new ExampleDataSource(this.tableDatabase, this.sort, this.paginator);
@@ -139,8 +138,8 @@ export class LinkTableComponent implements OnInit {
  */
 export class ExampleDataSource extends DataSource<any> {
   constructor(private _tableDatabase: TableHandlerService,
-              private _sort: MdSort,
-              private _paginator: MdPaginator) {
+              private _sort: MatSort,
+              private _paginator: MatPaginator) {
     super();
   }
 
@@ -154,7 +153,7 @@ export class ExampleDataSource extends DataSource<any> {
     const displayDataChanges = [
       this._tableDatabase.table,
       this._filterChange,
-      this._sort.mdSortChange,
+      this._sort.sortChange,
       this._paginator.page,
     ];
 
