@@ -18,9 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 import { InteractiveResumeRoutingModule } from './interactive-resume-routing.module';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { CloudinaryModule } from '@cloudinary/angular-4.x';
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as Cloudinary from 'cloudinary-core';
 
 import { ContentRepositoryService } from './shared/content-repository.service';
@@ -43,7 +42,6 @@ import { ContentRepositoryService } from './shared/content-repository.service';
     CommonModule,
     AngularMaterialModule,
     InteractiveResumeRoutingModule,
-    Ng2PageScrollModule,
     MDBBootstrapModule.forRoot(),
     CloudinaryModule.forRoot(Cloudinary, {cloud_name: "kellenscloud", secure: true}),
   ],

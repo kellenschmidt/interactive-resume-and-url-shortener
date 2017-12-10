@@ -24,6 +24,6 @@ import 'hammerjs';
     MDBBootstrapModule.forRoot(),
   ],
   providers: [ Title ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ],
 })
 export class AppModule { }
