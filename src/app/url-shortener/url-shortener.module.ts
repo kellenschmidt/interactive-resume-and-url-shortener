@@ -3,7 +3,11 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { UrlShortenerComponent } from './url-shortener.component';
 import { LinkInputComponent } from './link-input/link-input.component';
 import { LinkTableComponent } from './link-table/link-table.component';
+<<<<<<< HEAD
 import { USNavbarComponent } from './us-navbar/us-navbar.component';
+=======
+import { NavbarComponent } from './navbar/navbar.component';
+>>>>>>> master
 import { RedirectComponent } from './redirect/redirect.component';
 
 import { CommonModule } from '@angular/common';
