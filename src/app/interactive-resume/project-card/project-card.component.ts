@@ -9,14 +9,15 @@ import { Card } from '../shared/types';
 export class ProjectCardComponent implements OnInit {
 
   @Input('project') project: Card;
-  @ViewChild('beforeTabs') beforeTabs: ElementRef;
+  @ViewChild('mainDescription') mainDescription: ElementRef;
   @ViewChild('angularTab') angularTab: ElementRef;
   @ViewChild('phpTab') phpTab: ElementRef;
+  isAngularTab: boolean = true;
 
   loadModalBody(data: string) {
     if(data.match(/URL Shortener/i)) {
       let tabStartIndex = data.indexOf('<!--Tab start-->');
-      this.beforeTabs.nativeElement.innerHTML = data.substring(0, tabStartIndex);
+      this.mainDescription.nativeElement.innerHTML = data.substring(0, tabStartIndex);
       let tabSeperatorIndex = data.indexOf('<!--Tab seperator-->');
       this.angularTab.nativeElement.innerHTML = data.substring(tabStartIndex, tabSeperatorIndex);
       this.phpTab.nativeElement.innerHTML = data.substring(tabSeperatorIndex);

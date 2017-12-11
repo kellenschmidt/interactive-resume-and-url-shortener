@@ -24,17 +24,32 @@
           <div class="modal-header">
             <h3 class="modal-title w-100" [innerHTML]="stripTrailingHtml(project.title)"></h3>
             <button type="button" class="close" (click)="learnMoreModal.hide()">
-            <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <!-- Modal body for url-shortener modal -->
             <div *ngIf="project.id === 'url-shortener'">
-              <div #beforeTabs></div>
-              <mat-tab-group>
-                <mat-tab label="ANGULAR VERSION"><div #angularTab>Loading...</div></mat-tab>
-                <mat-tab label="PHP VERSION"><div #phpTab>Loading...</div></mat-tab>
-              </mat-tab-group>
+
+              <div class="mb-4" #mainDescription></div>
+
+              <div class="new-tabs">
+                  <div class="modal-header white-text" [style.background-color]="project.theme_color">
+                      <nav class="nav nav-tabs">
+                          <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': isAngularTab}" (click)="isAngularTab=true"><i class="fa fa-user mr-2"></i>Angular Version</a>
+                          <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': !isAngularTab}" (click)="isAngularTab=false"><i class="fa fa-user-plus mr-2"></i>PHP Version</a>
+                      </nav>
+                  </div>
+              </div>
+
+              <div [hidden]="!isAngularTab" #angularTab>
+                Loading...
+              </div>
+
+              <div [hidden]="isAngularTab" #phpTab>
+                Loading...
+              </div>
+
             </div>
             <!-- Modal body for all other modals -->
             <div *ngIf="project.id !== 'url-shortener'" #normalModalBody [innerHTML]="project.description"></div>
