@@ -31,13 +31,13 @@
             <!-- Modal body for url-shortener modal -->
             <div *ngIf="project.id === 'url-shortener'">
 
-              <div class="mb-4" #mainDescription></div>
+              <div #mainDescription></div>
 
               <div class="new-tabs">
                   <div class="modal-header white-text" [style.background-color]="project.theme_color">
                       <nav class="nav nav-tabs">
-                          <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': isAngularTab}" (click)="isAngularTab=true"><i class="fa fa-user mr-2"></i>Angular Version</a>
-                          <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': !isAngularTab}" (click)="isAngularTab=false"><i class="fa fa-user-plus mr-2"></i>PHP Version</a>
+                          <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': isAngularTab}" (click)="isAngularTab=true"><i class="fa fa-html5 mr-2"></i>Angular Version</a>
+                          <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': !isAngularTab}" (click)="isAngularTab=false"><i class="fa fa-code mr-2"></i>PHP Version</a>
                       </nav>
                   </div>
               </div>
