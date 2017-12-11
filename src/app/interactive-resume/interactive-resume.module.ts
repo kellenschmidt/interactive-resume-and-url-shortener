@@ -1,7 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { InteractiveResumeComponent } from './interactive-resume.component';
-import { IRNavbarComponent } from './ir-navbar/ir-navbar.component';
 import { TitlePageComponent } from './title-page/title-page.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { EducationComponent } from './education/education.component';
@@ -13,10 +12,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 import { AngularMaterialModule } from '../shared/angular-material.module';
-import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 import { InteractiveResumeRoutingModule } from './interactive-resume-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
@@ -27,7 +24,6 @@ import { ContentRepositoryService } from './shared/content-repository.service';
 @NgModule({
   declarations: [
     InteractiveResumeComponent,
-    IRNavbarComponent,
     TitlePageComponent,
     AboutMeComponent,
     EducationComponent,
@@ -40,12 +36,13 @@ import { ContentRepositoryService } from './shared/content-repository.service';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     AngularMaterialModule,
     InteractiveResumeRoutingModule,
     MDBBootstrapModule.forRoot(),
     CloudinaryModule.forRoot(Cloudinary, {cloud_name: "kellenscloud", secure: true}),
   ],
-  schemas: [NO_ERRORS_SCHEMA],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     ContentRepositoryService
   ],

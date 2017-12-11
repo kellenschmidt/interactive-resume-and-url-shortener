@@ -6,7 +6,6 @@ import { AuthenticationService } from '../shared/authentication.service';
 import { User } from '../shared/user';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-register-form',
   templateUrl: 'register-form.component.html',
   styleUrls: ['register-form.component.scss']

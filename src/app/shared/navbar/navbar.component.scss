@@ -1,7 +1,6 @@
 $background-color: #FF6600;
 
 #nav-wrapper {
-    background-color: $background-color;
 
     .nav-link span {
         vertical-align: super;
@@ -44,8 +43,6 @@ $background-color: #FF6600;
             align-items: inherit;
         }
 
-        
-    
         .nav-tabs,
         .nav-link,
         .nav-link:hover,
