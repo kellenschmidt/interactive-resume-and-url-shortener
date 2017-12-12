@@ -2,31 +2,23 @@
     <mdb-navbar SideClass="navbar navbar-expand navbar-dark">
         <logo class="d-none d-sm-flex"><a class="logo navbar-brand" href="#">{{title}}</a></logo>
         <links class="ml-auto">
-            <ul class="navbar-nav ml-auto" *ngIf="!authentication.currentUser.email">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link waves-light" id="apps-icon" [mdbPopover]="appsPopover" placement="bottom" (click)="togglePadding()" [ngClass]="{'magic-margin': padding && !showLogin}" mdbRippleRadius><i class="fa fa-th"></i></a>
                 </li>
-                <li class="nav-item ml-3" *ngIf="showLogin">
+                <li class="nav-item ml-3" *ngIf="!authentication.currentUser.email && showLogin">
                     <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
                 </li>
-                <li class="nav-item" *ngIf="showLogin">
+                <li class="nav-item" *ngIf="!authentication.currentUser.email && showLogin">
                     <a class="nav-link" (click)="form.show(); loginTab = false">Sign Up</a> 
                 </li>
-            </ul>
-            <ul class="navbar-nav ml-auto" *ngIf="authentication.currentUser.email">
-                <li class="nav-item dropdown d-none d-sm-block" dropdown>
+                <li class="nav-item dropdown ml-3" dropdown *ngIf="authentication.currentUser.email && showLogin" id="user-tab">
                     <a dropdownToggle mdbRippleRadius class="nav-link dropdown-toggle waves-light p-0" mdbRippleRadius>
                         <span>{{authentication.currentUser.name}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
                     </a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                         <a class="dropdown-item waves-light" mdbRippleRadius (click)="logout()">Logout</a>
                     </div>
-                </li>
-                <li class="nav-item d-list-item d-sm-none">
-                    <span class="navbar-text white-text mt-1">
-                        <i class="fa fa-user-circle mr-2"></i><b>{{authentication.currentUser.name}}</b>
-                    </span>
-                    <a class="nav-link waves-light ml-1" mdbRippleRadius (click)="logout()">Logout</a>
                 </li>
             </ul>
         </links>
