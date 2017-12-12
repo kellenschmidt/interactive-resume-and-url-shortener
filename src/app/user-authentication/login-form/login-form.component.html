@@ -18,7 +18,8 @@
     <div class="input-row mb-3">
         <i class="fa fa-lock prefix mr-2"></i>
         <mat-input-container>
-            <input matInput type="password" placeholder="Password" formControlName="password" maxlength="127">
+            <input matInput [type]="visible ? 'text' : 'password'" placeholder="Password" formControlName="password" maxlength="128">
+            <mat-icon matSuffix (click)="toggleVisible()" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': visible, 'fa-eye-slash': !visible}"></i></mat-icon>
             <mat-error *ngIf="password.hasError('required')">
                 Password is required
             </mat-error>

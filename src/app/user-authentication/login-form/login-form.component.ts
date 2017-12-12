@@ -14,6 +14,11 @@ export class LoginFormComponent implements OnInit {
   @Output() onLogin = new EventEmitter<boolean>();
 
   loginForm: FormGroup;
+  visible: boolean = false;
+
+  toggleVisible(toggleIndex: number) {
+    this.visible = !this.visible;
+  }
 
   // Login as existing user and set values
   loginHttp() {

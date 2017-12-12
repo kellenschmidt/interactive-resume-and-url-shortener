@@ -12,9 +12,9 @@ export class CoursesComponent implements OnInit {
 
   courseGroups: Course[][];
   
+  // Convert lineBreaks from array with count of line breaks desired to array with size of line breaks desired
+  // i.e. [3] => [0,0,0]
   expandArray(courseGroups: Course[][]) {
-    // Convert lineBreaks from array with count of line breaks desired to array with size of line breaks desired
-    // i.e. [3] => [0,0,0]
     for(var i=0; i<courseGroups.length; i++) {
       for(var j=0; j<courseGroups[i].length; j++) {
         var numLineBreaks = courseGroups[i][j].line_breaks[0];

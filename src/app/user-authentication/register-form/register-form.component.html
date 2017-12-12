@@ -41,7 +41,8 @@
     <div class="input-row" id="password-input-row">
         <i class="fa fa-lock prefix mr-2"></i>
         <mat-input-container>
-            <input matInput type="password" placeholder="Password" formControlName="password" maxlength="128">
+            <input matInput [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" formControlName="password" maxlength="128">
+            <mat-icon matSuffix (click)="toggleVisible(0)" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': passwordVisible, 'fa-eye-slash': !passwordVisible}"></i></mat-icon>
             <mat-hint align="start">Use at least 8 characters including letters, numbers, and symbols</mat-hint>
             <mat-hint align="end">{{password.value.length}} / 128</mat-hint>
             <mat-error *ngIf="password.hasError('required')">
@@ -56,7 +57,8 @@
     <div class="input-row mb-3">
         <i class="fa fa-lock prefix mr-2"></i>
         <mat-input-container>
-            <input matInput type="password" placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128">
+            <input matInput [type]="confirmVisible ? 'text' : 'password'" placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128">
+            <mat-icon matSuffix (click)="toggleVisible(1)" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': confirmVisible, 'fa-eye-slash': !confirmVisible}"></i></mat-icon>
             <mat-error *ngIf="passwordConfirm.hasError('required')">
                 Confirm password is required
             </mat-error>
