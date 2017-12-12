@@ -27,5 +27,6 @@ export interface Course {
     course_id: number,
     number: string,
     name: string,
-    line_breaks: number[]
+    line_breaks: number[],
+    visible: number
 }
