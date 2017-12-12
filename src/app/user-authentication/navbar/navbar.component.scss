@@ -57,3 +57,20 @@ $background-color: #FF6600;
         }
     }
 }
+
+#apps-menu {
+    font-size: 0.64rem;
+
+    a {
+        padding-top: 10px + 1px;
+        padding-bottom: 10px + 1px;
+        color: black;
+
+        &:hover {
+            border: 1px solid lightgray;
+            border-radius: 2px;
+            padding-top: 10px + 0px;
+            padding-bottom: 10px + 0px;
+        }
+    }
+}

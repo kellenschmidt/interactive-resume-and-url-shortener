@@ -10,6 +10,7 @@ import { AngularMaterialModule } from '../shared/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { RouterModule } from '@angular/router';
 
 import { AuthenticationService } from './shared/authentication.service';
 
@@ -27,6 +28,7 @@ import { AuthenticationService } from './shared/authentication.service';
     HttpClientModule,
     TextMaskModule,
     MDBBootstrapModule.forRoot(),
+    RouterModule.forChild([]),
   ],
   exports: [
     RegisterFormComponent,

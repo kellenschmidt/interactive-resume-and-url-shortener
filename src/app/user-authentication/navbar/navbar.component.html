@@ -4,6 +4,9 @@
         <links>
             <ul class="navbar-nav ml-auto" *ngIf="!authentication.currentUser.email">
                 <li class="nav-item">
+                    <a class="nav-link waves-light mr-3" [mdbPopover]="appsPopover" placement="bottom" mdbRippleRadius><i class="fa fa-th"></i></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
                 </li>
                 <li class="nav-item">
@@ -30,6 +33,19 @@
     </mdb-navbar>
 </div>
 
+<ng-template #appsPopover>
+    <div id="apps-menu" class="row text-center mx-0">
+        <a class="col-4" routerLink="/interactive-resume">
+            <img src="assets/favicons/favicon.ico" class="mb-2">
+            Interactive Resume
+        </a>
+        <a class="col-4" routerLink="/url-shortener">
+            <img src="assets/us-favicons/favicon.ico" class="mb-2">
+            URL Shortener
+        </a>
+    </div>
+</ng-template>
+
 <div mdbModal #form="mdb-modal" class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
         <!--Content-->
@@ -49,7 +65,7 @@
                 <!--Body-->
                 <div class="modal-body">
                     
-                    <ks-login-form (onLogin)="form.hide(); refreshTable()"></ks-login-form>
+                    <ks-login-form (onLogin)="form.hide()"></ks-login-form>
 
                 </div>
                 <!--Footer-->
@@ -66,7 +82,7 @@
                 <!--Body-->
                 <div class="modal-body">
 
-                    <ks-register-form (onRegister)="form.hide(); refreshTable()"></ks-register-form>
+                    <ks-register-form (onRegister)="form.hide()"></ks-register-form>
 
                 </div>
                 <!--Footer-->
