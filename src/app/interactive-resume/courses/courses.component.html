@@ -14,26 +14,35 @@
     <mdb-slide>
       <div class="row">
         <div class="col-md-4">
-          <div class="card">
+          <div class="card mb-3">
             <div class="card-block p-3">
               <h6>{{courseGroup[0].number}}</h6>
-              <h2>{{courseGroup[0].name}}</h2>
+              <h2>
+                {{courseGroup[0].name}}
+                <div *ngFor="let lineBreak of courseGroup[0].lineBreaks" class="d-none d-md-flex"><br></div>
+              </h2>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="card">
+          <div class="card mb-3">
             <div class="card-block p-3">
-                <h6>{{courseGroup[1].number}}</h6>
-                <h2>{{courseGroup[1].name}}</h2>
+              <h6>{{courseGroup[1].number}}</h6>
+              <h2>
+                {{courseGroup[1].name}}
+                <div *ngFor="let lineBreak of courseGroup[1].lineBreaks" class="d-none d-md-flex"><br></div>
+              </h2>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="card">
+          <div class="card mb-3">
             <div class="card-block p-3">
-                <h6>{{courseGroup[2].number}}</h6>
-                <h2>{{courseGroup[2].name}}</h2>
+              <h6>{{courseGroup[2].number}}</h6>
+              <h2>
+                {{courseGroup[2].name}}
+                <div *ngFor="let lineBreak of courseGroup[2].lineBreaks" class="d-none d-md-flex"><br></div>
+              </h2>
             </div>
           </div>
         </div>
