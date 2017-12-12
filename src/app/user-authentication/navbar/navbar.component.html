@@ -1,15 +1,15 @@
 <div id="nav-wrapper" [style.backgroundColor]="color" [ngClass]="{'fixed-top': color==''}">
-    <mdb-navbar SideClass="navbar navbar-expand-sm navbar-dark">
-        <logo><a class="logo navbar-brand" href="#">{{title}}</a></logo>
-        <links>
+    <mdb-navbar SideClass="navbar navbar-expand navbar-dark">
+        <logo class="d-none d-sm-flex"><a class="logo navbar-brand" href="#">{{title}}</a></logo>
+        <links class="ml-auto">
             <ul class="navbar-nav ml-auto" *ngIf="!authentication.currentUser.email">
                 <li class="nav-item">
-                    <a class="nav-link waves-light mr-3" [mdbPopover]="appsPopover" placement="bottom" mdbRippleRadius><i class="fa fa-th"></i></a>
+                    <a class="nav-link waves-light" id="apps-icon" [mdbPopover]="appsPopover" placement="bottom" (click)="togglePadding()" [ngClass]="{'magic-margin': padding && !showLogin}" mdbRippleRadius><i class="fa fa-th"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ml-3" *ngIf="showLogin">
                     <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="showLogin">
                     <a class="nav-link" (click)="form.show(); loginTab = false">Sign Up</a> 
                 </li>
             </ul>

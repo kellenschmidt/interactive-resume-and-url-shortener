@@ -11,11 +11,17 @@ export class NavbarComponent implements OnInit {
 
   @Input() title: string;
   @Input() color: string;
-  loginTab = false;
+  @Input() showLogin: boolean;
+  loginTab: boolean = false;
+  padding: boolean = false
 
   // Logout of current account and reset values
   logout() {
     this.authentication.logout();
+  }
+
+  togglePadding() {
+    this.padding = !this.padding;
   }
 
   constructor(private authentication: AuthenticationService) { }
