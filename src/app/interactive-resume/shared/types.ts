@@ -22,3 +22,10 @@ export interface Skill {
     color: string,
     visible: number,
 }
+
+export interface Course {
+    course_id: number,
+    number: string,
+    name: string,
+    line_breaks: number[]
+}

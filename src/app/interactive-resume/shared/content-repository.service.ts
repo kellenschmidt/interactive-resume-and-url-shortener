@@ -19,6 +19,11 @@ export class ContentRepositoryService {
     .retry(1)
   }
 
+  getCourses(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/courses`)
+    .retry(1)
+  }
+
   constructor(private http: HttpClient) {
   }
 
