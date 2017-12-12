@@ -25,7 +25,6 @@ body {
 .rainbow-font {
   color: #f35626;
   background-image: linear-gradient(135deg,#f35626,#feab3a);
-  // background-clip: text;
   -webkit-background-clip: text;
   animation: hue 30s infinite linear;
 }
