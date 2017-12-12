@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../user-authentication/shared/authenti
 export class NavbarComponent implements OnInit {
 
   @Input() title: string;
+  @Input() color: string;
   loginTab = false;
 
   // Logout of current account and reset values

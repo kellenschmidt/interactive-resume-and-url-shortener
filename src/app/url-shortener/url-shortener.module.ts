@@ -6,8 +6,8 @@ import { LinkTableComponent } from './link-table/link-table.component';
 import { RedirectComponent } from './redirect/redirect.component';
 
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
 import { AngularMaterialModule } from '../shared/angular-material.module';
+import { UserAuthenticationModule } from 'app/user-authentication/user-authentication.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlShortenerRoutingModule } from './url-shortener-routing.module';
@@ -25,8 +25,8 @@ import { TableHandlerService } from './shared/table-handler.service';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     AngularMaterialModule,
+    UserAuthenticationModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -1,4 +1,4 @@
-<div id="nav-wrapper">
+<div id="nav-wrapper" [style.backgroundColor]="color" [ngClass]="{'fixed-top': color==''}">
     <mdb-navbar SideClass="navbar navbar-expand-sm navbar-dark">
         <logo><a class="logo navbar-brand" href="#">{{title}}</a></logo>
         <links>
