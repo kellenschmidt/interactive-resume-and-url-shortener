@@ -74,11 +74,13 @@
 }
 
 #apps-menu {
-    font-size: 0.64rem;
+    font-size: 0.73rem;
 
     a {
         padding-top: 10px + 1px;
         padding-bottom: 10px + 1px;
+        padding-left: .7rem;
+        padding-right: .7rem;
         color: black;
 
         &:hover {
