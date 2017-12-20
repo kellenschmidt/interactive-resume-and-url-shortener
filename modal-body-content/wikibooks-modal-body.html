@@ -1,0 +1,22 @@
+<h4>Summary</h4>
+<p>Wikibooks Search Engine is an inverted file index search engine for the Wikibooks database with TF/IDF relevancy ranking and boolean query processing written in C++.</p>
+<h4>What I did</h4>
+<p class="mb-0">Worked with 2 other students to build the application:</p>
+<ul>
+    <li>Designed an index structure to quickly and concisely process 1GB of data and store the necessary information</li>
+    <li>Created and optimized custom AVL tree and hash table data structures</li>
+    <li>Wrote a query processor to search the more 200,000 XML entries in the index</li>
+</ul>
+<h4>Features</h4>
+<ul>
+    <li>Can parse into one of 2 different underlying data structures: AVL tree and hash table</li>
+    <li>Parses entire corpus into hash table in under 30 seconds or into AVL tree in under 7 minutes</li>
+    <li>Graphical User Interface to add and remove documents, query the index, and view search results</li>
+    <li>Can generate and read from a local persistent index</li>
+    <li>Capable of processing boolean statements in the search query</li>
+    <li>Ranks search results according to TF/IDF relevacny</li>
+</ul>
+<h4>Resources</h4>
+<ul>
+    <li><a href="https://res.cloudinary.com/kellenscloud/image/upload/v1499533403/search-engine-uml-class-diagram.png" target="_blank" rel="noopener">UML class diagram</a></li>
+</ul>
