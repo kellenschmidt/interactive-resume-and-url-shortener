@@ -16,7 +16,7 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   visible: boolean = false;
 
-  toggleVisible(toggleIndex: number) {
+  toggleVisible() {
     this.visible = !this.visible;
   }
 

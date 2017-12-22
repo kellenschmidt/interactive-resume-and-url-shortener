@@ -35,6 +35,8 @@ export class LinkTableComponent implements OnInit {
               private snackBar: MatSnackBar) {}
 
   ngOnInit() {
+    this.tableHandler.init();
+
     this.dataSource = new ExampleDataSource(this.tableDatabase, this.sort, this.paginator);
 
     Observable.fromEvent(this.filter.nativeElement, 'keyup')

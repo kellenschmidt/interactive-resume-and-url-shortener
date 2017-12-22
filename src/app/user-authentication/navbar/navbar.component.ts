@@ -24,6 +24,10 @@ export class NavbarComponent implements OnInit {
     this.padding = !this.padding;
   }
 
+  getNameOfUser(): String {
+    return this.authentication.currentUser.name;
+  }
+
   constructor(private authentication: AuthenticationService) { }
 
   ngOnInit() {

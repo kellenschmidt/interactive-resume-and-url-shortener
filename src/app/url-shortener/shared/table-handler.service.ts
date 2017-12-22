@@ -15,7 +15,9 @@ export class TableHandlerService {
   tableAuthError: boolean = false;
 
   constructor(private linkRepository: LinkRepositoryService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar) { }
+
+  init() {
     // Turn loading spinner on
     this.tableLoaded = false;
     // Load database with links from http request
