@@ -13,15 +13,15 @@ export class NavbarComponent implements OnInit {
   @Input() color: string;
   @Input() showLogin: boolean;
   loginTab: boolean = false;
-  padding: boolean = false
+  magicMargin: boolean = false
 
   // Logout of current account and reset values
   logout() {
     this.authentication.logout();
   }
 
-  togglePadding() {
-    this.padding = !this.padding;
+  toggleMagicMargin() {
+    this.magicMargin = !this.magicMargin;
   }
 
   getNameOfUser(): String {

@@ -7,7 +7,7 @@
         <links class="ml-auto">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link waves-light" id="apps-icon" [mdbPopover]="appsPopover" placement="bottom" (click)="togglePadding()" [ngClass]="{'magic-margin': padding && !showLogin}" mdbRippleRadius><i class="fa fa-th"></i></a>
+                    <a class="nav-link waves-light no-transition" id="apps-icon" [mdbPopover]="appsPopover" placement="bottom" (click)="toggleMagicMargin()" [ngClass]="{'magic-margin': magicMargin && !showLogin}" mdbRippleRadius><i class="fa fa-th"></i></a>
                 </li>
                 <li class="nav-item ml-3" *ngIf="!authentication.currentUser.email && showLogin">
                     <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
@@ -29,7 +29,7 @@
 </div>
 
 <ng-template #appsPopover>
-    <div id="apps-menu" class="row text-center mx-0">
+    <div id="apps-menu" class="row text-center mx-0" *ngIf="magicMargin">
         <a class="col-4" routerLink="/interactive-resume">
             <img src="assets/favicons/favicon.ico" class="mb-2">
             Interactive Resume

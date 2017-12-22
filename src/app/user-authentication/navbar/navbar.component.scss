@@ -1,5 +1,12 @@
 #nav-wrapper {
 
+    .no-transition {
+        -moz-transition: none;
+        -webkit-transition: none;
+        -o-transition: color 0 ease-in;
+        transition: none;
+    }
+
     #apps-icon {
         padding-top: .30rem;
         padding-bottom: .30rem;
@@ -11,7 +18,7 @@
     }
 
     .magic-margin {
-        margin-right: 6.5rem;
+        margin-right: 6.42rem;
     }
     
     @media (min-width: 1200px) {  
