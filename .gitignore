@@ -74,3 +74,6 @@ test.ts
 karma.conf.js
 protractor.conf.js
 tsconfig.spec.json
+
+# Angular build
+public
