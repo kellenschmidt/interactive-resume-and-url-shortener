@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from '../../user-authentication/shared/authentication.service';
-import { TableHandlerService } from '../shared/table-handler.service';
 
 @Component({
   selector: 'ks-navbar',
@@ -10,21 +9,26 @@ import { TableHandlerService } from '../shared/table-handler.service';
 })
 export class NavbarComponent implements OnInit {
 
-  loginTab = false;
+  @Input() title: string;
+  @Input() color: string;
+  @Input() showLogin: boolean;
+  loginTab: boolean = false;
+  magicMargin: boolean = false
 
   // Logout of current account and reset values
   logout() {
     this.authentication.logout();
-    this.refreshTable();
   }
 
-  // Resend http request to update links in table
-  refreshTable() {
-    this.tableHandler.getLinks();
+  toggleMagicMargin() {
+    this.magicMargin = !this.magicMargin;
   }
 
-  constructor(public authentication: AuthenticationService,
-              private tableHandler: TableHandlerService) { }
+  getNameOfUser(): String {
+    return this.authentication.currentUser.name;
+  }
+
+  constructor(private authentication: AuthenticationService) { }
 
   ngOnInit() {
   }

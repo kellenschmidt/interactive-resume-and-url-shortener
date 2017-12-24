@@ -1,0 +1,17 @@
+<h1 id="skills" class="mb-4">Skills</h1>
+
+<div class="float-middle float-sm-right mb-1" id="exp-scale">
+    <p class="exp-label mr-sm-1 text-muted">Less experience</p><br class="d-block d-sm-none">
+    <div class="exp-scale-box exp-low"></div>
+    <div class="exp-scale-box exp-med-low"></div>
+    <div class="exp-scale-box exp-med-high"></div>
+    <div class="exp-scale-box exp-high"></div><br class="d-block d-sm-none">
+    <p class="exp-label ml-sm-1 text-muted">More experience</p>
+</div>
+
+<div *ngFor="let skill of skills" [ngClass]="{'d-inline-block': (skill.id !== 'category-heading'), 'my-4': (skill.id === 'category-heading')}">
+  <h4 *ngIf="skill.id === 'category-heading'" class="d-block">{{skill.title}}</h4>
+  <div *ngIf="skill.id !== 'category-heading'" class="chip d-inline-block" [style.background-color]="skill.color">
+    <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_120/{{skill.id}}-chip" width="40">{{skill.title}}
+  </div>
+</div>

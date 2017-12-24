@@ -1,0 +1,65 @@
+mdb-slide .row {
+  padding: .2rem;
+}
+
+#coursesCarousel div.carousel ol.carousel-indicators {
+    bottom: -2.5rem !important;
+    li {
+        background-color: gray;
+        &.active {
+            background-color: black;
+        }
+    }
+}
+
+// Wrapper
+.icon-button {
+    background-color: white;
+    display: inline-block;
+    font-size: 1.5rem;
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    border-radius: 3rem;
+    margin: 0.5rem 0.5rem 1rem;
+    position: relative;
+
+    span {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 0;
+        width: 0;
+        border-radius: 0;
+        margin: 0;
+        transition: all 0.3s;
+    }
+
+    i {
+        background: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        height: 3rem;
+        width: 3rem;
+        line-height: 3rem;
+        transition: all 0.3s;
+    }
+
+    &:hover {
+        span {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 3rem;
+            margin: -1.5rem;
+        }
+
+        i {
+            color: white;
+            background-image: linear-gradient(135deg, white, white);
+            -webkit-background-clip: text;
+        }
+    }
+}

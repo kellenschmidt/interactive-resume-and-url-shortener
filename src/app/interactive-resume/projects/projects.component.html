@@ -1,0 +1,6 @@
+<h1 class="mb-5" id="projects">Projects</h1>
+<div class="row mb-5">
+  <div *ngFor="let project of projects" class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+    <ks-project-card [project]="project"></ks-project-card>
+  </div>
+</div>

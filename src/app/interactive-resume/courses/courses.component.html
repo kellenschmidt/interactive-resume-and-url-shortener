@@ -1,0 +1,54 @@
+<h1 id="courses" class="mt-5">Courses</h1>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <a class="icon-button" (click)="carouselRef.previousSlide()"><i class="fa fa-chevron-left rainbow-font"></i><span class="rainbow-background"></span></a>
+        <a class="icon-button" (click)="carouselRef.nextSlide()"><i class="fa fa-chevron-right rainbow-font"></i><span class="rainbow-background"></span></a>
+    </div>
+</div>
+
+<!--Carousel Wrapper-->
+<mdb-carousel #carouselRef [animation]="'slide'" id="coursesCarousel">
+  <div *ngFor="let courseGroup of courseGroups">
+    <!--First slide-->
+    <mdb-slide>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-block p-3">
+              <h6>{{courseGroup[0].number}}</h6>
+              <h2>
+                {{courseGroup[0].name}}
+                <div *ngFor="let lineBreak of courseGroup[0].line_breaks" class="d-none d-md-flex"><br></div>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-block p-3">
+              <h6>{{courseGroup[1].number}}</h6>
+              <h2>
+                {{courseGroup[1].name}}
+                <div *ngFor="let lineBreak of courseGroup[1].line_breaks" class="d-none d-md-flex"><br></div>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-block p-3">
+              <h6>{{courseGroup[2].number}}</h6>
+              <h2>
+                {{courseGroup[2].name}}
+                <div *ngFor="let lineBreak of courseGroup[2].line_breaks" class="d-none d-md-flex"><br></div>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mdb-slide>
+    <!--/First slide-->
+  </div>
+</mdb-carousel>
+<!--/.Carousel Wrapper-->

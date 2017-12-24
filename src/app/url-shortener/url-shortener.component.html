@@ -1,7 +1,7 @@
 <router-outlet></router-outlet>
 
 <main>
-    <ks-navbar></ks-navbar>
+    <ks-navbar title="Kellen's URL Shortener" color="#FF6600" [showLogin]="true"></ks-navbar>
     <ks-link-input></ks-link-input>
     <div id="body-triangle" class="z-depth-1"></div>
 
@@ -11,7 +11,7 @@
         <div id="footer-triangle" class=z-depth-1></div>
         <div id="footer-content" class="white-text page-footer">
             <div class="footer-copyright">
-                © {{currentDate | date:'y'}} Copyright: <a href="https://kellenschmidt.com" target="_blank" rel="noopener" class="white-text"> KellenSchmidt.com </a>
+                © {{currentDate | date:'y'}} Copyright: <a routerLink="/" class="white-text">Kellen Schmidt</a>
             </div>
         </div>
     </footer>

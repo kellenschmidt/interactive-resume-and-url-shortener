@@ -5,7 +5,6 @@ import { AuthenticationService } from '../shared/authentication.service';
 import { User } from '../shared/user';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-login-form',
   templateUrl: 'login-form.component.html',
   styleUrls: ['login-form.component.scss']
@@ -15,6 +14,11 @@ export class LoginFormComponent implements OnInit {
   @Output() onLogin = new EventEmitter<boolean>();
 
   loginForm: FormGroup;
+  visible: boolean = false;
+
+  toggleVisible() {
+    this.visible = !this.visible;
+  }
 
   // Login as existing user and set values
   loginHttp() {
@@ -25,6 +29,8 @@ export class LoginFormComponent implements OnInit {
 
         // Set values for new user using http response values
         this.authentication.currentUser.initializeUser(responseBody.user);
+
+        this.authentication.refreshTable();
 
         // Emit event to tell parent component to close modal
         this.onLogin.emit(true);

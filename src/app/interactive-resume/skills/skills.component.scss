@@ -1,0 +1,42 @@
+// Custom chip class
+.chip {
+  display: inline-block;
+  font-size: 16px;
+  padding: 0 1em;
+  margin: 0 0.8em 1em 0;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 1.5em;
+  img {
+    float: left;
+    margin: 0 0.6em 0 -1em;
+    border-radius: 50%;
+  }
+}
+
+#exp-scale {
+  text-align: center;
+}
+.exp-scale-box {
+  height: 1rem;
+  width: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.exp-label {
+  display: inline-block;
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+.exp-low {
+  background-color: #eeeeee;
+}
+.exp-med-low {
+  background-color: #d2d2d2;
+}
+.exp-med-high {
+  background-color: #b7b7b7;
+}
+.exp-high {
+  background-color: #9a9a9a;
+}

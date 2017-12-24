@@ -1,0 +1,25 @@
+<div id="title-page-wallpaper">
+  <!-- Backgound image fallback for iOS Safari -->
+  <div id="background-fallback" [style.display]="iOSSafari ? 'inherit' : 'none'">
+    <div id="background-fallback-image"></div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <div class="rainbow-background fixed-top">
+    <ks-navbar title="Kellen's Interactive Resume" [showLogin]="false"></ks-navbar>
+  </div>
+  <ks-title-page></ks-title-page>
+
+  <main class="container px-5 py-5 z-depth-5">
+    <ks-about-me></ks-about-me>
+    <ks-education></ks-education>
+    <ks-projects></ks-projects>
+    <ks-work-experience></ks-work-experience>
+    <ks-skills></ks-skills>
+    <ks-courses></ks-courses>
+    <ks-footer></ks-footer>
+    
+  </main>
+
+</div>

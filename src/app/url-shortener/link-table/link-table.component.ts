@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LinkData } from '../shared/link-data';
 import { TableHandlerService } from '../shared/table-handler.service';
-import { MatSnackBar, MatPaginator, MatSort, MatTable } from '@angular/material';
+import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
@@ -35,6 +35,8 @@ export class LinkTableComponent implements OnInit {
               private snackBar: MatSnackBar) {}
 
   ngOnInit() {
+    this.tableHandler.init();
+
     this.dataSource = new ExampleDataSource(this.tableDatabase, this.sort, this.paginator);
 
     Observable.fromEvent(this.filter.nativeElement, 'keyup')

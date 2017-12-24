@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { LinkData } from '../../url-shortener/shared/link-data';
+import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
 import 'rxjs/add/operator/retry';
@@ -50,9 +51,16 @@ export class AuthenticationService {
   logout() {
     // Reset currentUser
     this.currentUser.reset();
+
+    this.refreshTable();
     
     // Remove authentication from local storage
     localStorage.removeItem('auth');
+  }
+
+  refreshTable() {
+    // Resend http request to refresh links in table
+    this.tableHandler.getLinks();
   }
 
   // Get JWT or return falsey if jwt doesn't exist
@@ -96,7 +104,8 @@ export class AuthenticationService {
     ) // http subscribe
   } // authenticateUser
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private tableHandler: TableHandlerService) {
     this.authenticateHttp();
   }
 

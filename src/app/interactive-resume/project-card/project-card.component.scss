@@ -1,0 +1,64 @@
+// Note: The card in each .row with the longest .modal-body content will have relative position,
+// all other cards should be given absolute position and a bottom value to move their buttons to 
+// the bottom of their cards (19px represents the approx padding bottom on the buttons)
+
+// External link icon
+a.card-title {
+  font-weight: 400;
+  i {
+    font-size: 65%
+  }
+}
+  
+/* Medium devices (tablets, width: 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  #url-shortener-btn,
+  #wikibooks-btn,
+  #material-tip-calculator-btn {
+    position: absolute;
+    bottom: 19px;
+  }
+}
+
+/* Large devices (large tablets, width: 992px and up) */
+@media (min-width: 992px) {
+  #url-shortener-btn,
+  #groceryquest-btn,
+  #wikibooks-btn,
+  #material-tip-calculator-btn {
+    position: absolute;
+    bottom: 19px;
+  }
+}
+
+.card .card-body .modal-title {
+  margin-bottom: 0;
+}
+
+#learnMoreModal {
+  // Make modal scroll
+  overflow: auto;
+}
+
+.new-tabs {
+  display: flex;
+
+  .modal-header {
+    padding: .7rem;
+    width: 100%;
+    align-items: inherit;
+  }
+
+  .nav-tabs,
+  .nav-link,
+  .nav-link:hover,
+  .nav-link.active,
+  .nav .nav-link {
+      border: 0;
+  }
+
+  .nav-tabs .nav-link.active {
+      background-color: rgba(255,255,255,.2);
+      color: white;
+  }
+}

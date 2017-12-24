@@ -1,0 +1,57 @@
+#education {
+  position: relative;
+  h4 {
+    font-size: 1.3rem;
+  }
+  h5 {
+    font-size: 1rem;
+  }
+  img {
+    height: 15.75rem;
+    width: 100%;
+    object-fit: cover;
+  }
+  &>div {
+    padding: 1.25rem;
+    padding-bottom: 0.75rem;
+    margin: 0 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+/* Small devices (landscape phones, width: 576px and up) */
+@media (min-width: 576px) {  
+  #education {
+    h4 {
+      font-size: 1.5rem;
+    }
+    h5 {
+      font-size: 1.25rem;
+    }
+    img {
+      height: 16rem;
+    }
+    &>div {
+      padding: 2rem;
+    }
+  }
+}
+   
+/* Medium devices (tablets, width: 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  #education {
+    h4 {
+      font-size: 1.5rem;
+    }
+    h5 {
+      font-size: 1.25rem;
+    }
+    img {
+      height: 9rem;
+    }
+  }
+}

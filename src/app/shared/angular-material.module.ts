@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { MatSnackBarModule, MatTooltipModule, MatMenuModule, MatTableModule, MatDialogModule, MatPaginatorModule, MatSortModule, MatInputModule, MatProgressSpinnerModule, MatTabsModule, MatChipsModule } from '@angular/material';
-import { CdkTableModule } from '@angular/cdk/table';
+import { MatSnackBarModule, MatTooltipModule, MatMenuModule, MatTableModule, MatDialogModule, MatPaginatorModule, MatSortModule, MatInputModule, MatProgressSpinnerModule, MatTabsModule } from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -18,8 +17,6 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatInputModule,
     MatProgressSpinnerModule,
     MatTabsModule,
-    MatChipsModule,
-    CdkTableModule,
   ],
   exports: [
     MatSnackBarModule,
@@ -32,7 +29,6 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatInputModule,
     MatProgressSpinnerModule,
     MatTabsModule,
-    CdkTableModule,
   ],
 })
 export class AngularMaterialModule { }

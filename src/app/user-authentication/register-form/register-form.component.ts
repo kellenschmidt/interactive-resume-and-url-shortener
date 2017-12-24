@@ -6,7 +6,6 @@ import { AuthenticationService } from '../shared/authentication.service';
 import { User } from '../shared/user';
 
 @Component({
-  moduleId: module.id,
   selector: 'ks-register-form',
   templateUrl: 'register-form.component.html',
   styleUrls: ['register-form.component.scss']
@@ -16,12 +15,22 @@ export class RegisterFormComponent implements OnInit {
   @Output() onRegister = new EventEmitter<boolean>();
 
   registerForm: FormGroup;
+  passwordVisible: boolean = false;
+  confirmVisible: boolean = false;
   public maskConfig = {
     mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
     guide: false,
     placeholderChar: '\u2000',
     keepCharPositions: false,
   };
+
+  toggleVisible(toggleIndex: number) {
+    if(toggleIndex == 0) {
+      this.passwordVisible = !this.passwordVisible;
+    } else {
+      this.confirmVisible = !this.confirmVisible;
+    }
+  }
 
   // Create new user and set values
   registerHttp() {

@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LinkData } from '../shared/link-data';
 import { LinkRepositoryService } from '../shared/link-repository.service';
-import { AuthenticationService } from '../../user-authentication/shared/authentication.service';
 
 @Injectable()
 export class TableHandlerService {
@@ -16,8 +15,9 @@ export class TableHandlerService {
   tableAuthError: boolean = false;
 
   constructor(private linkRepository: LinkRepositoryService,
-              private authentication: AuthenticationService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar) { }
+
+  init() {
     // Turn loading spinner on
     this.tableLoaded = false;
     // Load database with links from http request
@@ -39,7 +39,6 @@ export class TableHandlerService {
         // Set authError and loaded to display error placeholder in table
         this.tableAuthError = true;
         this.tableLoaded = true;
-        this.authentication.logout();
 
         // If request returns an error because unauthenticated
         if(err.error['error'] !== undefined) {
