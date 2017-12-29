@@ -28,6 +28,10 @@ export class NavbarComponent implements OnInit {
     return this.authentication.currentUser.name;
   }
 
+  getEmailOfUser(): String {
+    return this.authentication.currentUser.email;
+  }
+
   constructor(private authentication: AuthenticationService) { }
 
   ngOnInit() {

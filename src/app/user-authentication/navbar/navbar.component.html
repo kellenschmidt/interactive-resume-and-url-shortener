@@ -9,13 +9,13 @@
                 <li class="nav-item">
                     <a class="nav-link waves-light no-transition" id="apps-icon" [mdbPopover]="appsPopover" placement="bottom" (click)="toggleMagicMargin()" [ngClass]="{'magic-margin': magicMargin && !showLogin}" mdbRippleRadius><i class="fa fa-th"></i></a>
                 </li>
-                <li class="nav-item ml-3" *ngIf="!authentication.currentUser.email && showLogin">
+                <li class="nav-item ml-3" *ngIf="!getEmailOfUser() && showLogin">
                     <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
                 </li>
-                <li class="nav-item" *ngIf="!authentication.currentUser.email && showLogin">
+                <li class="nav-item" *ngIf="!getEmailOfUser() && showLogin">
                     <a class="nav-link waves-light" (click)="form.show(); loginTab = false" mdbRippleRadius>Sign Up</a> 
                 </li>
-                <li class="nav-item dropdown ml-3" dropdown *ngIf="authentication.currentUser.email && showLogin" id="user-tab">
+                <li class="nav-item dropdown ml-3" dropdown *ngIf="getEmailOfUser() && showLogin" id="user-tab">
                     <a dropdownToggle mdbRippleRadius class="nav-link dropdown-toggle waves-light p-0" mdbRippleRadius>
                         <span>{{getNameOfUser()}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
                     </a>
