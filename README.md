@@ -2,8 +2,6 @@
 
 Personal website of Kellen Schmidt written completely from scratch and designed to illustrate his abilities and showcase his projects
 
-[![Waffle.io](https://badge.waffle.io/kellenschmidt/urlshortener.kellenschmidt.com.png?staged%20for%20development&title=Staged%20for%20Development)](https://waffle.io/kellenschmidt/urlshortener.kellenschmidt.com?utm_source=badge)
-
 ## Applications
 
 ### Interactive Resume
@@ -31,7 +29,7 @@ https://kellenschmidt.com/url
 
 1. Download all of the files from GitHub
     ```
-    git clone https://github.com/kellenschmidt/urlshortener.kellenschmidt.com.git
+    git clone https://github.com/kellenschmidt/kellenschmidt.com.git
     cd kellenschmidt.com/
     ```
 2. Install dependencies
