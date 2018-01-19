@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'ks-interactive-resume',
@@ -9,9 +10,9 @@ import { Title } from '@angular/platform-browser';
 })
 export class InteractiveResumeComponent implements OnInit {
 
-  private apiUrl = "https://api.kellenschmidt.com";
+  private apiUrl = environment.apiUrl;
   public currentDate = new Date();
-  public iOSSafari
+  public iOSSafari;
 
   constructor(private http: HttpClient,
               private titleService: Title) { }

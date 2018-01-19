@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class ContentRepositoryService {
 
-  private apiUrl = "https://api.kellenschmidt.com";
+  private apiUrl = environment.apiUrl;
   
   // Get projects or work experience cards
   getCards(cardType: number): Observable<any> {

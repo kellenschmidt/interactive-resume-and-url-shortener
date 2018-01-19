@@ -7,6 +7,7 @@ import { LinkData } from '../shared/link-data';
 import { TableHandlerService } from '../shared/table-handler.service';
 import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
+import { environment } from 'environments/environment';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -22,7 +23,7 @@ export class LinkTableComponent implements OnInit {
   displayedColumns = ['long_url', 'date_created', 'code', 'count'];
   tableDatabase = this.tableHandler;
   dataSource: ExampleDataSource | null;
-  siteUrl: string = "https://kellenschmidt.com/";
+  siteUrl: string = environment.site;
   spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
 
@@ -102,7 +103,7 @@ export class LinkTableComponent implements OnInit {
 
   // Copy short URL to clipboard
   copy(code: string) {
-    let textToCopy = this.siteUrl + code;
+    let textToCopy = this.siteUrl + "/" + code;
     
     // Temporarily create invisible element on screen to copy text from
     let selBox = document.createElement('textarea');
@@ -127,6 +128,10 @@ export class LinkTableComponent implements OnInit {
   formatDate(oldDate: string): string {
     // Replace '-' with '/'
     return oldDate.replace(/-/g, "/");
+  }
+
+  siteUrlWithoutHttp(siteUrl: string): string {
+    return siteUrl.substring(siteUrl.lastIndexOf("/")+1);
   }
 
 }

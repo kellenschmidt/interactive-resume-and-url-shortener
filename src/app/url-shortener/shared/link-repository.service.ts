@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { LinkData } from './link-data';
 import { AuthenticationData } from '../../user-authentication/shared/authentication-data';
+import { environment } from 'environments/environment';
 import 'rxjs/add/operator/retry';
 
 @Injectable()
 export class LinkRepositoryService {
 
-  private apiUrl = "https://api.kellenschmidt.com";
+  private apiUrl = environment.apiUrl;
 
   // Create new short URL
   addLink(longUrl: string): Observable<LinkData> {

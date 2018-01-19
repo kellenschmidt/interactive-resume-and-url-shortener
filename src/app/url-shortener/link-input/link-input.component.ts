@@ -4,6 +4,7 @@ import { LinkData } from '../shared/link-data';
 import { MatSnackBar } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { TableHandlerService } from '../shared/table-handler.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'ks-link-input',
@@ -12,7 +13,7 @@ import { TableHandlerService } from '../shared/table-handler.service';
 })
 export class LinkInputComponent implements OnInit {
 
-  siteUrl: string = "https://kellenschmidt.com";
+  siteUrl: string = environment.site;
   linkInputMode: boolean = true;
   titles: string[] = ["Shorten your links", "Your short URL"];
   title: string = this.titles[0];
