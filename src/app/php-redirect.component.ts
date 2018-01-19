@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'ks-php-redirect',
@@ -12,7 +13,7 @@ export class PhpRedirectComponent implements OnInit {
 
     ngOnInit() {
         let code = this.route.snapshot.paramMap.get('code');
-        window.location.href = 'https://urlshortenerphp.kellenschmidt.com/' + (code !== null ? code : ''); 
+        window.location.href = environment.phpLinkShortenerUrl + '/' + (code !== null ? code : ''); 
     }
 
 }
