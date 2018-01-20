@@ -13,7 +13,7 @@ import { environment } from 'environments/environment';
 })
 export class LinkInputComponent implements OnInit {
 
-  siteUrl: string = environment.site;
+  siteUrl: string = environment.siteUrl;
   linkInputMode: boolean = true;
   titles: string[] = ["Shorten your links", "Your short URL"];
   title: string = this.titles[0];
