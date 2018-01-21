@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  site: "http://kspw",
+  siteUrl: "http://kspw",
   apiUrl: "http://api.kspw",
   phpLinkShortenerUrl: "http://urlshortenerphp.kspw",
 };
