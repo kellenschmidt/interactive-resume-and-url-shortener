@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   private apiUrl = environment.apiUrl;
 
-  currentUser: User = new User(undefined, "" ,"", undefined, "", undefined, undefined, false, false);
+  currentUser: User = new User(undefined, "", "", undefined, "", undefined, undefined, false, false);
 
   // Register for a new account
   register(email: string, name: string, phone: number, password: string): Observable<AuthenticationData> {
@@ -53,10 +53,10 @@ export class AuthenticationService {
     // Reset currentUser
     this.currentUser.reset();
 
-    this.refreshTable();
-    
     // Remove authentication from local storage
     localStorage.removeItem('auth');
+    
+    this.refreshTable();
   }
 
   refreshTable() {
