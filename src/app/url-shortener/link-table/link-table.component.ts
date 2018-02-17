@@ -1,10 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LinkData } from '../shared/link-data';
 import { TableHandlerService } from '../shared/table-handler.service';
-import { MatSnackBar, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { environment } from 'environments/environment';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
   selector: 'ks-link-table',
@@ -12,36 +20,35 @@ import { environment } from 'environments/environment';
   styleUrls: ['./link-table.component.scss']
 })
 export class LinkTableComponent implements OnInit {
-  displayedColumns: string[] = ['long_url', 'date_created', 'code', 'count'];
+  displayedColumns = ['long_url', 'date_created', 'code', 'count'];
+  tableDatabase = this.tableHandler;
+  dataSource: ExampleDataSource | null;
   siteUrl: string = environment.siteUrl;
+  spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
-  ogData: LinkData[] = [
-    {code: "1r4", user_id:-1, long_url:"https:\/\/github.com\/vuejs\/vue-devtools", date_created:"2018-02-16 20:37:18", count:1, visible:1}
-  ];
-  
+
+  @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  dataSource = new MatTableDataSource<LinkData>(this.tableHandler.data);
 
   constructor(public tableHandler: TableHandlerService,
               private linkRepository: LinkRepositoryService,
               private snackBar: MatSnackBar) {}
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   ngOnInit() {
     this.tableHandler.init();
-    this.iOSDevice = navigator.userAgent.match(/iphone|ipad|ipod/i) !== null;
-  }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    this.dataSource = new ExampleDataSource(this.tableDatabase, this.sort, this.paginator);
+
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) { return; }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
+
+    this.iOSDevice = navigator.userAgent.match(/iphone|ipad|ipod/i) !== null;
   }
 
   // Menu option to hide link
@@ -127,4 +134,74 @@ export class LinkTableComponent implements OnInit {
     return siteUrl.substring(siteUrl.lastIndexOf("/")+1);
   }
 
+}
+
+/**
+ * Data source to provide what data should be rendered in the table. Note that the data source
+ * can retrieve its data in any way. In this case, the data source is provided a reference
+ * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
+ * the underlying data. Instead, it only needs to take the data and send the table exactly what
+ * should be rendered.
+ */
+export class ExampleDataSource extends DataSource<any> {
+  constructor(private _tableDatabase: TableHandlerService,
+              private _sort: MatSort,
+              private _paginator: MatPaginator) {
+    super();
+  }
+
+  _filterChange = new BehaviorSubject('');
+  get filter(): string { return this._filterChange.value; }
+  set filter(filter: string) { this._filterChange.next(filter); }
+
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<LinkData[]> {
+
+    const displayDataChanges = [
+      this._tableDatabase.table,
+      this._filterChange,
+      this._sort.sortChange,
+      this._paginator.page,
+    ];
+
+    return Observable.merge(...displayDataChanges).map(() => {
+      // Filter data
+      let data = this._tableDatabase.data.slice().filter((item: LinkData) => {
+        let searchStr = (item.long_url + item.code).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+      });
+
+      // Sort data
+      data = this.getSortedData(data);
+
+      // Paginate data
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+      return data.splice(startIndex, this._paginator.pageSize);
+    });
+  }
+
+  disconnect() {}
+
+  /** Returns a sorted copy of the database data. */
+  getSortedData(dataToSort: LinkData[]): LinkData[] {
+    const data = dataToSort
+    if (!this._sort.active || this._sort.direction == '') { return data; }
+
+    return data.sort((a, b) => {
+      let propertyA: number|string = '';
+      let propertyB: number|string = '';
+
+      switch (this._sort.active) {
+        case 'long_url': [propertyA, propertyB] = [a.long_url, b.long_url]; break;
+        case 'date_created': [propertyA, propertyB] = [a.date_created, b.date_created]; break;
+        case 'code': [propertyA, propertyB] = [a.code, b.code]; break;
+        case 'count': [propertyA, propertyB] = [a.count, b.count]; break;
+      }
+
+      let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+    });
+  }
 }
