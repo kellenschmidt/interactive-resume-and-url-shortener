@@ -1,9 +1,9 @@
 <div class="table-container mat-elevation-z3 container p-0">
 
-  <div class="table-header">
-    <mat-input-container>
-      <input matInput #filter placeholder="Filter by long URL or short URL code">
-    </mat-input-container>
+  <div class="table-filter">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by long URL or short URL code">
+    </mat-form-field>
   </div>
 
   <mat-table #table [dataSource]="dataSource" matSort>
@@ -53,8 +53,8 @@
   <div id="table-loading-spinner" *ngIf="!tableHandler.tableLoaded" class="mx-auto">
     <mat-progress-spinner
       class="my-5"
-      [color]="spinnerSettings.color"
-      [mode]="spinnerSettings.mode">
+      color="primary"
+      mode="indeterminate">
     </mat-progress-spinner>
   </div>
 
@@ -69,7 +69,7 @@
   </div>
 
   <mat-paginator #paginator
-                [length]="tableDatabase.data.length"
+                [length]="tableHandler.data.length"
                 [pageSize]="7"
                 [pageSizeOptions]="[5, 10, 25, 100]"
                 [showFirstLastButtons]="true">
