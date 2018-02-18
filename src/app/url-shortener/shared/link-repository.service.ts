@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { LinkData } from './link-data';
+import { LinkData, LinkDataResponse } from './link-data';
 import { AuthenticationData } from '../../user-authentication/shared/authentication-data';
 import { environment } from 'environments/environment';
 import 'rxjs/add/operator/retry';
@@ -65,8 +65,4 @@ export class LinkRepositoryService {
 
   constructor(private http: HttpClient) { }
 
-}
-
-interface LinkDataResponse {
-    data: LinkData[];
 }
