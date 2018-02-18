@@ -10,9 +10,9 @@ import { environment } from 'environments/environment';
 })
 export class InteractiveResumeComponent implements OnInit {
 
-  private apiUrl = environment.apiUrl;
-  public currentDate = new Date();
-  public iOSSafari;
+  private apiUrl: string = environment.apiUrl;
+  public currentDate: Date = new Date();
+  public iOSSafari: boolean = false;
 
   constructor(private http: HttpClient,
               private titleService: Title) { }
@@ -25,13 +25,6 @@ export class InteractiveResumeComponent implements OnInit {
     var iOS = !!ua.match(/iPhone|iPad|iPod/i);
     var webkit = !!ua.match(/WebKit/i);
     this.iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-
-    // If device/browser is iOS Safari then set background-attachment to compatible value
-    // if(iOSSafari) {
-    //   document.getElementById("background-fallback").style.display = "inherit";
-    // } else {
-    //   document.getElementById("background-fallback").style.display = "none";
-    // }
 
     this.http.post(`${this.apiUrl}/page-visit`,
     {

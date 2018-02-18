@@ -28,17 +28,20 @@ https://kellenschmidt.com/url
 ## How to run the project locally
 
 1. Download all of the files from GitHub
-    ```
+
+    ```Shell
     git clone https://github.com/kellenschmidt/kellenschmidt.com.git
     cd kellenschmidt.com/
     ```
 2. Install dependencies
-    ```
+
+    ```Shell
     npm install
     npm i -g @angular/cli
     ```
 3. Start development server and open website
-    ```
+
+    ```Shell
     ng serve -open
     ```
     

@@ -5,18 +5,19 @@ import { LinkData } from '../../url-shortener/shared/link-data';
 import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
+import { environment } from 'environments/environment';
 import 'rxjs/add/operator/retry';
 
 @Injectable()
 export class AuthenticationService {
 
-  private apiUrl = "https://api.kellenschmidt.com";
+  private apiUrl = environment.apiUrl;
 
-  currentUser: User = new User(undefined, "" ,"", undefined, "", undefined, undefined, false, false);
+  currentUser: User = new User(undefined, "", "", undefined, "", undefined, undefined, false, false);
 
   // Register for a new account
   register(email: string, name: string, phone: number, password: string): Observable<AuthenticationData> {
-    return this.http.post<AuthenticationData>(`${this.apiUrl}/urlshortener/register`,
+    return this.http.post<AuthenticationData>(`${this.apiUrl}/register`,
     {
       "email": email,
       "name": name,
@@ -28,7 +29,7 @@ export class AuthenticationService {
 
   // Login to an existing account
   login(email: string, password: string): Observable<AuthenticationData> {
-    return this.http.post<AuthenticationData>(`${this.apiUrl}/urlshortener/login`,
+    return this.http.post<AuthenticationData>(`${this.apiUrl}/login`,
     {
       "email": email,
       "password": password
@@ -38,7 +39,7 @@ export class AuthenticationService {
 
   // Authenticate an existing JWT
   authenticate(): Observable<boolean> {
-    return this.http.post<boolean>(`${this.apiUrl}/urlshortener/authenticate`,
+    return this.http.post<boolean>(`${this.apiUrl}/authenticate`,
     {
       // Empty request body
     },
@@ -52,10 +53,10 @@ export class AuthenticationService {
     // Reset currentUser
     this.currentUser.reset();
 
-    this.refreshTable();
-    
     // Remove authentication from local storage
     localStorage.removeItem('auth');
+    
+    this.refreshTable();
   }
 
   refreshTable() {

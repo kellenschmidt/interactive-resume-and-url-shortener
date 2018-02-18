@@ -58,7 +58,7 @@
             <button type="button" class="btn waves-light" [style.background-color]="project.theme_color" (click)="learnMoreModal.hide()" mdbRippleRadius>Close</button>
             <a *ngIf="project.router_link" class="btn btn-primary waves-light" mdbRippleRadius routerLink="{{project.router_link}}">Visit<i class="fa fa-external-link ml-2"></i></a>
             <a *ngIf="project.link" class="btn btn-primary waves-light" href="{{project.link}}" target="_blank" rel="noopener">Visit<i class="fa fa-external-link ml-2"></i></a>
-            <a class="btn btn-elegant waves-light" mdbRippleRadius id="github-link" href="{{project.github_link}}" target="_blank" rel="noopener">View on GitHub<i class="fa fa-github ml-2"></i></a>
+            <a *ngIf="project.github_link" class="btn btn-elegant waves-light" mdbRippleRadius id="github-link" href="{{project.github_link}}" target="_blank" rel="noopener">View on GitHub<i class="fa fa-github ml-2"></i></a>
           </div>
         </div>
       </div>

@@ -4,4 +4,9 @@ export interface LinkData {
     long_url: string;
     date_created: string;
     count: number;
+    visible: number;
+}
+
+export interface LinkDataResponse {
+    data: LinkData[];
 }

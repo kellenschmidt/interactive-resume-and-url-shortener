@@ -23,7 +23,7 @@ export class LinkTableComponent implements OnInit {
   displayedColumns = ['long_url', 'date_created', 'code', 'count'];
   tableDatabase = this.tableHandler;
   dataSource: ExampleDataSource | null;
-  siteUrl: string = environment.site;
+  siteUrl: string = environment.siteUrl;
   spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
 
