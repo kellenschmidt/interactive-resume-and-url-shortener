@@ -5,7 +5,7 @@
 
 export const environment = {
   production: true,
-  siteUrl: "https://kellenschmidt.com",
-  apiUrl: "https://api.kellenschmidt.com",
-  phpLinkShortenerUrl: "https://urlshortenerphp.kellenschmidt.com",
+  siteUrl: "http://kellenschmidt.com",
+  apiUrl: "http://api.kellenschmidt.com",
+  phpLinkShortenerUrl: "http://urlshortenerphp.kellenschmidt.com",
 };
