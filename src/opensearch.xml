@@ -3,5 +3,5 @@
 <ShortName>Kellen's URL Shortener</ShortName>
 <Description>Take long URLs and compress them into short links which are easy to share, tweet, and email!</Description>
 <Image width="64" height="64" type="image/x-icon">assets/us-favicons/favicon.ico</Image>
-<Url type="text/html" method="get" template="https://kellenschmidt.com/{searchTerms}"/>
+<Url type="text/html" method="get" template="http://kellenschmidt.com/{searchTerms}"/>
 </OpenSearchDescription>
