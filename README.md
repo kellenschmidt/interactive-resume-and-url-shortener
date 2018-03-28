@@ -36,8 +36,8 @@ https://kellenschmidt.com/url
 2. Install dependencies
 
     ```Shell
-    npm install
-    npm i -g @angular/cli
+    npm i -g @angular/cli yarn
+    yarn install
     ```
 3. Start development server and open website
 
