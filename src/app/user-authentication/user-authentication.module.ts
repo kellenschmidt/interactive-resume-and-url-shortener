@@ -13,6 +13,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule } from '@angular/router';
 
 import { AuthenticationService } from './shared/authentication.service';
+import { TableHandlerService } from '../url-shortener/shared/table-handler.service';
+import { LinkRepositoryService } from '../url-shortener/shared/link-repository.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AuthenticationService } from './shared/authentication.service';
   ],
   providers: [
     AuthenticationService,
+    TableHandlerService,
+    LinkRepositoryService,
   ],
   schemas: [
     NO_ERRORS_SCHEMA,
