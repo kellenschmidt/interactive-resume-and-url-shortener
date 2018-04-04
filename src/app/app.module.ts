@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { InteractiveResumeModule } from './interactive-resume/interactive-resume.module';
+import { UrlShortenerModule } from './url-shortener/url-shortener.module';
 import { UserAuthenticationModule } from './user-authentication/user-authentication.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -17,6 +19,8 @@ import 'hammerjs';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    InteractiveResumeModule,
+    UrlShortenerModule,
     UserAuthenticationModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
