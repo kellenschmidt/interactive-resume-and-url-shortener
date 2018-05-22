@@ -25,7 +25,7 @@
         <span class="d-none d-md-inline-block">Short&nbsp;</span>URL<span class="d-inline-block d-md-none">&nbsp;code</span>
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <a routerLink="/url-shortener/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">{{siteUrlWithoutHttp(siteUrl)}}/</span>{{row.code}}</a>
+        <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">{{siteUrlWithoutHttp(siteUrl)}}/</span>{{row.code}}</a>
         <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" matTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
       </mat-cell>
     </ng-container>
