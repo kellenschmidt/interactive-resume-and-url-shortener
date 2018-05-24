@@ -12,9 +12,9 @@ RUN yarn install --silent
 COPY . .
 RUN ng build --prod --env=${ENVIRONMENT} --no-progress
 
-FROM nginx:1.13-alpine
-RUN rm -rf /etc/nginx/conf.d
-COPY conf /etc/nginx
-COPY --from=builder /angular/build /usr/share/nginx/html
+FROM httpd:2.4-alpine
+COPY httpd.conf /home/httpd.conf
+RUN cat /home/httpd.conf >> /usr/local/apache2/conf/httpd.conf
+COPY --from=builder /angular/build /usr/local/apache2/htdocs
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["apachectl", "start", "-DFOREGROUND"]
