@@ -38,9 +38,11 @@
           <i class="fa fa-ellipsis-v"></i>
         </a>
         <mat-menu #menu="matMenu">
+          <a mat-menu-item class="analytics-btn" href="http://dabooty.com">
+            <span>Analytics Data</span>
+          </a>
           <button mat-menu-item (click)="hideLink(row.code)">
             <span>Hide URL</span>
-            <i class="fa fa-eye-slash ml-2"></i>
           </button>
         </mat-menu>
       </mat-cell>

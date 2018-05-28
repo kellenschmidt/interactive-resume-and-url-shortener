@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Card } from '../shared/types';
 import { ContentRepositoryService } from '../shared/content-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'ks-projects',
@@ -11,8 +12,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ProjectsComponent implements OnInit {
 
   public projects: Card[];
+  public projectsUrl: String;
 
-  constructor(private contentRepository: ContentRepositoryService) { }
+  constructor(private contentRepository: ContentRepositoryService) {
+    this.projectsUrl = environment.projectsUrl;
+  }
 
   ngOnInit() {
     this.contentRepository.getCards(0).subscribe(
