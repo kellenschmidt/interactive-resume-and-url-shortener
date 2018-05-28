@@ -6,6 +6,8 @@
 export const environment = {
   production: false,
   siteUrl: "http://localhost:4200",
-  apiUrl: "https://api.kellenschmidt.com/v1",
-  phpLinkShortenerUrl: "https://urlshortenerphp.kellenschmidt.com",
+  apiUrl: "http://kellenschmidt.com/api/v1",
+  phpLinkShortenerUrl: "http://kellenschmidt.com/urlshortenerphp",
+  projectsUrl: "http://kellenschmidt.com/projects",
+  analyticsUrl: "http://kellenschmidt.com/analytics",
 };
