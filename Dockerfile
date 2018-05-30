@@ -10,6 +10,7 @@ COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
 RUN npm install --silent
 COPY . .
+RUN mv ./src/kellen-mdb-free.scss ./node_modules/angular-bootstrap-md/scss
 RUN ng build --configuration=${ENVIRONMENT} --no-progress
 
 FROM httpd:2.4-alpine

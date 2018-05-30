@@ -1,14 +1,14 @@
 .input-row {
     display: flex;
     
-    .fa.prefix {
+    .align-icon {
         font-size: 1.3rem;
-        width: 1.4rem;
-        padding-top: 1.4rem;
+        width: 2.0rem;
+        margin-top: 1.3rem;
         text-align: center;
     }
 
-    mat-input-container {
+    mat-form-field {
         flex-grow: 1;
 
         input {

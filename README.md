@@ -23,7 +23,7 @@ https://kellenschmidt.com/url
   - MDBootstrap for Angular https://mdbootstrap.com/angular
   - Material Angular https://material.angular.io
   - Sass http://sass-lang.com
-- Backend MySQL database interaction via RESTful API https://api.kellenschmidt.com
+- Backend MySQL database interaction via RESTful API https://kellenschmidt.com/api/v1
 
 ## How to run the project locally
 
@@ -36,8 +36,7 @@ https://kellenschmidt.com/url
 2. Install dependencies
 
     ```Shell
-    npm i -g @angular/cli yarn
-    yarn install
+    npm install
     ```
 3. Start development server and open website
 

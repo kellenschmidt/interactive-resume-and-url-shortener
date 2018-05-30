@@ -12,11 +12,11 @@
     <!--Title-->
     <a *ngIf="project.router_link" class="h4 card-title d-inline-block" routerLink="{{project.router_link}}">
       {{project.title}}
-      <i class="fas fa-external-link-alt align-bottom" data-fa-transform="shrink-7"></i>
+      <i class="fas fa-external-link-alt align-bottom" data-fa-transform="shrink-8"></i>
     </a>
     <a *ngIf="project.link" class="h4 card-title d-inline-block" href="{{project.link}}" target="_blank" rel="noopener">
       {{project.title}}
-      <i class="fas fa-external-link-alt align-bottom" data-fa-transform="shrink-7"></i>
+      <i class="fas fa-external-link-alt align-bottom" data-fa-transform="shrink-8"></i>
     </a>
     <h4 *ngIf="!project.link && !project.router_link" class="card-title" [innerHTML]="project.title"></h4>
     <!--Text-->
@@ -40,7 +40,7 @@
               <div #mainDescription></div>
 
               <div class="new-tabs">
-                  <div class="modal-header white-text" [style.background-color]="project.theme_color">
+                  <div class="modal-header text-white" [style.background-color]="project.theme_color">
                       <nav class="nav nav-tabs">
                           <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': isAngularTab}" (click)="isAngularTab=true"><i class="fab fa-angular mr-2"></i>Angular Version</a>
                           <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': !isAngularTab}" (click)="isAngularTab=false"><i class="fab fa-php mr-2"></i>PHP Version</a>

@@ -16,7 +16,7 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
 fontawesome.library.add(faTh, faCopy, faGithub);
 
-import 'hammerjs';
+// import 'hammerjs';
 
 @NgModule({
   declarations: [

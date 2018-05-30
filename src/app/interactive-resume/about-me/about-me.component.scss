@@ -15,21 +15,32 @@
   color: #833ab4;
 }
 
+$normal-size: 125%;
+$hover-size: 200%;
+
+.full-size-icon {
+  font-size: $hover-size;
+  vertical-align: middle;
+}
+
 // Social media icons
 .social-icon {
-  font-size: 130%;
-  line-height: 180%;
-  transition: font-size 0.15s, line-height 0.15s; 
+  font-size: $normal-size;
+  vertical-align: middle;
+  transition: font-size 0.15s;
   &:hover {
-    font-size: 180%;
-    line-height: 130%;
+    font-size: $hover-size;
   }
   @media(max-width: 768px) {
-    font-size: 180%;
-    line-height: 130%;
+    font-size: $hover-size;
   }
 }
 
-p.lead {
+.name-title {
+  font-size: 1.25rem;
   font-weight: 400;
+}
+
+.icon-bar-spacing {
+  margin-bottom: .5rem;
 }
