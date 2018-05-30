@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { LinkData } from '../../url-shortener/shared/link-data';
 import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
-import { environment } from 'environments/environment';
-import 'rxjs/add/operator/retry';
+import { environment } from 'src/environments/environment';
+import { retry } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {
@@ -24,7 +24,6 @@ export class AuthenticationService {
       "phone": phone,
       "password": password
     })
-    .retry(1)
   }
 
   // Login to an existing account
@@ -34,7 +33,6 @@ export class AuthenticationService {
       "email": email,
       "password": password
     })
-    .retry(1)
   }
 
   // Authenticate an existing JWT
@@ -46,7 +44,6 @@ export class AuthenticationService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(1)
   }
 
   logout() {

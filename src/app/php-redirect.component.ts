@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { environment } from 'environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'ks-php-redirect',

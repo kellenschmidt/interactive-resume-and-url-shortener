@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { environment } from 'environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'ks-interactive-resume',
@@ -31,7 +31,6 @@ export class InteractiveResumeComponent implements OnInit {
       "site": document.domain,
       "referrer": document.referrer
     })
-    .retry(1)
     .subscribe(
       (responseBody) => {
         // Do nothing on success

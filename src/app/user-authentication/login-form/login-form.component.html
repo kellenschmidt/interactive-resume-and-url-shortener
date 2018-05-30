@@ -1,6 +1,6 @@
 <form (ngSubmit)="loginHttp()" [formGroup]="loginForm" novalidate>
     <div class="input-row mb-1">
-        <i class="fa fa-envelope prefix mr-2"></i>
+        <i class="fas fa-envelope prefix mr-2"></i>
         <mat-input-container>
             <input matInput type="email" placeholder="Email" formControlName="email" maxlength="255">
             <mat-error *ngIf="email.hasError('pattern')">
@@ -16,7 +16,7 @@
     </div>
     
     <div class="input-row mb-3">
-        <i class="fa fa-lock prefix mr-2"></i>
+        <i class="fas fa-lock prefix mr-2"></i>
         <mat-input-container>
             <input matInput [type]="visible ? 'text' : 'password'" placeholder="Password" formControlName="password" maxlength="128">
             <mat-icon matSuffix (click)="toggleVisible()" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': visible, 'fa-eye-slash': !visible}"></i></mat-icon>
@@ -30,6 +30,6 @@
     </div>
 
     <div class="text-center mt-2 mb-2">
-        <button class="btn btn-primary waves-light" type="submit" [disabled]="!loginForm.valid">Log in<i class="fa fa-sign-in ml-2"></i></button>
+        <button class="btn btn-primary waves-light" type="submit" [disabled]="!loginForm.valid">Log in<i class="fas fa-sign-in-alt ml-2"></i></button>
     </div>
 </form>

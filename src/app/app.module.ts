@@ -9,6 +9,12 @@ import { UrlShortenerModule } from './url-shortener/url-shortener.module';
 import { UserAuthenticationModule } from './user-authentication/user-authentication.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import fontawesome from '@fortawesome/fontawesome';
+import { faTh } from '@fortawesome/fontawesome-free-solid';
+import { faCopy } from '@fortawesome/fontawesome-free-regular';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
+
+fontawesome.library.add(faTh, faCopy, faGithub);
 
 import 'hammerjs';
 

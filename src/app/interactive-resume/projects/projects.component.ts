@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Card } from '../shared/types';
 import { ContentRepositoryService } from '../shared/content-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'ks-projects',

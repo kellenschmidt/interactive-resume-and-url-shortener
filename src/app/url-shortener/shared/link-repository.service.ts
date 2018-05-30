@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { LinkData, LinkDataResponse } from './link-data';
 import { AuthenticationData } from '../../user-authentication/shared/authentication-data';
-import { environment } from 'environments/environment';
-import 'rxjs/add/operator/retry';
+import { environment } from 'src/environments/environment';
+import { retry } from 'rxjs/operators';
 
 @Injectable()
 export class LinkRepositoryService {
@@ -20,7 +20,6 @@ export class LinkRepositoryService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(1)
   }
 
   // Hide short URL from table
@@ -32,7 +31,6 @@ export class LinkRepositoryService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(1)
   }
 
   // Get all short URLs
@@ -41,7 +39,6 @@ export class LinkRepositoryService {
     {
       headers: new HttpHeaders().set('Authorization', this.getJwt()),
     })
-    .retry(1)
   }
 
   // Get long URL and increment click count
@@ -50,7 +47,6 @@ export class LinkRepositoryService {
     { 
       // Empty request body
     })
-    .retry(1)
   }
 
   // Get JWT or return falsey if jwt doesn't exist

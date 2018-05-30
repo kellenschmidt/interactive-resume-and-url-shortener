@@ -1,7 +1,7 @@
 <h1 class="mb-5 d-inline-block" id="projects">Projects</h1>
-<a class="btn btn-primary waves-light float-right projects-btn" mdbRippleRadius href="{{projectsUrl}}">
+<a class="btn btn-primary waves-light float-right projects-btn" mdbRippleRadius [href]="projectsUrl">
   <span class="d-none d-sm-block">View All</span>
-  <i class="fa fa-external-link d-block d-sm-none"></i>
+  <i class="fas fa-external-link-alt d-block d-sm-none"></i>
 </a>
 <div class="row mb-5">
   <div *ngFor="let project of projects" class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">

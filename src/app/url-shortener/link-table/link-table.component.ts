@@ -1,18 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LinkData } from '../shared/link-data';
 import { TableHandlerService } from '../shared/table-handler.service';
 import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
-import { environment } from 'environments/environment';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
+import { environment } from 'src/environments/environment';
+import { merge, fromEvent } from 'rxjs';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'ks-link-table',
@@ -26,6 +23,7 @@ export class LinkTableComponent implements OnInit {
   siteUrl: string = environment.siteUrl;
   spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
+  projectsUrl = environment.analyticsUrl;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
@@ -33,17 +31,17 @@ export class LinkTableComponent implements OnInit {
 
   constructor(public tableHandler: TableHandlerService,
               private linkRepository: LinkRepositoryService,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.tableHandler.init();
 
     this.dataSource = new ExampleDataSource(this.tableDatabase, this.sort, this.paginator);
 
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(150)
-      .distinctUntilChanged()
-      .subscribe(() => {
+    fromEvent(this.filter.nativeElement, 'keyup').pipe(
+      debounceTime(150),
+      distinctUntilChanged()
+    ).subscribe(() => {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
@@ -164,7 +162,7 @@ export class ExampleDataSource extends DataSource<any> {
       this._paginator.page,
     ];
 
-    return Observable.merge(...displayDataChanges).map(() => {
+    return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
       let data = this._tableDatabase.data.slice().filter((item: LinkData) => {
         let searchStr = (item.long_url + item.code).toLowerCase();
@@ -177,7 +175,7 @@ export class ExampleDataSource extends DataSource<any> {
       // Paginate data
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       return data.splice(startIndex, this._paginator.pageSize);
-    });
+    }));
   }
 
   disconnect() {}

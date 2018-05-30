@@ -13,11 +13,9 @@ import { FooterComponent } from './footer/footer.component';
 
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../shared/angular-material.module';
-import { UserAuthenticationModule } from 'app/user-authentication/user-authentication.module';
+import { UserAuthenticationModule } from 'src/app/user-authentication/user-authentication.module';
 import { InteractiveResumeRoutingModule } from './interactive-resume-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { CloudinaryModule } from '@cloudinary/angular-5.x';
-import * as Cloudinary from 'cloudinary-core';
 
 import { ContentRepositoryService } from './shared/content-repository.service';
 
@@ -39,8 +37,7 @@ import { ContentRepositoryService } from './shared/content-repository.service';
     AngularMaterialModule,
     UserAuthenticationModule,
     InteractiveResumeRoutingModule,
-    MDBBootstrapModule.forRoot(),
-    CloudinaryModule.forRoot(Cloudinary, {cloud_name: "kellenscloud", secure: true}),
+    MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

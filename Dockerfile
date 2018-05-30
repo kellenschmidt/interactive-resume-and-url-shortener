@@ -7,14 +7,14 @@ RUN mkdir /angular
 WORKDIR /angular
 ENV PATH /angular/node_modules/.bin:$PATH
 COPY package.json ./package.json
-COPY yarn.lock ./yarn.lock
-RUN yarn install --silent
+COPY package-lock.json ./package-lock.json
+RUN npm install --silent
 COPY . .
-RUN ng build --prod --env=${ENVIRONMENT} --no-progress
+RUN ng build --configuration=${ENVIRONMENT} --no-progress
 
 FROM httpd:2.4-alpine
 COPY httpd.conf /home/httpd.conf
 RUN cat /home/httpd.conf >> /usr/local/apache2/conf/httpd.conf
-COPY --from=builder /angular/build /usr/local/apache2/htdocs
+COPY --from=builder /angular/dist/personal-website /usr/local/apache2/htdocs
 EXPOSE 80
 CMD ["apachectl", "start", "-DFOREGROUND"]

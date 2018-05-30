@@ -12,7 +12,8 @@
             </div><!-- .form-group.row -->
         </form>
         <div *ngIf="linkInputMode === false">
-            <p id="new-link" class="z-depth-1">{{this.shortUrl}}<a *ngIf="!iOSDevice" (click)="copy(this.shortUrl)" matTooltip="Copy short URL"><i class="fa fa-clone"></i></a></p><br>
+            <p id="new-link" class="z-depth-1">{{this.shortUrl}}<a *ngIf="!iOSDevice" (click)="copy(this.shortUrl)" matTooltip="Copy short URL"><i class="fas fa-copy"></i></a></p>
+            <br>
             <a (click)="toggleInputMode()">Go back</a>
         </div>
     </div><!-- .containter -->

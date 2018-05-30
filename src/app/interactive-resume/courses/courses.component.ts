@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentRepositoryService } from '../shared/content-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Course } from 'app/interactive-resume/shared/types';
+import { Course } from 'src/app/interactive-resume/shared/types';
 
 @Component({
   selector: 'ks-courses',

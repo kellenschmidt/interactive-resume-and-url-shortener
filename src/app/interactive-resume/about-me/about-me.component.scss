@@ -17,17 +17,16 @@
 
 // Social media icons
 .social-icon {
-  // See _media.css for width-specific modifications
-  font-size: 100%;
-  line-height: 130%;
+  font-size: 130%;
+  line-height: 180%;
   transition: font-size 0.15s, line-height 0.15s; 
   &:hover {
-    font-size: 130%;
-    line-height: 100%;
+    font-size: 180%;
+    line-height: 130%;
   }
   @media(max-width: 768px) {
-    font-size: 130%;
-    line-height: 100%;
+    font-size: 180%;
+    line-height: 130%;
   }
 }
 
