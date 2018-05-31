@@ -50,6 +50,15 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
+    
+    a {
+        line-height: 3rem;
+    }
+}
+
+.mat-cell a, .mat-menu-item {
+    text-decoration: none;
 }
 
 .copy-btn, .menu-btn {
@@ -58,18 +67,17 @@
     font-size: 1rem;
     
     &:hover {
-    background-color: #dddddd;
+        background-color: #dddddd;
     }
 }
 
 .copy-btn {
-    padding: .30rem .565rem;
+    padding: .30rem .59rem;
 }
 
 .menu-btn {
     visibility: hidden;
-    padding: .35rem .81rem 0.20rem .81rem;
-    margin-left: 0.5rem;
+    padding: .35rem .82rem 0.20rem .83rem;
 }
 
 mat-row:hover {
@@ -89,14 +97,10 @@ mat-row:hover {
 }
 
 .mat-column-long_url {
-    flex: 5;
-    padding-right: 1rem;
-}
-
-.mat-column-long_url {
     flex: 3.1;
     padding-right: 1rem;
 }
+
 .mat-column-code {
     flex: 1;
 }

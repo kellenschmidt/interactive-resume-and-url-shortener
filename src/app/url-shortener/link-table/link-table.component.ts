@@ -119,7 +119,7 @@ export class LinkTableComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
 
-    let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 2500 });
+    let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 3000 });
   }
 
   // Convert date from SQL format to Angular DatePipe compatible format
@@ -134,13 +134,6 @@ export class LinkTableComponent implements OnInit {
 
 }
 
-/**
- * Data source to provide what data should be rendered in the table. Note that the data source
- * can retrieve its data in any way. In this case, the data source is provided a reference
- * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
- * the underlying data. Instead, it only needs to take the data and send the table exactly what
- * should be rendered.
- */
 export class ExampleDataSource extends DataSource<any> {
   constructor(private _tableDatabase: TableHandlerService,
               private _sort: MatSort,

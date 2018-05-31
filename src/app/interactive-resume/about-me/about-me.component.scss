@@ -32,7 +32,7 @@ $hover-size: 200%;
     font-size: $hover-size;
   }
   @media(max-width: 768px) {
-    font-size: $hover-size;
+    font-size: 160%;
   }
 }
 
@@ -43,4 +43,8 @@ $hover-size: 200%;
 
 .icon-bar-spacing {
   margin-bottom: .5rem;
+
+  @media(max-width: 768px) {
+    margin-bottom: .8rem;
+  }
 }

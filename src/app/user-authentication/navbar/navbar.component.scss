@@ -3,6 +3,10 @@
         font-weight: 300;
     }
 
+    #apps-icon {
+        vertical-align: middle;
+    }
+
     .no-transition {
         -moz-transition: none;
         -webkit-transition: none;
@@ -10,18 +14,12 @@
         transition: none;
     }
 
-    #apps-icon {
-        padding-top: .30rem;
-        padding-bottom: .30rem;
-        font-size: 1.4rem;
-    }
-
     #user-tab {
         padding-top: .1rem;
     }
 
     .magic-margin {
-        margin-right: 6.42rem;
+        margin-right: 8rem;
     }
     
     @media (min-width: 1200px) {  
@@ -89,10 +87,11 @@
 
 #apps-menu {
     button:focus, a:focus {outline: none;}
-    padding: 1.1rem;
+    padding: 1rem;
     font-size: 0.8rem;
     box-shadow: 0 2px 10px rgba(0,0,0,.2);
     border-radius: 4px;
+    margin-top: 1.25rem;
 
     a {
         padding: 0.35rem 0.25rem;

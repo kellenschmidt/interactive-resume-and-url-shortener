@@ -4,10 +4,10 @@
         <div class="navbar-brand d-flex d-sm-none invisible">_</div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link waves-light" [satPopoverAnchorFor]="appsPopover" (click)="appsPopover.toggle()"><i class="fas fa-th text-white" data-fa-transform="grow-7"></i></a>
+                <a class="nav-link waves-light" id="apps-icon" [satPopoverAnchorFor]="appsPopover" (click)="appsPopover.toggle(); toggleMagicMargin()" [ngClass]="{'magic-margin': magicMargin && !showLogin}" mdbRippleRadius><i class="fas fa-th text-white" data-fa-transform="grow-7"></i></a>
 
                 <sat-popover #appsPopover hasBackdrop horizontalAlign="center" verticalAlign="below">
-                    <div id="apps-menu" class="row no-gutters text-center mx-0 arrow_box mt-4">
+                    <div id="apps-menu" class="row no-gutters text-center mx-0 arrow_box">
                         <a class="col-4" routerLink="/interactive-resume">
                             <img src="assets/favicons/favicon.ico">
                             Interactive Resume
