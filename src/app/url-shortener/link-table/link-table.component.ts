@@ -7,9 +7,9 @@ import { LinkData } from '../shared/link-data';
 import { TableHandlerService } from '../shared/table-handler.service';
 import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
-import { environment } from 'src/environments/environment';
 import { merge, fromEvent } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { UrlVariablesService } from '../../shared/env-var.service';
 
 @Component({
   selector: 'ks-link-table',
@@ -20,18 +20,19 @@ export class LinkTableComponent implements OnInit {
   displayedColumns = ['long_url', 'date_created', 'code', 'count'];
   tableDatabase = this.tableHandler;
   dataSource: ExampleDataSource | null;
-  siteUrl: string = environment.siteUrl;
+  siteUrl: string = this.urlVars.siteUrl;
   spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
-  projectsUrl = environment.analyticsUrl;
+  projectsUrl = this.urlVars.analyticsUrl;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public tableHandler: TableHandlerService,
-              private linkRepository: LinkRepositoryService,
-              private snackBar: MatSnackBar) { }
+    private linkRepository: LinkRepositoryService,
+    private snackBar: MatSnackBar,
+    private urlVars: UrlVariablesService) { }
 
   ngOnInit() {
     this.tableHandler.init();

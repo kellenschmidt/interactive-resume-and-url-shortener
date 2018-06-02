@@ -4,7 +4,7 @@ import { LinkData } from '../shared/link-data';
 import { MatSnackBar } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { TableHandlerService } from '../shared/table-handler.service';
-import { environment } from 'src/environments/environment';
+import { UrlVariablesService } from '../../shared/env-var.service';
 
 @Component({
   selector: 'ks-link-input',
@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LinkInputComponent implements OnInit {
 
-  siteUrl: string = environment.siteUrl;
+  siteUrl: string = this.urlVars.siteUrl;
   linkInputMode: boolean = true;
   titles: string[] = ["Shorten your links", "Your short URL"];
   title: string = this.titles[0];
@@ -91,8 +91,9 @@ export class LinkInputComponent implements OnInit {
   }
 
   constructor(private linkRepository: LinkRepositoryService,
-              private snackBar: MatSnackBar,
-              private tableHandler: TableHandlerService) { }
+    private snackBar: MatSnackBar,
+    private tableHandler: TableHandlerService,
+    private urlVars: UrlVariablesService) { }
 
   ngOnInit() {
     this.iOSDevice = navigator.userAgent.match(/iphone|ipad|ipod/i) !== null;

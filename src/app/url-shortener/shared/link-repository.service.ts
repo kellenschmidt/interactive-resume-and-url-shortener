@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LinkData, LinkDataResponse } from './link-data';
 import { AuthenticationData } from '../../user-authentication/shared/authentication-data';
-import { environment } from 'src/environments/environment';
 import { retry } from 'rxjs/operators';
+import { UrlVariablesService } from '../../shared/env-var.service';
 
 @Injectable()
 export class LinkRepositoryService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = this.urlVars.apiUrl;
 
   // Create new short URL
   addLink(longUrl: string): Observable<LinkData> {
@@ -59,6 +59,7 @@ export class LinkRepositoryService {
     }
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private urlVars: UrlVariablesService) { }
 
 }

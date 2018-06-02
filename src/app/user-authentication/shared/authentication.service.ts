@@ -5,13 +5,13 @@ import { LinkData } from '../../url-shortener/shared/link-data';
 import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
-import { environment } from 'src/environments/environment';
 import { retry } from 'rxjs/operators';
+import { UrlVariablesService } from '../../shared/env-var.service';
 
 @Injectable()
 export class AuthenticationService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = this.urlVars.apiUrl;
 
   currentUser: User = new User(undefined, "", "", undefined, "", undefined, undefined, false, false);
 
@@ -103,7 +103,8 @@ export class AuthenticationService {
   } // authenticateUser
 
   constructor(private http: HttpClient,
-              private tableHandler: TableHandlerService) {
+    private tableHandler: TableHandlerService,
+    private urlVars: UrlVariablesService) {
     this.authenticateHttp();
   }
 
