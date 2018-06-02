@@ -6,7 +6,7 @@ import { TableHandlerService } from '../../url-shortener/shared/table-handler.se
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
 import { retry } from 'rxjs/operators';
-import { UrlVariablesService } from '../../shared/env-var.service';
+import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Injectable()
 export class AuthenticationService {

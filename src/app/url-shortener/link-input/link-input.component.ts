@@ -4,7 +4,7 @@ import { LinkData } from '../shared/link-data';
 import { MatSnackBar } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { TableHandlerService } from '../shared/table-handler.service';
-import { UrlVariablesService } from '../../shared/env-var.service';
+import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Component({
   selector: 'ks-link-input',

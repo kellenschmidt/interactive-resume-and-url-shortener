@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { UrlVariablesService } from './shared/env-var.service';
+import { UrlVariablesService } from './shared/url-variables.service';
 
 @Component({
   selector: 'ks-php-redirect',

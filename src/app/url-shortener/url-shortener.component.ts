@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { UrlVariablesService } from '../shared/env-var.service';
+import { UrlVariablesService } from '../shared/url-variables.service';
 
 @Component({
   selector: 'ks-url-shortener',

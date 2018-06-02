@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { LinkData, LinkDataResponse } from './link-data';
 import { AuthenticationData } from '../../user-authentication/shared/authentication-data';
 import { retry } from 'rxjs/operators';
-import { UrlVariablesService } from '../../shared/env-var.service';
+import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Injectable()
 export class LinkRepositoryService {

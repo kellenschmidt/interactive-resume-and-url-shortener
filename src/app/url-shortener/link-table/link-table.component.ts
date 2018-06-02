@@ -9,7 +9,7 @@ import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { merge, fromEvent } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { UrlVariablesService } from '../../shared/env-var.service';
+import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Component({
   selector: 'ks-link-table',
