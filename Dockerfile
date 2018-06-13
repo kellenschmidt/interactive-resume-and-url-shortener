@@ -1,5 +1,5 @@
-# docker build -t kellenschmidt/kspw-angular .
-# docker run -p 80:80 -d kellenschmidt/kspw-angular
+# docker build -t kellenschmidt/interactive-resume-and-url-shortener .
+# docker run -p 80:80 -d kellenschmidt/interactive-resume-and-url-shortener
 
 FROM node:9 as builder
 RUN mkdir /angular
