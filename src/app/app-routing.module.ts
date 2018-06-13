@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 import { InteractiveResumeComponent } from './interactive-resume/interactive-resume.component';
-import { PhpRedirectComponent } from 'app/php-redirect.component';
 import { UrlShortenerComponent } from './url-shortener/url-shortener.component';
+import { PhpRedirectComponent } from 'src/app/php-redirect.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'interactive-resume', pathMatch: 'full' },

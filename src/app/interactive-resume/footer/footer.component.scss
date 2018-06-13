@@ -2,3 +2,20 @@
 footer {
   margin: 3rem -3rem -3rem -3rem;
 }
+
+.list-unstyled a {
+  color: white;
+}
+
+.copyright {
+  height: 50px;
+  line-height: 50px;
+  color: rgba(255,255,255,.6);
+  background-color: rgba(0,0,0,.2);
+  text-align: center;
+  font-size: .9rem;
+
+  a {
+    color: rgba(255,255,255,.6);
+  }
+}

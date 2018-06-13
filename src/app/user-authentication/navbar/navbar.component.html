@@ -1,45 +1,45 @@
 <div id="nav-wrapper" [style.backgroundColor]="color" [ngClass]="{'fixed-top': color==''}">
-    <mdb-navbar SideClass="navbar navbar-expand navbar-dark">
-        <logo>
-            <div class="logo navbar-brand d-none d-sm-flex">{{title}}</div>
-            <div class="logo navbar-brand d-flex d-sm-none invisible">_</div>
-        </logo>
-        <links class="ml-auto">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link waves-light no-transition" id="apps-icon" [mdbPopover]="appsPopover" placement="bottom" (click)="toggleMagicMargin()" [ngClass]="{'magic-margin': magicMargin && !showLogin}" mdbRippleRadius><i class="fa fa-th"></i></a>
-                </li>
-                <li class="nav-item ml-3" *ngIf="!getEmailOfUser() && showLogin">
-                    <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
-                </li>
-                <li class="nav-item" *ngIf="!getEmailOfUser() && showLogin">
-                    <a class="nav-link waves-light" (click)="form.show(); loginTab = false" mdbRippleRadius>Sign Up</a> 
-                </li>
-                <li class="nav-item dropdown ml-3" dropdown *ngIf="getEmailOfUser() && showLogin" id="user-tab">
-                    <a dropdownToggle mdbRippleRadius class="nav-link dropdown-toggle waves-light p-0" mdbRippleRadius>
-                        <span>{{getNameOfUser()}}</span><h2 class="d-inline-block mb-0"><i class="fa fa-user-circle ml-2"></i></h2>
-                    </a>
-                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbRippleRadius (click)="logout()">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </links>
-    </mdb-navbar>
-</div>
+    <nav class="navbar navbar-expand navbar-dark container">
+        <div class="navbar-brand d-none d-sm-flex">{{title}}</div>
+        <div class="navbar-brand d-flex d-sm-none invisible">_</div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link waves-light" id="apps-icon" [satPopoverAnchorFor]="appsPopover" (click)="appsPopover.toggle(); toggleMagicMargin()" [ngClass]="{'magic-margin': magicMargin && !showLogin}" mdbRippleRadius><i class="fas fa-th text-white" data-fa-transform="grow-7"></i></a>
 
-<ng-template #appsPopover>
-    <div id="apps-menu" class="row text-center mx-0" *ngIf="magicMargin">
-        <a class="col-4" routerLink="/interactive-resume">
-            <img src="assets/favicons/favicon.ico" class="mb-2">
-            Interactive Resume
-        </a>
-        <a class="col-4" routerLink="/url-shortener">
-            <img src="assets/us-favicons/favicon.ico" class="mb-2">
-            URL Shortener
-        </a>
-    </div>
-</ng-template>
+                <sat-popover #appsPopover hasBackdrop horizontalAlign="center" verticalAlign="below">
+                    <div id="apps-menu" class="row no-gutters text-center mx-0 arrow_box">
+                        <a class="col-4" routerLink="/interactive-resume">
+                            <img src="assets/favicons/favicon.ico">
+                            Interactive Resume
+                        </a>
+                        <a class="col-4" routerLink="/url-shortener">
+                            <img src="assets/us-favicons/favicon.ico">
+                            URL Shortener
+                        </a>
+                        <a class="col-4 invisible">
+                            <img src="assets/favicons/favicon.ico">
+                            TBD
+                        </a>
+                    </div>
+                </sat-popover>
+            </li>
+            <li class="nav-item ml-3" *ngIf="!getEmailOfUser() && showLogin">
+                <a class="nav-link waves-light" (click)="form.show(); loginTab = true" mdbRippleRadius>Login</a>
+            </li>
+            <li class="nav-item" *ngIf="!getEmailOfUser() && showLogin">
+                <a class="nav-link waves-light" (click)="form.show(); loginTab = false" mdbRippleRadius>Sign Up</a> 
+            </li>
+            <li class="nav-item dropdown ml-3" dropdown *ngIf="getEmailOfUser() && showLogin" id="user-tab">
+                <a dropdownToggle mdbRippleRadius class="nav-link dropdown-toggle waves-light p-0" mdbRippleRadius>
+                    <span>{{getNameOfUser()}}</span><h2 class="d-inline-block mb-0"><i class="fas fa-user-circle ml-2"></i></h2>
+                </a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbRippleRadius (click)="logout()">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>
 
 <div mdbModal #form="mdb-modal" class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
@@ -48,10 +48,10 @@
 
             <!--Header-->
             <div class="new-tabs">
-                <div class="modal-header primary-color white-text">
+                <div class="modal-header primary-color text-white">
                     <nav class="nav nav-tabs">
-                        <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': loginTab}" (click)="loginTab=true"><i class="fa fa-user mr-2"></i>Login</a>
-                        <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': !loginTab}" (click)="loginTab=false"><i class="fa fa-user-plus mr-2"></i>Sign Up</a>
+                        <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': loginTab}" (click)="loginTab=true"><i class="fas fa-user mr-2"></i>Login</a>
+                        <a class="nav-item nav-link waves-effect waves-light" [ngClass]="{'active': !loginTab}" (click)="loginTab=false"><i class="fas fa-user-plus mr-2"></i>Sign Up</a>
                     </nav>
                 </div>
             </div>

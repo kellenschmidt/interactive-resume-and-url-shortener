@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
-<ShortName>Kellen's URL Shortener</ShortName>
-<Description>Take long URLs and compress them into short links which are easy to share, tweet, and email!</Description>
-<Image width="64" height="64" type="image/x-icon">assets/us-favicons/favicon.ico</Image>
-<Url type="text/html" method="get" template="http://kellenschmidt.com/{searchTerms}"/>
-</OpenSearchDescription>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { environment } from 'environments/environment';
+import { UrlVariablesService } from '../shared/url-variables.service';
 
 @Component({
   selector: 'ks-url-shortener',
@@ -10,11 +10,12 @@ import { environment } from 'environments/environment';
 })
 export class UrlShortenerComponent implements OnInit {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = this.urlVars.apiUrl;
   public currentDate = new Date();
 
   constructor(private http: HttpClient,
-              private titleService: Title) { }
+    private titleService: Title,
+    private urlVars: UrlVariablesService) { }
 
   ngOnInit() {
     this.titleService.setTitle("URL Shortener  |  Kellen Schmidt");
@@ -24,7 +25,6 @@ export class UrlShortenerComponent implements OnInit {
       "site": document.domain,
       "referrer": document.referrer
     })
-    .retry(1)
     .subscribe(
       (responseBody) => {
         // Do nothing on success

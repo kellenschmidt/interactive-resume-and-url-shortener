@@ -7,7 +7,7 @@ import { RedirectComponent } from './redirect/redirect.component';
 
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../shared/angular-material.module';
-import { UserAuthenticationModule } from 'app/user-authentication/user-authentication.module';
+import { UserAuthenticationModule } from 'src/app/user-authentication/user-authentication.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlShortenerRoutingModule } from './url-shortener-routing.module';

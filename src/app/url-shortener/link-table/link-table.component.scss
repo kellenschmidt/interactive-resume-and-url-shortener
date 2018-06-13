@@ -17,7 +17,7 @@
     justify-content: space-between;
 }
 
-.mat-input-container {
+.mat-form-field {
     font-size: 14px;
     flex-grow: 1;
     // For margin modifications see @media below
@@ -50,25 +50,34 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
+    
+    a {
+        line-height: 3rem;
+    }
+}
+
+.mat-cell a, .mat-menu-item {
+    text-decoration: none;
 }
 
 .copy-btn, .menu-btn {
     border-radius: 1rem;
     transition: background-color .1s linear;
+    font-size: 1rem;
     
     &:hover {
-    background-color: #dddddd;
+        background-color: #dddddd;
     }
 }
 
 .copy-btn {
-    padding: .35rem .465rem;
-    line-height: 2rem;
+    padding: .30rem .59rem;
 }
 
 .menu-btn {
     visibility: hidden;
-    padding: .15rem .61rem 0rem .61rem;
+    padding: .35rem .82rem 0.20rem .83rem;
 }
 
 mat-row:hover {
@@ -78,20 +87,20 @@ mat-row:hover {
     }
 }
 
+.analytics-btn:hover {
+    color: inherit;
+}
+
 .mat-column-date_created,
 .mat-column-count {
     display: none;
 }
 
 .mat-column-long_url {
-    flex: 5;
-    padding-right: 1rem;
-}
-
-.mat-column-long_url {
     flex: 3.1;
     padding-right: 1rem;
 }
+
 .mat-column-code {
     flex: 1;
 }
@@ -100,7 +109,7 @@ mat-row:hover {
 
 /* Medium devices (large tablets, width: 768 and up) */
 @media (min-width: 768px) {
-    .mat-input-container {
+    .mat-form-field {
         margin-left: 24px;
         margin-right: 24px;
     }
@@ -126,7 +135,7 @@ mat-row:hover {
     
     .copy-btn { 
         visibility: hidden;
-        margin-left: .2rem;
+        margin-left: 0.5rem;
     }
     
     #date-column {

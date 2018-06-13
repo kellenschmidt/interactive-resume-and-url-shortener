@@ -1,38 +1,47 @@
 <!--Footer-->
-<footer class="page-footer rainbow-background center-on-small-only">
-  
-      <!--Footer Links-->
-      <div class="container">
-          <div class="row">
-  
-              <!--First column-->
-              <div class="col-md-6">
-                  <h5 class="title">It's been real</h5>
-                  <p>Thanks for visiting. Learn more about me and check out my work at these links!</p>
-              </div>
-              <!--/.First column-->
-  
-              <!--Second column-->
-              <div class="col-md-6">
-                  <h5 class="title">Links</h5>
-                  <ul>
-                    <li><a href="https://linkedin.com/in/kellens" target="_blank" rel="noopener">LinkedIn</a></li>
-                    <li><a href="https://github.com/kellenschmidt" target="_blank" rel="noopener">GitHub</a></li>
-                    <li><a routerLink="/url-shortener">URL Shortener</a></li>
-                    <li><a href="https://res.cloudinary.com/kellenscloud/image/upload/Kellen_Schmidt_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
-                  </ul>
-              </div>
-              <!--/.Second column-->
-          </div>
-      </div>
-      <!--/.Footer Links-->
-  
-      <!--Copyright-->
-      <div class="footer-copyright">
-          <div class="container-fluid">
-            © {{currentDate | date:'y'}} Copyright: <a routerLink="/">Kellen Schmidt</a>
-          </div>
-      </div>
-      <!--/.Copyright-->
-  </footer>
-  <!--/.Footer-->
+<footer class="rainbow-background text-white pt-4">
+
+    <!--Footer Links-->
+    <div class="container-fluid text-center text-md-left">
+        <div class="row">
+
+            <!--First column-->
+            <div class="col-md-6">
+                <h5 class="text-uppercase">It's been real</h5>
+                <p>Thanks for visiting. Learn more about me and check out my work at these links!</p>
+            </div>
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-6">
+                <h5 class="text-uppercase">Links</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://linkedin.com/in/kellens" target="_blank" rel="noopener">LinkedIn</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/kellenschmidt" target="_blank" rel="noopener">GitHub</a>
+                    </li>
+                    <li>
+                        <a routerLink="/url-shortener">URL Shortener</a>
+                    </li>
+                    <li>
+                        <a href="https://res.cloudinary.com/kellenscloud/image/upload/Kellen_Schmidt_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.Second column-->
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!--Copyright-->
+    <div class="text-center">
+        <div class="container-fluid copyright">
+                © {{currentDate | date:'y'}} Copyright:
+            <a routerLink="/">Kellen Schmidt</a>
+        </div>
+    </div>
+    <!--/.Copyright-->
+</footer>
+<!--/.Footer-->

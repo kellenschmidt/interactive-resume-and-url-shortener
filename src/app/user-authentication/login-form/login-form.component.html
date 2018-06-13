@@ -1,9 +1,9 @@
 <form (ngSubmit)="loginHttp()" [formGroup]="loginForm" novalidate>
     <div class="input-row mb-1">
-        <i class="fa fa-envelope prefix mr-2"></i>
-        <mat-input-container>
+        <i class="fas fa-envelope align-icon mr-2"></i>
+        <mat-form-field>
             <input matInput type="email" placeholder="Email" formControlName="email" maxlength="255">
-            <mat-error *ngIf="email.hasError('pattern')">
+            <mat-error *ngIf="email.hasError('email')">
                 Please enter a valid email address
             </mat-error>
             <mat-error *ngIf="email.hasError('required')">
@@ -12,12 +12,12 @@
             <mat-error *ngIf="email.hasError('noUserGivenEmail')">
                 No user with the given email
             </mat-error>
-        </mat-input-container>
+        </mat-form-field>
     </div>
     
     <div class="input-row mb-3">
-        <i class="fa fa-lock prefix mr-2"></i>
-        <mat-input-container>
+        <i class="fas fa-lock align-icon mr-2"></i>
+        <mat-form-field>
             <input matInput [type]="visible ? 'text' : 'password'" placeholder="Password" formControlName="password" maxlength="128">
             <mat-icon matSuffix (click)="toggleVisible()" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': visible, 'fa-eye-slash': !visible}"></i></mat-icon>
             <mat-error *ngIf="password.hasError('required')">
@@ -26,10 +26,10 @@
             <mat-error *ngIf="password.hasError('wrongPassword')">
                 Wrong password. Try again
             </mat-error>
-        </mat-input-container>
+        </mat-form-field>
     </div>
 
     <div class="text-center mt-2 mb-2">
-        <button class="btn btn-primary waves-light" type="submit" [disabled]="!loginForm.valid">Log in<i class="fa fa-sign-in ml-2"></i></button>
+        <button class="btn btn-primary waves-light" type="submit" [disabled]="!loginForm.valid">Log in<i class="fas fa-sign-in-alt ml-2"></i></button>
     </div>
 </form>

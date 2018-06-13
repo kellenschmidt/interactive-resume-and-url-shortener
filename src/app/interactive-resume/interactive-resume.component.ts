@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { environment } from 'environments/environment';
+import { UrlVariablesService } from '../shared/url-variables.service';
 
 @Component({
   selector: 'ks-interactive-resume',
@@ -10,12 +10,13 @@ import { environment } from 'environments/environment';
 })
 export class InteractiveResumeComponent implements OnInit {
 
-  private apiUrl: string = environment.apiUrl;
+  private apiUrl: string = this.urlVars.apiUrl;
   public currentDate: Date = new Date();
   public iOSSafari: boolean = false;
 
   constructor(private http: HttpClient,
-              private titleService: Title) { }
+    private titleService: Title,
+    private urlVars: UrlVariablesService) { }
 
   ngOnInit() {
     this.titleService.setTitle("Interactive Resume  |  Kellen Schmidt");
@@ -31,7 +32,6 @@ export class InteractiveResumeComponent implements OnInit {
       "site": document.domain,
       "referrer": document.referrer
     })
-    .retry(1)
     .subscribe(
       (responseBody) => {
         // Do nothing on success
