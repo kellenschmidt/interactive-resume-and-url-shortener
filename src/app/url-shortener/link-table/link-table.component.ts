@@ -1,18 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LinkData } from '../shared/link-data';
 import { TableHandlerService } from '../shared/table-handler.service';
 import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import { LinkRepositoryService } from '../shared/link-repository.service';
-import { environment } from 'environments/environment';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
+import { merge, fromEvent } from 'rxjs';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Component({
   selector: 'ks-link-table',
@@ -23,27 +20,29 @@ export class LinkTableComponent implements OnInit {
   displayedColumns = ['long_url', 'date_created', 'code', 'count'];
   tableDatabase = this.tableHandler;
   dataSource: ExampleDataSource | null;
-  siteUrl: string = environment.siteUrl;
+  siteUrl: string = this.urlVars.siteUrl;
   spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
+  projectsUrl = this.urlVars.analyticsUrl;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public tableHandler: TableHandlerService,
-              private linkRepository: LinkRepositoryService,
-              private snackBar: MatSnackBar) {}
+    private linkRepository: LinkRepositoryService,
+    private snackBar: MatSnackBar,
+    private urlVars: UrlVariablesService) { }
 
   ngOnInit() {
     this.tableHandler.init();
 
     this.dataSource = new ExampleDataSource(this.tableDatabase, this.sort, this.paginator);
 
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(150)
-      .distinctUntilChanged()
-      .subscribe(() => {
+    fromEvent(this.filter.nativeElement, 'keyup').pipe(
+      debounceTime(150),
+      distinctUntilChanged()
+    ).subscribe(() => {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
@@ -121,7 +120,7 @@ export class LinkTableComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
 
-    let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 2500 });
+    let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 3000 });
   }
 
   // Convert date from SQL format to Angular DatePipe compatible format
@@ -136,13 +135,6 @@ export class LinkTableComponent implements OnInit {
 
 }
 
-/**
- * Data source to provide what data should be rendered in the table. Note that the data source
- * can retrieve its data in any way. In this case, the data source is provided a reference
- * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
- * the underlying data. Instead, it only needs to take the data and send the table exactly what
- * should be rendered.
- */
 export class ExampleDataSource extends DataSource<any> {
   constructor(private _tableDatabase: TableHandlerService,
               private _sort: MatSort,
@@ -164,7 +156,7 @@ export class ExampleDataSource extends DataSource<any> {
       this._paginator.page,
     ];
 
-    return Observable.merge(...displayDataChanges).map(() => {
+    return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
       let data = this._tableDatabase.data.slice().filter((item: LinkData) => {
         let searchStr = (item.long_url + item.code).toLowerCase();
@@ -177,7 +169,7 @@ export class ExampleDataSource extends DataSource<any> {
       // Paginate data
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       return data.splice(startIndex, this._paginator.pageSize);
-    });
+    }));
   }
 
   disconnect() {}

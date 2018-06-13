@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TextMaskModule } from 'angular2-text-mask';
+import { SatPopoverModule } from '@ncstate/sat-popover';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule } from '@angular/router';
 
@@ -29,6 +30,7 @@ import { LinkRepositoryService } from '../url-shortener/shared/link-repository.s
     AngularMaterialModule,
     HttpClientModule,
     TextMaskModule,
+    SatPopoverModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forChild([]),
   ],

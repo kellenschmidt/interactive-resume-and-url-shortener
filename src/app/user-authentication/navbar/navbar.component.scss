@@ -1,4 +1,11 @@
 #nav-wrapper {
+    .navbar {
+        font-weight: 300;
+    }
+
+    #apps-icon {
+        vertical-align: middle;
+    }
 
     .no-transition {
         -moz-transition: none;
@@ -7,18 +14,12 @@
         transition: none;
     }
 
-    #apps-icon {
-        padding-top: .30rem;
-        padding-bottom: .30rem;
-        font-size: 1.4rem;
-    }
-
     #user-tab {
         padding-top: .1rem;
     }
 
     .magic-margin {
-        margin-right: 6.42rem;
+        margin-right: 8rem;
     }
     
     @media (min-width: 1200px) {  
@@ -27,8 +28,12 @@
         }
     }
 
-    .nav-link span {
-        vertical-align: super;
+    .nav-link {
+        color: white;
+        
+        span {
+            vertical-align: super;
+        }
     }
 
     // Hide down arrow
@@ -81,20 +86,57 @@
 }
 
 #apps-menu {
-    font-size: 0.73rem;
+    button:focus, a:focus {outline: none;}
+    padding: 1rem;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    border-radius: 4px;
+    margin-top: 1.25rem;
 
     a {
-        padding-top: 10px + 1px;
-        padding-bottom: 10px + 1px;
-        padding-left: .7rem;
-        padding-right: .7rem;
+        padding: 0.35rem 0.25rem;
+        border: 1px solid white;
         color: black;
+
+        img {
+            display: block;
+            margin: auto;
+            padding-bottom: 0.6rem;
+        }
 
         &:hover {
             border: 1px solid lightgray;
             border-radius: 2px;
-            padding-top: 10px + 0px;
-            padding-bottom: 10px + 0px;
+            text-decoration: none;
         }
     }
+}
+
+.arrow_box {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #cccccc;
+}
+.arrow_box:after, .arrow_box:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #ffffff;
+	border-width: 10px;
+	margin-left: -10px;
+}
+.arrow_box:before {
+	border-color: rgba(204, 204, 204, 0);
+	border-bottom-color: #cccccc;
+	border-width: 12px;
+	margin-left: -12px;
 }

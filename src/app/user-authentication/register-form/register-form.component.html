@@ -1,17 +1,17 @@
 <form (ngSubmit)="registerHttp()" [formGroup]="registerForm" novalidate>
     <div class="input-row mb-1">
-        <i class="fa fa-address-card prefix mr-2"></i>
-        <mat-input-container>
+        <i class="fas fa-address-card align-icon mr-2"></i>
+        <mat-form-field>
             <input matInput placeholder="Name" formControlName="name" maxlength="255">
             <mat-error *ngIf="name.hasError('required')">
                 Name is required
             </mat-error>
-        </mat-input-container>
+        </mat-form-field>
     </div>
 
     <div class="input-row mb-1">
-        <i class="fa fa-mobile prefix mr-2"></i>
-        <mat-input-container>
+        <i class="fas fa-mobile-alt align-icon mr-2"></i>
+        <mat-form-field>
             <input matInput type="tel" [textMask]="maskConfig" placeholder="Phone" formControlName="phone">
             <mat-error *ngIf="phone.hasError('required')">
                 Phone is required
@@ -19,28 +19,28 @@
             <mat-error *ngIf="phone.hasError('pattern')">
                 Please enter a valid phone number
             </mat-error>
-        </mat-input-container>
+        </mat-form-field>
     </div>
 
     <div class="input-row mb-1">
-        <i class="fa fa-envelope prefix mr-2"></i>
-        <mat-input-container>
+        <i class="fas fa-envelope align-icon mr-2"></i>
+        <mat-form-field>
             <input matInput type="email" placeholder="Email" formControlName="email" maxlength="255">
             <mat-error *ngIf="email.hasError('required')">
                 Email is required
             </mat-error>
-            <mat-error *ngIf="email.hasError('pattern')">
+            <mat-error *ngIf="email.hasError('email')">
                 Please enter a valid email address
             </mat-error>
             <mat-error *ngIf="email.hasError('emailAlreadyExists')">
                 Email already exists
             </mat-error>
-        </mat-input-container>
+        </mat-form-field>
     </div>
 
     <div class="input-row" id="password-input-row">
-        <i class="fa fa-lock prefix mr-2"></i>
-        <mat-input-container>
+        <i class="fas fa-lock align-icon mr-2"></i>
+        <mat-form-field>
             <input matInput [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" formControlName="password" maxlength="128">
             <mat-icon matSuffix (click)="toggleVisible(0)" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': passwordVisible, 'fa-eye-slash': !passwordVisible}"></i></mat-icon>
             <mat-hint align="start">Use at least 8 characters including letters, numbers, and symbols</mat-hint>
@@ -51,24 +51,24 @@
             <mat-error *ngIf="password.hasError('pattern')">
                 Please enter a valid password
             </mat-error>
-        </mat-input-container>
+        </mat-form-field>
     </div>
 
     <div class="input-row mb-3">
-        <i class="fa fa-lock prefix mr-2"></i>
-        <mat-input-container>
+        <i class="fas fa-lock align-icon mr-2"></i>
+        <mat-form-field>
             <input matInput [type]="confirmVisible ? 'text' : 'password'" placeholder="Confirm password" formControlName="passwordConfirm" maxlength="128">
-            <mat-icon matSuffix (click)="toggleVisible(1)" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': confirmVisible, 'fa-eye-slash': !confirmVisible}"></i></mat-icon>
+            <mat-icon matSuffix (click)="toggleVisible(1)" class="mr-2"><i [ngClass]="{'fas': true, 'fa-eye': confirmVisible, 'fa-eye-slash': !confirmVisible}"></i></mat-icon>
             <mat-error *ngIf="passwordConfirm.hasError('required')">
                 Confirm password is required
             </mat-error>
             <mat-error *ngIf="passwordConfirm.hasError('matchPassword')">
                 Passwords do not match
             </mat-error>
-        </mat-input-container>
+        </mat-form-field>
     </div>
 
     <div class="text-center mt-2">
-        <button class="btn btn-primary waves-light" type="submit" [disabled]="!registerForm.valid" mdbRippleRadius>Sign up<i class="fa fa-sign-in ml-2"></i></button>
+        <button class="btn btn-primary waves-light" type="submit" [disabled]="!registerForm.valid" mdbRippleRadius>Sign up<i class="fas fa-sign-in-alt ml-2"></i></button>
     </div>
 </form>

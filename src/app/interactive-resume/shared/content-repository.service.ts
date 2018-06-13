@@ -1,31 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { environment } from 'environments/environment';
+import { Observable } from 'rxjs';
+import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Injectable()
 export class ContentRepositoryService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = this.urlVars.apiUrl;
   
   // Get projects or work experience cards
   getCards(cardType: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/cards/${cardType}`)
-    .retry(1)
   }
 
   // Create new short URL
   getChips(): Observable<any> {
     return this.http.get(`${this.apiUrl}/chips`)
-    .retry(1)
   }
 
   getCourses(): Observable<any> {
     return this.http.get(`${this.apiUrl}/courses`)
-    .retry(1)
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private urlVars: UrlVariablesService) {
   }
 
 }

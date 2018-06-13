@@ -1,9 +1,9 @@
 <div class="table-container mat-elevation-z3 container p-0">
 
   <div class="table-header">
-    <mat-input-container>
+    <mat-form-field>
       <input matInput #filter placeholder="Filter by long URL or short URL code">
-    </mat-input-container>
+    </mat-form-field>
   </div>
 
   <mat-table #table [dataSource]="dataSource" matSort>
@@ -26,7 +26,7 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">{{siteUrlWithoutHttp(siteUrl)}}/</span>{{row.code}}</a>
-        <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" matTooltip="Copy short URL"><i class="fa fa-clone"></i></a>
+        <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" matTooltip="Copy short URL"><i class="far fa-copy"></i></a>
       </mat-cell>
     </ng-container>
 
@@ -35,10 +35,10 @@
       <mat-cell *matCellDef="let row" class="justify-content-between">
         {{row.count}}
         <a mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn">
-          <i class="fa fa-ellipsis-v"></i>
+          <i class="fas fa-ellipsis-v"></i>
         </a>
         <mat-menu #menu="matMenu">
-          <a mat-menu-item class="analytics-btn" href="http://dabooty.com">
+          <a mat-menu-item class="analytics-btn" [href]="projectsUrl + '/url/' + row.code">
             <span>Analytics Data</span>
           </a>
           <button mat-menu-item (click)="hideLink(row.code)">
@@ -70,10 +70,9 @@
     <p class="px-4">You haven't created any links yet. Try creating a new link above.</p>
   </div>
 
-  <mat-paginator #paginator
-                [length]="tableDatabase.data.length"
-                [pageSize]="7"
-                [pageSizeOptions]="[5, 10, 25, 100]"
-                [showFirstLastButtons]="true">
+  <mat-paginator [length]="tableDatabase.data.length"
+                 [pageSize]="7"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 [showFirstLastButtons]="true">
   </mat-paginator>
 </div>

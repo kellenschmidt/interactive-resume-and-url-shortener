@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   @Input() color: string;
   @Input() showLogin: boolean;
   loginTab: boolean = false;
-  magicMargin: boolean = false
+  magicMargin: boolean = false;
 
   // Logout of current account and reset values
   logout() {

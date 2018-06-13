@@ -4,7 +4,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'ks-redirect',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Card } from '../shared/types';
 import { ContentRepositoryService } from '../shared/content-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'environments/environment';
+import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Component({
   selector: 'ks-projects',
@@ -14,8 +14,9 @@ export class ProjectsComponent implements OnInit {
   public projects: Card[];
   public projectsUrl: String;
 
-  constructor(private contentRepository: ContentRepositoryService) {
-    this.projectsUrl = environment.projectsUrl;
+  constructor(private contentRepository: ContentRepositoryService,
+    private urlVars: UrlVariablesService) {
+    this.projectsUrl = this.urlVars.projectsUrl;
   }
 
   ngOnInit() {
