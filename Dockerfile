@@ -1,5 +1,5 @@
 # docker build -t kellenschmidt/interactive-resume-and-url-shortener .
-# OR (to include custom build number)
+# OR (to include custom app version)
 # docker build --build-arg APP_VERSION=v1 -t kellenschmidt/interactive-resume-and-url-shortener .
 # docker run -p 80:80 -d kellenschmidt/interactive-resume-and-url-shortener
 

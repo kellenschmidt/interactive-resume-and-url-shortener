@@ -1,6 +1,10 @@
 #nav-wrapper {
     .navbar {
         font-weight: 300;
+
+        .nav-link {
+            color: white;
+        }
     }
 
     #apps-icon {
@@ -15,7 +19,12 @@
     }
 
     #user-tab {
-        padding-top: .1rem;
+        padding-top: .05rem;
+        color: white;
+
+        span {
+            vertical-align: super;
+        }
     }
 
     .magic-margin {
@@ -27,20 +36,6 @@
             margin-right: 0rem;
         }
     }
-
-    .nav-link {
-        color: white;
-        
-        span {
-            vertical-align: super;
-        }
-    }
-
-    // Hide down arrow
-    .dropdown-toggle::after {
-        display: none;
-    }
-
 }
 
 #loginRegisterModal {
