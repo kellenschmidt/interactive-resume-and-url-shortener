@@ -13,7 +13,7 @@ COPY package-lock.json ./package-lock.json
 RUN npm install --silent
 COPY . .
 RUN mv ./src/kellen-mdb-free.scss ./node_modules/angular-bootstrap-md/scss
-RUN npm run version -- APP_VERSION
+RUN npm run version -- $APP_VERSION
 RUN ng build --prod --no-progress
 
 FROM httpd:2.4-alpine
