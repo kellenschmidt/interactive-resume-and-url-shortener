@@ -17,7 +17,7 @@ jobs:
           - v1-dependencies-{{ checksum "package-lock.json" }}
           - v1-dependencies-
 
-      - run: 
+      - run:
           name: Install dependencies
           command: npm install
 
@@ -79,6 +79,9 @@ workflows:
     jobs:
       - build:
           context: kellenforthewin
+          filters:
+            branches:
+              only: dev
       - deploy-kellenforthewin:
           requires:
             - build
