@@ -1,6 +1,6 @@
 {
-  "name": "personal-website",
-  "version": "0.0.0",
+  "name": "interactive-resume-and-url-shortener",
+  "version": "1.0.0",
   "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "version": "sh version.sh $npm_package_version"
   },
   "private": true,
   "dependencies": {
