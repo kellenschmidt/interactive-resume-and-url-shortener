@@ -9,17 +9,19 @@
                 <sat-popover #appsPopover hasBackdrop horizontalAlign="center" verticalAlign="below">
                     <div id="apps-menu" class="row no-gutters text-center mx-0 arrow_box">
                         <a class="col-4" routerLink="/interactive-resume">
-                            <img src="assets/favicons/favicon.ico">
-                            Interactive Resume
+                            <img src="assets/ir-favicons/favicon.ico">Interactive Resume
                         </a>
                         <a class="col-4" routerLink="/url-shortener">
-                            <img src="assets/us-favicons/favicon.ico">
-                            URL Shortener
+                            <img src="assets/us-favicons/favicon.ico">URL Shortener
                         </a>
-                        <a class="col-4 invisible">
-                            <img src="assets/favicons/favicon.ico">
+                        <a class="col-4" [href]="dqcUrl">
+                            <img src="assets/dqc-favicons/favicon.ico">Data Quality Checker
+                        </a>
+                        <!-- Data by Agni from the Noun Project -->
+                        <!-- <a class="col-4 invisible">
+                            <img src="assets/ir-favicons/favicon.ico">
                             Spacing
-                        </a>
+                        </a> -->
                     </div>
                 </sat-popover>
             </li>

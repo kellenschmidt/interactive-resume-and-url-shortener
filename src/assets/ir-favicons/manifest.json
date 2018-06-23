@@ -2,12 +2,12 @@
     "name": "",
     "icons": [
         {
-            "src": "assets/favicons/android-chrome-192x192.png?v=47rLa7jpdq",
+            "src": "assets/ir-favicons/android-chrome-192x192.png?v=47rLa7jpdq",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "assets/favicons/android-chrome-512x512.png?v=47rLa7jpdq",
+            "src": "assets/ir-favicons/android-chrome-512x512.png?v=47rLa7jpdq",
             "sizes": "512x512",
             "type": "image/png"
         }

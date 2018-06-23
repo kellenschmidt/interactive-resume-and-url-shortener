@@ -89,9 +89,12 @@
     margin-top: 1.25rem;
 
     a {
-        padding: 0.35rem 0.25rem;
+        $space-bt-tiles: 8px;
+        padding: 0.35rem $space-bt-tiles;
         border: 1px solid white;
         color: black;
+        max-width: 83px + 2 * $space-bt-tiles;
+        // margin: 0 2px;
 
         img {
             display: block;

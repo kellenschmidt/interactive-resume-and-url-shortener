@@ -27,6 +27,7 @@ export class UrlVariablesService {
         phpLinkShortenerUrl: `${url}/urlshortenerphp`,
         projectsUrl: `${url}/projects`,
         analyticsUrl: `${url}/analytics`,
+        dqcUrl: `${url}/data-quality-checker`,
       }
     }
   }
@@ -46,6 +47,9 @@ export class UrlVariablesService {
   get analyticsUrl(): string {
     return this.urls.analyticsUrl;
   }
+  get dqcUrl(): string {
+    return this.urls.dqcUrl;
+  }
 
   getSiteFromUrl(): string {
     const url = window.location.href;
@@ -61,10 +65,11 @@ export class UrlVariablesService {
 
 const serve: UrlEnvironment = {
   siteUrl: "http://localhost:4200",
-  apiUrl: "https://api.kellenschmidt.com",
+  apiUrl: "https://kellenschmidt.com/api/v1",
   phpLinkShortenerUrl: "https://kellenschmidt.com/urlshortenerphp",
   projectsUrl: "https://kellenschmidt.com/projects",
   analyticsUrl: "https://kellenschmidt.com/analytics",
+  dqcUrl: "https://kellenschmidt.com/data-quality-checker",
 };
 
 const dev: UrlEnvironment = {
@@ -73,6 +78,7 @@ const dev: UrlEnvironment = {
   phpLinkShortenerUrl: "http://kspw/urlshortenerphp",
   projectsUrl: "http://kspw/projects",
   analyticsUrl: "http://kspw/analytics",
+  dqcUrl: "http://kspw/data-quality-checker",
 };
 
 const test2: UrlEnvironment = {
@@ -81,6 +87,7 @@ const test2: UrlEnvironment = {
   phpLinkShortenerUrl: "https://test.kellenforthe.win/urlshortenerphp",
   projectsUrl: "https://test.kellenforthe.win/projects",
   analyticsUrl: "https://test.kellenforthe.win/analytics",
+  dqcUrl: "https://test.kellenforthe.win/data-quality-checker",
 };
 
 const test: UrlEnvironment = {
@@ -89,6 +96,7 @@ const test: UrlEnvironment = {
   phpLinkShortenerUrl: "https://test.kellenschmidt.com/urlshortenerphp",
   projectsUrl: "https://test.kellenschmidt.com/projects",
   analyticsUrl: "https://test.kellenschmidt.com/analytics",
+  dqcUrl: "https://test.kellenschmidt.com/data-quality-checker",
 };
 
 const prod2: UrlEnvironment = {
@@ -97,6 +105,7 @@ const prod2: UrlEnvironment = {
   phpLinkShortenerUrl: "https://kellenforthe.win/urlshortenerphp",
   projectsUrl: "https://kellenforthe.win/projects",
   analyticsUrl: "https://kellenforthe.win/analytics",
+  dqcUrl: "https://kellenforthe.win/data-quality-checker",
 };
 
 const prod: UrlEnvironment = {
@@ -105,6 +114,7 @@ const prod: UrlEnvironment = {
   phpLinkShortenerUrl: "https://kellenschmidt.com/urlshortenerphp",
   projectsUrl: "https://kellenschmidt.com/projects",
   analyticsUrl: "https://kellenschmidt.com/analytics",
+  dqcUrl: "https://kellenschmidt.com/data-quality-checker",
 };
 
 interface UrlEnvironment {
@@ -113,4 +123,5 @@ interface UrlEnvironment {
   phpLinkShortenerUrl: string,
   projectsUrl: string,
   analyticsUrl: string,
+  dqcUrl: string,
 }
