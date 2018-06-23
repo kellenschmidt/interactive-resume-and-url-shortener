@@ -94,12 +94,12 @@
         border: 1px solid white;
         color: black;
         max-width: 83px + 2 * $space-bt-tiles;
-        // margin: 0 2px;
 
         img {
             display: block;
+            height: 4rem;
             margin: auto;
-            padding-bottom: 0.6rem;
+            padding-bottom: 0.5rem;
         }
 
         &:hover {
