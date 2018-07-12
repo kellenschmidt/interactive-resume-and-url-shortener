@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 import { UserAuthenticationModule } from 'src/app/user-authentication/user-authentication.module';
 import { InteractiveResumeRoutingModule } from './interactive-resume-routing.module';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { ContentRepositoryService } from './shared/content-repository.service';
@@ -37,6 +38,7 @@ import { ContentRepositoryService } from './shared/content-repository.service';
     AngularMaterialModule,
     UserAuthenticationModule,
     InteractiveResumeRoutingModule,
+    ScrollToModule.forRoot(),
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

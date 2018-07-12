@@ -6,9 +6,14 @@
     <ks-navbar title="Kellen's Interactive Resume" [showLogin]="false"></ks-navbar>
   </div>
   <ks-title-page></ks-title-page>
+  <div id="title-scroll-down" class="text-center w-100">
+    <div class="h2 mb-0">
+      <button (click)="triggerScrollTo()"><span class="fas fa-chevron-down"></span></button>
+    </div>
+  </div>
 
   <main class="container px-5 py-5 z-depth-5">
-    <ks-about-me></ks-about-me>
+    <ks-about-me id="about-me"></ks-about-me>
     <ks-education></ks-education>
     <ks-projects></ks-projects>
     <ks-work-experience></ks-work-experience>

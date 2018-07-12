@@ -11,6 +11,22 @@
   width: 100%;
 }
 
+/*  Down scroll arrow  */
+#title-scroll-down {
+  animation: bouncing 1.3s infinite ease-in-out;
+  position: fixed;
+  opacity: 0.75;
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 0;
+    line-height: 0px;
+  }
+}
+
 main {
   background-color: #F7F7F7;
+  position: inherit;
 }

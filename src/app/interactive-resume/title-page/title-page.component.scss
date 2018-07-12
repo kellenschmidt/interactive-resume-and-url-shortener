@@ -1,20 +1,11 @@
-// "Hey I'm Kellen Schmidt"
 #name {
   font-size: 13vmin;
   font-weight: 500;
 }
 
-// "Front-end web developer extraordinaire"
 #description {
   font-size: 7vmin;
   font-weight: 400;
-}
-
-/*  Down scroll arrow  */
-#title-scroll-down {
-  animation: bouncing 1.3s infinite ease-in-out;
-  position: fixed;
-  opacity: 0.75;
 }
 
 /* Small devices (landscape phones, width: 576px and up) */
