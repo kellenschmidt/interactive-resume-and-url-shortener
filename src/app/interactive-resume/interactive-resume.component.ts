@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { UrlVariablesService } from '../shared/url-variables.service';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
   selector: 'ks-interactive-resume',
@@ -16,7 +17,8 @@ export class InteractiveResumeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private titleService: Title,
-    private urlVars: UrlVariablesService) { }
+    private urlVars: UrlVariablesService,
+    private scrollToService: ScrollToService) { }
 
   ngOnInit() {
     this.titleService.setTitle("Interactive Resume  |  Kellen Schmidt");
@@ -47,4 +49,15 @@ export class InteractiveResumeComponent implements OnInit {
       } // error
     ) // http subscribe
   } // http post
+
+  public triggerScrollTo() {
+    const config: ScrollToConfigOptions = {
+      target: 'about-me',
+      duration: 750,
+      easing: 'easeInOutQuad',
+      offset: -100,
+    };
+
+    this.scrollToService.scrollTo(config);
+  }
 }

@@ -9,17 +9,17 @@
                 <sat-popover #appsPopover hasBackdrop horizontalAlign="center" verticalAlign="below">
                     <div id="apps-menu" class="row no-gutters text-center mx-0 arrow_box">
                         <a class="col-4" routerLink="/interactive-resume">
-                            <img src="assets/favicons/favicon.ico">
-                            Interactive Resume
+                            <img src="assets/ir-favicons/android-chrome-192x192.png">Interactive Resume
                         </a>
                         <a class="col-4" routerLink="/url-shortener">
-                            <img src="assets/us-favicons/favicon.ico">
-                            URL Shortener
+                            <img src="assets/us-favicons/android-chrome-192x192.png">URL Shortener
                         </a>
-                        <a class="col-4 invisible">
-                            <img src="assets/favicons/favicon.ico">
-                            TBD
+                        <a class="col-4" [href]="dqcUrl">
+                            <img src="assets/dqc-favicons/android-chrome-192x192.png" title="Approve by Kirill Ulitin from the Noun Project">Data Quality Checker
                         </a>
+                        <!-- <a class="col-4 invisible">
+                            <img src="assets/us-favicons/android-chrome-192x192.png">Spacing
+                        </a> -->
                     </div>
                 </sat-popover>
             </li>
@@ -29,13 +29,18 @@
             <li class="nav-item" *ngIf="!getEmailOfUser() && showLogin">
                 <a class="nav-link waves-light" (click)="form.show(); loginTab = false" mdbRippleRadius>Sign Up</a> 
             </li>
-            <li class="nav-item dropdown ml-3" dropdown *ngIf="getEmailOfUser() && showLogin" id="user-tab">
-                <a dropdownToggle mdbRippleRadius class="nav-link dropdown-toggle waves-light p-0" mdbRippleRadius>
-                    <span>{{getNameOfUser()}}</span><h2 class="d-inline-block mb-0"><i class="fas fa-user-circle ml-2"></i></h2>
+            <li class="nav-item dropdown ml-4" dropdown *ngIf="getEmailOfUser() && showLogin" id="user-tab">
+                <a mat-icon-button [matMenuTriggerFor]="menu">
+                    <span>{{getNameOfUser()}}</span>
+                    <h2 class="d-inline-block mb-0">
+                        <i class="fas fa-user-circle ml-2"></i>
+                    </h2>
                 </a>
-                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                    <a class="dropdown-item waves-light" mdbRippleRadius (click)="logout()">Logout</a>
-                </div>
+                <mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false" class="mt-2">
+                    <button mat-menu-item (click)="logout()">
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
             </li>
         </ul>
     </nav>

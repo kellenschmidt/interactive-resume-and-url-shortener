@@ -18,7 +18,7 @@ https://kellenschmidt.com/url
 
 ## Technologies used
 
-- Angular 5 for the front-end
+- Angular 6 for the front-end
   - Bootstrap 4 https://getbootstrap.com
   - MDBootstrap for Angular https://mdbootstrap.com/angular
   - Material Angular https://material.angular.io
@@ -30,8 +30,8 @@ https://kellenschmidt.com/url
 1. Download all of the files from GitHub
 
     ```Shell
-    git clone https://github.com/kellenschmidt/kellenschmidt.com.git
-    cd kellenschmidt.com/
+    git clone https://github.com/kellenschmidt/interactive-resume-and-url-shortener.git
+    cd interactive-resume-and-url-shortener/
     ```
 2. Install dependencies
 

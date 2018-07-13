@@ -1,6 +1,10 @@
 #nav-wrapper {
     .navbar {
         font-weight: 300;
+
+        .nav-link {
+            color: white;
+        }
     }
 
     #apps-icon {
@@ -15,11 +19,16 @@
     }
 
     #user-tab {
-        padding-top: .1rem;
+        padding-top: .05rem;
+        color: white;
+
+        span {
+            vertical-align: super;
+        }
     }
 
     .magic-margin {
-        margin-right: 8rem;
+        margin-right: 8.25rem;
     }
     
     @media (min-width: 1200px) {  
@@ -27,20 +36,6 @@
             margin-right: 0rem;
         }
     }
-
-    .nav-link {
-        color: white;
-        
-        span {
-            vertical-align: super;
-        }
-    }
-
-    // Hide down arrow
-    .dropdown-toggle::after {
-        display: none;
-    }
-
 }
 
 #loginRegisterModal {
@@ -94,14 +89,17 @@
     margin-top: 1.25rem;
 
     a {
-        padding: 0.35rem 0.25rem;
+        $space-bt-tiles: 8px;
+        padding: 0.35rem $space-bt-tiles;
         border: 1px solid white;
         color: black;
+        max-width: 83px + 2 * $space-bt-tiles;
 
         img {
             display: block;
+            height: 4rem;
             margin: auto;
-            padding-bottom: 0.6rem;
+            padding-bottom: 0.5rem;
         }
 
         &:hover {

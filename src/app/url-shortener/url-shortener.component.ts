@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { UrlVariablesService } from '../shared/url-variables.service';
+import { appVersion } from 'src/environments/app-version';
 
 @Component({
   selector: 'ks-url-shortener',
@@ -12,6 +13,7 @@ export class UrlShortenerComponent implements OnInit {
 
   private apiUrl = this.urlVars.apiUrl;
   public currentDate = new Date();
+  public appVersion = appVersion;
 
   constructor(private http: HttpClient,
     private titleService: Title,

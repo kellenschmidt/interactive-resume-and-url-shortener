@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { appVersion } from 'src/environments/app-version';
 
 @Component({
   selector: 'ks-footer',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   public currentDate = new Date();
+  public appVersion = appVersion;
 
   constructor() { }
 

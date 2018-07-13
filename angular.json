@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "personal-website": {
+    "interactive-resume-and-url-shortener": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -36,7 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/personal-website",
+            "outputPath": "dist/interactive-resume-and-url-shortener",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -78,18 +78,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "personal-website:build"
+            "browserTarget": "interactive-resume-and-url-shortener:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "personal-website:build:production"
+              "browserTarget": "interactive-resume-and-url-shortener:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "personal-website:build"
+            "browserTarget": "interactive-resume-and-url-shortener:build"
           }
         },
         "test": {
@@ -127,5 +127,5 @@
       }
     }
   },
-  "defaultProject": "personal-website"
+  "defaultProject": "interactive-resume-and-url-shortener"
 }

@@ -7,7 +7,7 @@
 
             <!--First column-->
             <div class="col-md-6">
-                <h5 class="text-uppercase">It's been real</h5>
+                <h5 class="text-uppercase">Its been real</h5>
                 <p>Thanks for visiting. Learn more about me and check out my work at these links!</p>
             </div>
             <!--/.First column-->
@@ -38,8 +38,10 @@
     <!--Copyright-->
     <div class="text-center">
         <div class="container-fluid copyright">
-                © {{currentDate | date:'y'}} Copyright:
+            © {{currentDate | date:'y'}} Copyright:
             <a routerLink="/">Kellen Schmidt</a>
+            <span class="mx-2">|</span>Version:
+            <a href="https://hub.docker.com/r/kellenschmidt/interactive-resume-and-url-shortener/tags/" target="_blank" rel="noopener"> {{appVersion}}</a>
         </div>
     </div>
     <!--/.Copyright-->
