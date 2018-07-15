@@ -7,6 +7,7 @@ import { User } from './user';
 import { AuthenticationData } from './authentication-data';
 import { retry } from 'rxjs/operators';
 import { UrlVariablesService } from '../../shared/url-variables.service';
+import { faCopy } from '@fortawesome/fontawesome-free-regular';
 
 @Injectable()
 export class AuthenticationService {
@@ -53,12 +54,12 @@ export class AuthenticationService {
     // Remove authentication from local storage
     localStorage.removeItem('auth');
     
-    this.refreshTable();
+    this.refreshTable(false);
   }
 
-  refreshTable() {
+  refreshTable(useAuth: boolean) {
     // Resend http request to refresh links in table
-    this.tableHandler.getLinks();
+    this.tableHandler.getLinks(useAuth);
   }
 
   // Get JWT or return falsey if jwt doesn't exist

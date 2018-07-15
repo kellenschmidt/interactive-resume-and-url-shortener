@@ -21,12 +21,12 @@ export class TableHandlerService {
     // Turn loading spinner on
     this.tableLoaded = false;
     // Load database with links from http request
-    this.getLinks();
+    this.getLinks(true);
   }
 
   // Get URLs and set equal to array for use in table
-  getLinks() {
-    this.linkRepository.getLinks().subscribe(
+  getLinks(useAuth: boolean) {
+    this.linkRepository.getLinks(useAuth).subscribe(
       (responseBody) => {
         // Set table equal to response from GET request
         this.table.next(responseBody.data);
@@ -53,7 +53,7 @@ export class TableHandlerService {
         }
 
         // Refresh table with default links
-        this.getLinks();
+        this.getLinks(false);
         
       } // error
     ) // http subscribe

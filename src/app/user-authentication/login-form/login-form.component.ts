@@ -30,7 +30,7 @@ export class LoginFormComponent implements OnInit {
         // Set values for new user using http response values
         this.authentication.currentUser.initializeUser(responseBody.user);
 
-        this.authentication.refreshTable();
+        this.authentication.refreshTable(true);
 
         // Emit event to tell parent component to close modal
         this.onLogin.emit(true);

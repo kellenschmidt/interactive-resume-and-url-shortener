@@ -34,11 +34,14 @@ export class LinkRepositoryService {
   }
 
   // Get all short URLs
-  getLinks(): Observable<LinkDataResponse> {
-    return this.http.get<LinkDataResponse>(`${this.apiUrl}/urls`,
-    {
-      headers: new HttpHeaders().set('Authorization', this.getJwt()),
-    })
+  getLinks(useAuth: boolean): Observable<LinkDataResponse> {
+    let headers = {};
+    if (useAuth) {
+      headers = {
+        headers: new HttpHeaders().set('Authorization', this.getJwt()),
+      };
+    }
+    return this.http.get<LinkDataResponse>(`${this.apiUrl}/urls`, headers);
   }
 
   // Get long URL and increment click count
