@@ -23,7 +23,7 @@ export class LinkTableComponent implements OnInit {
   siteUrl: string = this.urlVars.siteUrl;
   spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
-  projectsUrl = this.urlVars.analyticsUrl;
+  analyticsUrl = this.urlVars.analyticsUrl;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
