@@ -3,7 +3,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MyValidators } from '../shared/my-validators';
 import { AuthenticationService } from '../shared/authentication.service';
-import { User } from '../shared/user';
 
 @Component({
   selector: 'ks-register-form',

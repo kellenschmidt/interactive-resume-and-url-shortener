@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs';
 import { LinkData } from '../shared/link-data';
 import { LinkRepositoryService } from '../shared/link-repository.service';
+import { AuthenticationService } from '../../user-authentication/shared/authentication.service';
 
 @Injectable()
 export class TableHandlerService {
@@ -15,20 +16,24 @@ export class TableHandlerService {
   tableAuthError: boolean = false;
 
   constructor(private linkRepository: LinkRepositoryService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private authentication: AuthenticationService) { }
 
   init() {
-    // Turn loading spinner on
-    this.tableLoaded = false;
     // Load database with links from http request
-    this.getLinks(true);
+    this.getLinks();
   }
 
   // Get URLs and set equal to array for use in table
-  getLinks(useAuth: boolean) {
-    this.linkRepository.getLinks(useAuth).subscribe(
+  getLinks() {
+    // Turn loading spinner on
+    this.tableLoaded = false;
+
+    this.linkRepository.getLinks().subscribe(
       (responseBody) => {
         // Set table equal to response from GET request
+        console.log("Setting new table data to: ");
+        console.log(responseBody.data);
         this.table.next(responseBody.data);
 
         // Set tableLoaded (remove loading spinner) and tableAuthError (remove placeholder)
@@ -42,7 +47,7 @@ export class TableHandlerService {
 
         // If request returns an error because unauthenticated
         if(err.error['error'] !== undefined) {
-          let snackBarRef = this.snackBar.open('Authentication error, re-login and try again.', "", { duration: 4000 });
+          this.snackBar.open('Authentication error, re-login and try again.', "", { duration: 4000 });
         }
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
@@ -53,8 +58,8 @@ export class TableHandlerService {
         }
 
         // Refresh table with default links
-        this.getLinks(false);
-        
+        this.authentication.logout();
+        this.getLinks();
       } // error
     ) // http subscribe
   }
@@ -74,7 +79,6 @@ export class TableHandlerService {
     // Add new row to table
     copiedData.splice(index, 0, newRow);
     this.table.next(copiedData);
-    
   }
 
   // Remove link from the database with the given code

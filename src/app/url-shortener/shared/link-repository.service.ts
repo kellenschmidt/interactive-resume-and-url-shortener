@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LinkData, LinkDataResponse } from './link-data';
 import { AuthenticationData } from '../../user-authentication/shared/authentication-data';
-import { retry } from 'rxjs/operators';
 import { UrlVariablesService } from '../../shared/url-variables.service';
 
 @Injectable()
@@ -34,13 +33,15 @@ export class LinkRepositoryService {
   }
 
   // Get all short URLs
-  getLinks(useAuth: boolean): Observable<LinkDataResponse> {
+  getLinks(): Observable<LinkDataResponse> {
     let headers = {};
-    if (useAuth) {
+    let jwt = this.getJwt();
+    if (jwt) {
       headers = {
-        headers: new HttpHeaders().set('Authorization', this.getJwt()),
+        headers: new HttpHeaders().set('Authorization', jwt),
       };
     }
+
     return this.http.get<LinkDataResponse>(`${this.apiUrl}/urls`, headers);
   }
 

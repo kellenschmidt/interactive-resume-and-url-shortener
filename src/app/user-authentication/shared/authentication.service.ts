@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LinkData } from '../../url-shortener/shared/link-data';
 import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
-import { retry } from 'rxjs/operators';
 import { UrlVariablesService } from '../../shared/url-variables.service';
-import { faCopy } from '@fortawesome/fontawesome-free-regular';
 
 @Injectable()
 export class AuthenticationService {
@@ -53,13 +50,6 @@ export class AuthenticationService {
 
     // Remove authentication from local storage
     localStorage.removeItem('auth');
-    
-    this.refreshTable(false);
-  }
-
-  refreshTable(useAuth: boolean) {
-    // Resend http request to refresh links in table
-    this.tableHandler.getLinks(useAuth);
   }
 
   // Get JWT or return falsey if jwt doesn't exist
@@ -104,7 +94,6 @@ export class AuthenticationService {
   } // authenticateUser
 
   constructor(private http: HttpClient,
-    private tableHandler: TableHandlerService,
     private urlVars: UrlVariablesService) {
     this.authenticateHttp();
   }
