@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from '../../user-authentication/shared/authentication.service';
 import { UrlVariablesService } from '../../shared/url-variables.service';
+import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 
 @Component({
   selector: 'ks-navbar',
@@ -17,9 +17,13 @@ export class NavbarComponent implements OnInit {
   magicMargin: boolean = false;
   dqcUrl: string = this.urlVars.dqcUrl;
 
-  // Logout of current account and reset values
+  login() {
+    this.tableHandler.getLinks();
+  }
+
   logout() {
     this.authentication.logout();
+    this.tableHandler.getLinks();
   }
 
   toggleMagicMargin() {
@@ -35,7 +39,8 @@ export class NavbarComponent implements OnInit {
   }
 
   constructor(private authentication: AuthenticationService,
-    private urlVars: UrlVariablesService) { }
+    private urlVars: UrlVariablesService,
+    private tableHandler: TableHandlerService) { }
 
   ngOnInit() {
   }

@@ -7,68 +7,64 @@
   </div>
 
   <mat-table #table [dataSource]="dataSource" matSort>
-    <ng-container *ngIf="tableHandler.tableLoaded">
-      <ng-container matColumnDef="long_url">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Long URL</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="long-url">
-          <a href="{{row.long_url}}" target="_blank" rel="noopener">{{row.long_url}}</a>
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="date_created" id="date-column">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{formatDate(row.date_created) | date:'mediumDate'}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="code">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          <span class="d-none d-md-inline-block">Short&nbsp;</span>URL<span class="d-inline-block d-md-none">&nbsp;code</span>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">{{siteUrlWithoutHttp(siteUrl)}}/</span>{{row.code}}</a>
-          <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" matTooltip="Copy short URL"><i class="far fa-copy"></i></a>
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="count">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Count</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="justify-content-between">
-          {{row.count}}
-          <a mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn">
-            <i class="fas fa-ellipsis-v"></i>
-          </a>
-          <mat-menu #menu="matMenu">
-            <a mat-menu-item class="analytics-btn" [href]="projectsUrl + '/url/' + row.code">
-              <span>Analytics Data</span>
-            </a>
-            <button mat-menu-item (click)="hideLink(row.code)">
-              <span>Hide URL</span>
-            </button>
-          </mat-menu>
-        </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="long_url">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Long URL</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="long-url">
+        <a href="{{row.long_url}}" target="_blank" rel="noopener">{{row.long_url}}</a>
+      </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="date_created" id="date-column">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{formatDate(row.date_created) | date:'mediumDate'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <span class="d-none d-md-inline-block">Short&nbsp;</span>URL<span class="d-inline-block d-md-none">&nbsp;code</span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.code !== ''">
+          <a routerLink="/{{row.code}}" target="_blank" rel="noopener"><span class="d-none d-md-inline-block">{{siteUrlWithoutHttp(siteUrl)}}/</span>{{row.code}}</a>
+          <a class="copy-btn" *ngIf="!iOSDevice" (click)="this.copy(row.code)" matTooltip="Copy short URL"><i class="far fa-copy"></i></a>
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Count</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="justify-content-between">
+        <span *ngIf="row.count !== -1">{{row.count}}</span>
+        <a mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn">
+          <i class="fas fa-ellipsis-v"></i>
+        </a>
+        <mat-menu #menu="matMenu">
+          <!-- <a mat-menu-item class="analytics-btn" [href]="analyticsUrl + '/url/' + row.code">
+            <span>Analytics Data</span>
+          </a> -->
+          <button mat-menu-item (click)="hideLink(row.code)">
+            <span>Hide URL</span>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+    
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <div id="table-loading-spinner" *ngIf="!tableHandler.tableLoaded" class="mx-auto">
-    <mat-progress-spinner
-      class="my-5"
-      [color]="spinnerSettings.color"
-      [mode]="spinnerSettings.mode">
-    </mat-progress-spinner>
-  </div>
-
-  <div *ngIf="tableHandler.tableAuthError" class="table-placeholder text-center">
-    <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/placeholder1" class="pb-3" height="170">
-    <p class="px-4">An authorization error occurred. Please log out and log back in.</p>
-  </div>
-
-  <div *ngIf="(tableHandler.data.length == 0 && tableHandler.tableLoaded && !tableHandler.tableAuthError)" class="table-placeholder text-center">
-    <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/placeholder2" class="pb-3" height="170">
-    <p class="px-4">You haven't created any links yet. Try creating a new link above.</p>
+  <div class="example-loading-shade" *ngIf="!tableHandler.tableLoaded || tableHandler.tableEmpty">
+    <mat-spinner *ngIf="!tableHandler.tableLoaded"></mat-spinner>
+    
+    <!-- <div *ngIf="tableHandler.tableAuthError && tableHandler.tableLoaded" class="table-placeholder text-center">
+      <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/placeholder1" class="pb-3" height="170">
+      <p class="px-4">An authorization error occurred. Please log out and log back in.</p>
+    </div> -->
+  
+    <div *ngIf="tableHandler.tableEmpty && tableHandler.tableLoaded" class="table-placeholder text-center">
+      <img src="https://res.cloudinary.com/kellenscloud/image/upload/c_scale,f_auto,q_auto,w_400/placeholder2" class="pb-3" height="170">
+      <p class="px-4">You haven't created any links yet. Try creating a new link above.</p>
+    </div>
   </div>
 
   <mat-paginator [length]="tableDatabase.data.length"

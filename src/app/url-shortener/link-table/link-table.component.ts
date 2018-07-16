@@ -17,13 +17,12 @@ import { UrlVariablesService } from '../../shared/url-variables.service';
   styleUrls: ['./link-table.component.scss']
 })
 export class LinkTableComponent implements OnInit {
-  displayedColumns = ['long_url', 'date_created', 'code', 'count'];
+  displayedColumns: string[] = ['long_url', 'date_created', 'code', 'count'];
   tableDatabase = this.tableHandler;
   dataSource: ExampleDataSource | null;
   siteUrl: string = this.urlVars.siteUrl;
-  spinnerSettings = { color: 'primary', mode: 'indeterminate' };
   iOSDevice: boolean = false;
-  projectsUrl = this.urlVars.analyticsUrl;
+  analyticsUrl = this.urlVars.analyticsUrl;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
@@ -120,7 +119,7 @@ export class LinkTableComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
 
-    let snackBarRef = this.snackBar.open("Short URL copied to clipboard", "", { duration: 3000 });
+    this.snackBar.open("Short URL copied to clipboard", "", { duration: 3000 });
   }
 
   // Convert date from SQL format to Angular DatePipe compatible format

@@ -11,15 +11,11 @@ export class UrlVariablesService {
     if (url == "http://localhost:4200") {
       this.urls = serve;
     } else if (url == "http://kspw") {
-      this.urls = dev;
-    } else if (url == "https://test.kellenforthe.win") {
-      this.urls = test2;
-    } else if (url == "https://test.kellenschmidt.com") {
-      this.urls = test;
+      this.urls = kspw;
     } else if (url == "https://kellenforthe.win") {
-      this.urls = prod2;
+      this.urls = kellenforthewin;
     } else if (url == "https://kellenschmidt.com") {
-      this.urls = prod;
+      this.urls = kellenschmidtcom;
     } else {
       this.urls = {
         siteUrl: `${url}`,
@@ -72,7 +68,7 @@ const serve: UrlEnvironment = {
   dqcUrl: "https://kellenschmidt.com/data-quality-checker",
 };
 
-const dev: UrlEnvironment = {
+const kspw: UrlEnvironment = {
   siteUrl: "http://kspw",
   apiUrl: "http://kspw/api/v1",
   phpLinkShortenerUrl: "http://kspw/urlshortenerphp",
@@ -81,25 +77,7 @@ const dev: UrlEnvironment = {
   dqcUrl: "http://kspw/data-quality-checker",
 };
 
-const test2: UrlEnvironment = {
-  siteUrl: "https://test.kellenforthe.win",
-  apiUrl: "https://test.kellenforthe.win/api/v1",
-  phpLinkShortenerUrl: "https://test.kellenforthe.win/urlshortenerphp",
-  projectsUrl: "https://test.kellenforthe.win/projects",
-  analyticsUrl: "https://test.kellenforthe.win/analytics",
-  dqcUrl: "https://test.kellenforthe.win/data-quality-checker",
-};
-
-const test: UrlEnvironment = {
-  siteUrl: "https://test.kellenschmidt.com",
-  apiUrl: "https://test.kellenschmidt.com/api/v1",
-  phpLinkShortenerUrl: "https://test.kellenschmidt.com/urlshortenerphp",
-  projectsUrl: "https://test.kellenschmidt.com/projects",
-  analyticsUrl: "https://test.kellenschmidt.com/analytics",
-  dqcUrl: "https://test.kellenschmidt.com/data-quality-checker",
-};
-
-const prod2: UrlEnvironment = {
+const kellenforthewin: UrlEnvironment = {
   siteUrl: "https://kellenforthe.win",
   apiUrl: "https://kellenforthe.win/api/v1",
   phpLinkShortenerUrl: "https://kellenforthe.win/urlshortenerphp",
@@ -108,7 +86,7 @@ const prod2: UrlEnvironment = {
   dqcUrl: "https://kellenforthe.win/data-quality-checker",
 };
 
-const prod: UrlEnvironment = {
+const kellenschmidtcom: UrlEnvironment = {
   siteUrl: "https://kellenschmidt.com",
   apiUrl: "https://kellenschmidt.com/api/v1",
   phpLinkShortenerUrl: "https://kellenschmidt.com/urlshortenerphp",

@@ -19,11 +19,19 @@
     }
 
     #user-tab {
-        padding-top: .05rem;
+        padding-top: .4rem;
         color: white;
 
         span {
-            vertical-align: super;
+            font-weight: 500;
+        }
+
+        h2 {
+            line-height: 24px;
+        }
+
+        h2, span {
+            vertical-align: middle;
         }
     }
 

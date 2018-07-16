@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from '../shared/authentication.service';
-import { User } from '../shared/user';
+import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 
 @Component({
   selector: 'ks-login-form',
@@ -29,8 +29,6 @@ export class LoginFormComponent implements OnInit {
 
         // Set values for new user using http response values
         this.authentication.currentUser.initializeUser(responseBody.user);
-
-        this.authentication.refreshTable();
 
         // Emit event to tell parent component to close modal
         this.onLogin.emit(true);
@@ -66,7 +64,7 @@ export class LoginFormComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   constructor(public authentication: AuthenticationService,
-              private fb: FormBuilder) {
+    private fb: FormBuilder) {
     this.createForm();
   }
 
