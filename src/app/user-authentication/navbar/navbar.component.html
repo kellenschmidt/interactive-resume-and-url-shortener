@@ -65,7 +65,7 @@
                 <!--Body-->
                 <div class="modal-body">
                     
-                    <ks-login-form (onLogin)="form.hide()"></ks-login-form>
+                    <ks-login-form (onLogin)="form.hide(); login()"></ks-login-form>
 
                 </div>
                 <!--Footer-->
@@ -82,7 +82,7 @@
                 <!--Body-->
                 <div class="modal-body">
 
-                    <ks-register-form (onRegister)="form.hide()"></ks-register-form>
+                    <ks-register-form (onRegister)="form.hide(); login()"></ks-register-form>
 
                 </div>
                 <!--Footer-->

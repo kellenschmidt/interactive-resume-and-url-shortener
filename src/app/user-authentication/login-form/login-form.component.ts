@@ -30,8 +30,6 @@ export class LoginFormComponent implements OnInit {
         // Set values for new user using http response values
         this.authentication.currentUser.initializeUser(responseBody.user);
 
-        this.tableHandler.getLinks();
-
         // Emit event to tell parent component to close modal
         this.onLogin.emit(true);
 
@@ -66,8 +64,7 @@ export class LoginFormComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   constructor(public authentication: AuthenticationService,
-    private fb: FormBuilder,
-    private tableHandler: TableHandlerService) {
+    private fb: FormBuilder) {
     this.createForm();
   }
 

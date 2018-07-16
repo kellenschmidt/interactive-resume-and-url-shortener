@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TableHandlerService } from '../../url-shortener/shared/table-handler.service';
 import { User } from './user';
 import { AuthenticationData } from './authentication-data';
 import { UrlVariablesService } from '../../shared/url-variables.service';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class AuthenticationService {
@@ -72,16 +72,27 @@ export class AuthenticationService {
   }
 
   authenticateHttp() {
+    if (!this.getJwt()) {
+      return;
+    }
+
     this.authenticate().subscribe(
       (responseBody) => {
         // If user is authenticated then populate user data
         if(responseBody['authenticated'] === true) {
           this.currentUser.initializeUser(this.getUser());
         } else {
+          this.snackBar.open("An authentication error occurred, you have been logged out.", "", { duration: 4000 });
           this.logout();
         }
       },
       (err: HttpErrorResponse) => {
+        console.log("ERROR STATUS --> " + err.status);
+        if (err.status === 403) {
+          this.snackBar.open("An authentication error occurred, you have been logged out.", "", { duration: 4000 });
+          this.logout();
+        }
+
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
           console.log('Error: POST request to authenticate failed:', err.error.message);
@@ -94,7 +105,8 @@ export class AuthenticationService {
   } // authenticateUser
 
   constructor(private http: HttpClient,
-    private urlVars: UrlVariablesService) {
+    private urlVars: UrlVariablesService,
+    private snackBar: MatSnackBar) {
     this.authenticateHttp();
   }
 

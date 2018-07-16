@@ -17,6 +17,10 @@ export class NavbarComponent implements OnInit {
   magicMargin: boolean = false;
   dqcUrl: string = this.urlVars.dqcUrl;
 
+  login() {
+    this.tableHandler.getLinks();
+  }
+
   logout() {
     this.authentication.logout();
     this.tableHandler.getLinks();
