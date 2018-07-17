@@ -1,4 +1,6 @@
-# kellenschmidt.com
+# interactive-resume-and-url-shortener
+
+[![CircleCI](https://circleci.com/gh/kellenschmidt/interactive-resume-and-url-shortener.svg?style=svg)](https://circleci.com/gh/kellenschmidt/interactive-resume-and-url-shortener)
 
 Personal website of Kellen Schmidt written completely from scratch and designed to illustrate his abilities and showcase his projects
 
@@ -27,18 +29,21 @@ https://kellenschmidt.com/url
 
 ## How to run the project locally
 
-1. Download all of the files from GitHub
+### With Docker
 
-    ```Shell
-    git clone https://github.com/kellenschmidt/interactive-resume-and-url-shortener.git
-    cd interactive-resume-and-url-shortener/
-    ```
-2. Install dependencies
+```sh
+docker build -t kellenschmidt/interactive-resume-and-url-shortener .
+docker run -p 80:80 -d kellenschmidt/interactive-resume-and-url-shortener
+```
+
+### Without Docker
+
+1. Install dependencies
 
     ```Shell
     npm install
     ```
-3. Start development server and open website
+2. Start development server and open website
 
     ```Shell
     ng serve -open

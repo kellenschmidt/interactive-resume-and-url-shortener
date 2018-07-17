@@ -114,7 +114,9 @@ export class TableHandlerService {
       }));
       this.tableEmpty = true;
     } else {
-      this.table.next([]);
+      if (this.data.length > 0 && this.data[0].count === -1) {
+        this.table.next([]);
+      }
       this.tableEmpty = false;
     }
   }
