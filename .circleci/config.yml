@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: /circleci-workspace
+  working_directory: ~/circleci-workspace
 
 version: 2
 jobs:
@@ -118,6 +118,8 @@ workflows:
             branches:
               only: master
       - publish-github-release:
+          requires:
+            - build
           context: kellenschmidt.com
           # filters:
           #   branches:
