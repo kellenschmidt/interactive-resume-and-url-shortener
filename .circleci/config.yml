@@ -97,13 +97,7 @@ jobs:
             mkdir $ARTIFACT_DIR
             zip -r $ARTIFACT_DIR/$ARTIFACT_NAME.zip ./dist
             tar -czf $ARTIFACT_DIR/$ARTIFACT_NAME.tar.gz ./dist
-            echo "*****ls of working dir*****"
-            ls .
-            echo "*****ls of artifacts dir*****"
-            ls artifacts
-            echo "*****ls of dist dir*****"
-            ls dist
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ${ARTIFACT_DIR}
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} ${VERSION} ${ARTIFACT_DIR}
 
 workflows:
   version: 2
