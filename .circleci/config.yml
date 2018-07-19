@@ -97,7 +97,7 @@ jobs:
             mkdir $ARTIFACT_DIR
             zip -r $ARTIFACT_DIR/$ARTIFACT_NAME.zip ./dist
             tar -czf $ARTIFACT_DIR/$ARTIFACT_NAME.tar.gz ./dist
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} ${VERSION} ${ARTIFACT_DIR}
+            ghr -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c ${CIRCLE_SHA1} -delete $VERSION ./artifacts/
 
 workflows:
   version: 2
