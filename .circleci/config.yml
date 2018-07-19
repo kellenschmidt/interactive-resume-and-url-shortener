@@ -98,7 +98,6 @@ jobs:
             zip -r $ARTIFACT_DIR/$ARTIFACT_NAME.zip ./dist
             tar -czf $ARTIFACT_DIR/$ARTIFACT_NAME.tar.gz ./dist
             echo "*****My GH token is -->${GITHUB_TOKEN}<-- *****"
-            echo $GITHUB_TOKEN
             printenv
             echo "Does the token exist? -->${GITHUB_TOKEN:-ERROR-token-does-not-exist}<-- *****"
             ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c $CIRCLE_SHA1 -delete $VERSION $ARTIFACT_DIR
