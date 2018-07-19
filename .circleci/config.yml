@@ -39,7 +39,6 @@ jobs:
             TAG=v$CIRCLE_BUILD_NUM
             docker build --build-arg APP_VERSION=$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest .
             docker run -d $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
-            docker ps -alq
             CONTAINER_ID=$(docker ps -alq)
             docker cp ${CONTAINER_ID}:/usr/local/apache2/htdocs ./dist
             docker stop $CONTAINER_ID
@@ -98,7 +97,13 @@ jobs:
             mkdir $ARTIFACT_DIR
             zip -r $ARTIFACT_DIR/$ARTIFACT_NAME.zip ./dist
             tar -czf $ARTIFACT_DIR/$ARTIFACT_NAME.tar.gz ./dist
-            ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c $CIRCLE_SHA1 -delete $VERSION $ARTIFACT_DIR
+            echo "*****ls of working dir*****"
+            ls .
+            echo "*****ls of artifacts dir*****"
+            ls artifacts
+            echo "*****ls of dist dir*****"
+            ls dist
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ${ARTIFACT_DIR}
 
 workflows:
   version: 2
