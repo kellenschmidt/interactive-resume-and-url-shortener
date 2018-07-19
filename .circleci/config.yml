@@ -97,9 +97,6 @@ jobs:
             mkdir $ARTIFACT_DIR
             zip -r $ARTIFACT_DIR/$ARTIFACT_NAME.zip ./dist
             tar -czf $ARTIFACT_DIR/$ARTIFACT_NAME.tar.gz ./dist
-            echo "*****My GH token is -->${GITHUB_TOKEN}<-- *****"
-            printenv
-            echo "Does the token exist? -->${GITHUB_TOKEN:-ERROR-token-does-not-exist}<-- *****"
             ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c $CIRCLE_SHA1 -delete $VERSION $ARTIFACT_DIR
 
 workflows:
@@ -108,9 +105,9 @@ workflows:
     jobs:
       - build:
           context: kellenforthewin
-          # filters:
-          #   branches:
-          #     only: dev
+          filters:
+            branches:
+              only: dev
       - deploy-kellenforthewin:
           requires:
             - build
@@ -127,6 +124,6 @@ workflows:
           requires:
             - build
           context: kellenschmidt.com
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
