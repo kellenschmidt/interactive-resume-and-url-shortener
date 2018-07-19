@@ -97,9 +97,11 @@ jobs:
             mkdir $ARTIFACT_DIR
             zip -r $ARTIFACT_DIR/$ARTIFACT_NAME.zip ./dist
             tar -czf $ARTIFACT_DIR/$ARTIFACT_NAME.tar.gz ./dist
-            echo $VERSION
-            echo $ARTIFACT_DIR
-            ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c $CIRCLE_SHA1 -delete v56 ./artifacts/
+            echo "*****My GH token is -->${GITHUB_TOKEN}<-- *****"
+            echo $GITHUB_TOKEN
+            printenv
+            echo "Does the token exist? -->${GITHUB_TOKEN:-ERROR-token-does-not-exist}<-- *****"
+            ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -delete -c $CIRCLE_SHA1 $VERSION $ARTIFACT_DIR
 
 workflows:
   version: 2
