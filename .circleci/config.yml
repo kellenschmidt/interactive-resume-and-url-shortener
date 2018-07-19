@@ -38,10 +38,11 @@ jobs:
           command: |
             TAG=v$CIRCLE_BUILD_NUM
             docker build --build-arg APP_VERSION=$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest .
+            docker run -d $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
             docker ps -alq
-            CONTAINER_SHA=$(docker ps -alq)
-            docker cp ${CONTAINER_SHA}:/usr/local/apache2/htdocs ./dist
-            docker cp $(docker ps -alq):/usr/local/apache2/htdocs ./dist
+            CONTAINER_ID=$(docker ps -alq)
+            docker cp ${CONTAINER_ID}:/usr/local/apache2/htdocs ./dist
+            docker stop $CONTAINER_ID
       - run:
           name: Upload to Docker Hub
           command: |
