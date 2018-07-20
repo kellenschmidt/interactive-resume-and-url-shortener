@@ -1,53 +1,59 @@
+defaults: &defaults
+  working_directory: ~/circleci-workspace
+
 version: 2
 jobs:
   build:
+    <<: *defaults
     docker:
       - image: circleci/node:9.11
-    
-    working_directory: ~/repo
-
     environment:
       TEST_RESULTS: /tmp/test-results
-
     steps:
       - checkout
-
+      - attach_workspace:
+          at: .
+      - run: 
+          name: Save version number
+          command: echo "v$CIRCLE_BUILD_NUM" > app-version.txt
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package-lock.json" }}
           - v1-dependencies-
-
       - run:
           name: Install dependencies
           command: npm install
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package-lock.json" }}
-
       - run: 
           name: Run tests
-          command: mkdir -p ${TEST_RESULTS} && npm test ${TEST_RESULTS}/test_results.txt
-
+          command: mkdir -p $TEST_RESULTS && npm test $TEST_RESULTS/test_results.txt
       - store_test_results:
           path: /tmp/test-results
-
       - setup_remote_docker
-
-      - run: 
+      - run:
           name: Build with Docker
           command: |
             TAG=v$CIRCLE_BUILD_NUM
-            docker build --build-arg APP_VERSION=$TAG -t $DOCKER_USER/${CIRCLE_PROJECT_REPONAME}:$TAG -t $DOCKER_USER/${CIRCLE_PROJECT_REPONAME}:latest .
-
+            docker build --build-arg APP_VERSION=$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest .
+            docker run -d $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
+            CONTAINER_ID=$(docker ps -alq)
+            docker cp ${CONTAINER_ID}:/usr/local/apache2/htdocs ./dist
+            docker stop $CONTAINER_ID
       - run:
           name: Upload to Docker Hub
           command: |
             TAG=v$CIRCLE_BUILD_NUM
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push $DOCKER_USER/${CIRCLE_PROJECT_REPONAME}:$TAG
-            docker push $DOCKER_USER/${CIRCLE_PROJECT_REPONAME}:latest
+            docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
+            docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest
+      - persist_to_workspace:
+          root: .
+          paths:
+            - app-version.txt
+            - dist
 
   deploy-kellenforthewin:
     machine:
@@ -73,6 +79,26 @@ jobs:
           command: |
             ssh $SSH_USER@$SSH_HOST "bash ~/kspw-kubernetes/bin/deploy.sh $DOCKER_USER $CIRCLE_PROJECT_REPONAME"
 
+  publish-github-release:
+    <<: *defaults
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            VERSION=$(cat app-version.txt)
+            ARTIFACT_DIR=artifacts
+            ARTIFACT_NAME=irus_dist_$VERSION
+            apk update
+            apk add zip
+            mkdir $ARTIFACT_DIR
+            zip -r $ARTIFACT_DIR/$ARTIFACT_NAME.zip ./dist
+            tar -czf $ARTIFACT_DIR/$ARTIFACT_NAME.tar.gz ./dist
+            ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c $CIRCLE_SHA1 -delete $VERSION $ARTIFACT_DIR
+
 workflows:
   version: 2
   build-and-deploy:
@@ -90,6 +116,13 @@ workflows:
             branches:
               only: dev
       - deploy-kellenschmidtcom:
+          context: kellenschmidt.com
+          filters:
+            branches:
+              only: master
+      - publish-github-release:
+          requires:
+            - build
           context: kellenschmidt.com
           filters:
             branches:
