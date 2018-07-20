@@ -33,7 +33,7 @@ jobs:
       - store_test_results:
           path: /tmp/test-results
       - setup_remote_docker
-      - run: 
+      - run:
           name: Build with Docker
           command: |
             TAG=v$CIRCLE_BUILD_NUM
@@ -91,7 +91,7 @@ jobs:
           command: |
             VERSION=$(cat app-version.txt)
             ARTIFACT_DIR=artifacts
-            ARTIFACT_NAME=ir-us_dist_$VERSION
+            ARTIFACT_NAME=irus_dist_$VERSION
             apk update
             apk add zip
             mkdir $ARTIFACT_DIR
