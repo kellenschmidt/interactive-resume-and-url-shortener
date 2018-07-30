@@ -13,21 +13,21 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: 
+      - run:
           name: Save version number
           command: echo "v$CIRCLE_BUILD_NUM" > app-version.txt
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
+          - dependencies-v1-{{ checksum "package-lock.json" }}
+          - dependencies-v1-
       - run:
           name: Install dependencies
           command: npm install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-      - run: 
+          key: dependencies-v1-{{ checksum "package-lock.json" }}
+      - run:
           name: Run tests
           command: mkdir -p $TEST_RESULTS && npm test $TEST_RESULTS/test_results.txt
       - store_test_results:
@@ -38,6 +38,8 @@ jobs:
           command: |
             TAG=v$CIRCLE_BUILD_NUM
             docker build --build-arg APP_VERSION=$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest .
+            IMAGE_SHA=$(docker images -q $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1)
+            docker images -q $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1 > image_sha.txt
             docker run -d $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
             CONTAINER_ID=$(docker ps -alq)
             docker cp ${CONTAINER_ID}:/usr/local/apache2/htdocs ./dist
@@ -49,11 +51,14 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
             docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest
-      - persist_to_workspace:
-          root: .
+      - save_cache:
+          paths:
+            - dist
+          key: dist-v1-$IMAGE_SHA
+      - save_cache:
           paths:
             - app-version.txt
-            - dist
+          key: version-v1-{{ checksum "image_sha.txt" }}
 
   deploy-kellenforthewin:
     machine:
@@ -84,8 +89,18 @@ jobs:
     docker:
       - image: cibuilds/github:0.10
     steps:
-      - attach_workspace:
-          at: .
+      - run:
+          name: "Get SHA of latest docker build"
+          command: |
+            docker pull $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest
+            IMAGE_SHA=$(docker images -q $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1)
+            docker images -q $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1 > image_sha.txt
+      - restore_cache:
+          keys:
+          - dist-v1-$IMAGE_SHA
+      - restore_cache:
+          keys:
+          - version-v1-{{ checksum "image_sha.txt" }}
       - run:
           name: "Publish Release on GitHub"
           command: |
@@ -115,13 +130,13 @@ workflows:
           filters:
             branches:
               only: dev
-      - deploy-kellenschmidtcom:
-          context: kellenschmidt.com
-          filters:
-            branches:
-              only: master
       - publish-github-release:
           context: kellenschmidt.com
           filters:
             branches:
               only: master
+      # - deploy-kellenschmidtcom:
+      #     context: kellenschmidt.com
+      #     filters:
+      #       branches:
+      #         only: master
