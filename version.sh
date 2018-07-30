@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Arguments
 # $1: npm package version
