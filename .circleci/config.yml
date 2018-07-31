@@ -111,12 +111,12 @@ jobs:
           name: "Debug"
           command: |
             pwd
-            ls -la
-            ls -la ~
-            ls -la ~/circleci-workspace
-            cd ~/circleci-workspace
-            pwd
-            cat app-version.txt
+            ls -la /
+            ls -la /home
+            ls -la /home/circleci
+            ls -la /home/circleci/circleci-workspace
+            cat /home/circleci/circleci-workspace/app-version.txt
+            mv /home/circleci/circleci-workspace/app-version.txt .
       - run:
           name: "Publish Release on GitHub"
           command: |
