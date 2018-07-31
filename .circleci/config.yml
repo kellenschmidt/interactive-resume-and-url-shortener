@@ -49,7 +49,12 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
             docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest
-            docker image ls --digests --format '{{.Digest}}' $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1 > image_sha.txt
+      - run:
+          name: "Get SHA of latest docker build"
+          command: |
+            DOCKER_HUB_TOKEN=$(curl "https://auth.docker.io/token?service=registry.docker.io&scope=repository:$DOCKER_USER/$CIRCLE_PROJECT_REPONAME:pull" | jq -r '.token')
+            echo $DOCKER_HUB_TOKEN
+            curl -H "Authorization: Bearer $DOCKER_HUB_TOKEN" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://registry.hub.docker.com/v2/$DOCKER_USER/$CIRCLE_PROJECT_REPONAME/manifests/latest | jq -r '.config.digest' > image_sha.txt
             cat image_sha.txt
       - save_cache:
           paths:
