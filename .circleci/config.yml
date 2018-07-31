@@ -108,15 +108,10 @@ jobs:
           keys:
           - version-v1-{{ checksum "image_sha.txt" }}
       - run:
-          name: "Debug"
+          name: "Move cached files to working directory"
           command: |
-            pwd
-            ls -la /
-            ls -la /home
-            ls -la /home/circleci
-            ls -la /home/circleci/circleci-workspace
-            cat /home/circleci/circleci-workspace/app-version.txt
             mv /home/circleci/circleci-workspace/app-version.txt .
+            mv /home/circleci/circleci-workspace/dist .
       - run:
           name: "Publish Release on GitHub"
           command: |
