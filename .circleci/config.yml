@@ -108,6 +108,16 @@ jobs:
           keys:
           - version-v1-{{ checksum "image_sha.txt" }}
       - run:
+          name: "Debug"
+          command: |
+            pwd
+            ls -la
+            ls -la ~
+            ls -la ~/circleci-workspace
+            cd ~/circleci-workspace
+            pwd
+            cat app-version.txt
+      - run:
           name: "Publish Release on GitHub"
           command: |
             VERSION=$(cat app-version.txt)
@@ -124,23 +134,25 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build:
-          context: kellenforthewin
-          filters:
-            branches:
-              only: dev
-      - deploy-kellenforthewin:
-          requires:
-            - build
-          context: kellenforthewin
-          filters:
-            branches:
-              only: dev
+      # - build:
+      #     context: kellenforthewin
+      #     filters:
+      #       branches:
+      #         only: dev
+      # - deploy-kellenforthewin:
+      #     requires:
+      #       - build
+      #     context: kellenforthewin
+      #     filters:
+      #       branches:
+      #         only: dev
       - publish-github-release:
+          # requires:
+          #   - build
           context: kellenschmidt.com
           filters:
             branches:
-              only: master
+              only: dev
       # - deploy-kellenschmidtcom:
       #     context: kellenschmidt.com
       #     filters:
