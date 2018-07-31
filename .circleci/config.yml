@@ -53,7 +53,6 @@ jobs:
           name: "Get SHA of latest docker build"
           command: |
             DOCKER_HUB_TOKEN=$(curl "https://auth.docker.io/token?service=registry.docker.io&scope=repository:$DOCKER_USER/$CIRCLE_PROJECT_REPONAME:pull" | jq -r '.token')
-            echo $DOCKER_HUB_TOKEN
             curl -H "Authorization: Bearer $DOCKER_HUB_TOKEN" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://registry.hub.docker.com/v2/$DOCKER_USER/$CIRCLE_PROJECT_REPONAME/manifests/latest | jq -r '.config.digest' > image_sha.txt
             cat image_sha.txt
       - save_cache:
@@ -98,7 +97,6 @@ jobs:
           name: "Get SHA of latest docker build"
           command: |
             DOCKER_HUB_TOKEN=$(curl "https://auth.docker.io/token?service=registry.docker.io&scope=repository:$DOCKER_USER/$CIRCLE_PROJECT_REPONAME:pull" | jq -r '.token')
-            echo $DOCKER_HUB_TOKEN
             curl -H "Authorization: Bearer $DOCKER_HUB_TOKEN" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://registry.hub.docker.com/v2/$DOCKER_USER/$CIRCLE_PROJECT_REPONAME/manifests/latest | jq -r '.config.digest' > image_sha.txt
             cat image_sha.txt
       - restore_cache:
@@ -117,7 +115,7 @@ jobs:
           command: |
             VERSION=$(cat app-version.txt)
             ARTIFACT_DIR=artifacts
-            ARTIFACT_NAME=irus_dist_$VERSION
+            ARTIFACT_NAME=dist_$VERSION
             apk update
             apk add zip
             mkdir $ARTIFACT_DIR
@@ -129,27 +127,25 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      # - build:
-      #     context: kellenforthewin
-      #     filters:
-      #       branches:
-      #         only: dev
-      # - deploy-kellenforthewin:
-      #     requires:
-      #       - build
-      #     context: kellenforthewin
-      #     filters:
-      #       branches:
-      #         only: dev
-      - publish-github-release:
-          # requires:
-          #   - build
-          context: kellenschmidt.com
+      - build:
+          context: kellenforthewin
           filters:
             branches:
               only: dev
-      # - deploy-kellenschmidtcom:
-      #     context: kellenschmidt.com
-      #     filters:
-      #       branches:
-      #         only: master
+      - deploy-kellenforthewin:
+          requires:
+            - build
+          context: kellenforthewin
+          filters:
+            branches:
+              only: dev
+      - publish-github-release:
+          context: kellenschmidt.com
+          filters:
+            branches:
+              only: master
+      - deploy-kellenschmidtcom:
+          context: kellenschmidt.com
+          filters:
+            branches:
+              only: master
