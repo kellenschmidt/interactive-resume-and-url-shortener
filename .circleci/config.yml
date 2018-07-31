@@ -38,8 +38,6 @@ jobs:
           command: |
             TAG=v$CIRCLE_BUILD_NUM
             docker build --build-arg APP_VERSION=$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest .
-            IMAGE_SHA=$(docker image ls --digests --format '{{.Digest}}' $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1)
-            docker image ls --digests --format '{{.Digest}}' $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1 > image_sha.txt
             docker run -d $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
             CONTAINER_ID=$(docker ps -alq)
             docker cp ${CONTAINER_ID}:/usr/local/apache2/htdocs ./dist
@@ -47,17 +45,16 @@ jobs:
       - run:
           name: Upload to Docker Hub
           command: |
-            echo $TAG
-            echo $IMAGE_SHA
-            cat image_sha.txt
             TAG=v$CIRCLE_BUILD_NUM
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$TAG
             docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:latest
+            docker image ls --digests --format '{{.Digest}}' $DOCKER_USER/$CIRCLE_PROJECT_REPONAME | head -n 1 > image_sha.txt
+            cat image_sha.txt
       - save_cache:
           paths:
             - dist
-          key: dist-v1-$IMAGE_SHA
+          key: dist-v1-{{ checksum "image_sha.txt" }}
       - save_cache:
           paths:
             - app-version.txt
@@ -97,12 +94,11 @@ jobs:
           command: |
             DOCKER_HUB_TOKEN=$(curl "https://auth.docker.io/token?service=registry.docker.io&scope=repository:$DOCKER_USER/$CIRCLE_PROJECT_REPONAME:pull" | jq -r '.token')
             echo $DOCKER_HUB_TOKEN
-            IMAGE_SHA=$(curl -H "Authorization: Bearer $DOCKER_HUB_TOKEN" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://registry.hub.docker.com/v2/kellenschmidt/interactive-resume-and-url-shortener/manifests/latest | jq -r '.config.digest')
-            echo $IMAGE_SHA
-            curl -H "Authorization: Bearer $DOCKER_HUB_TOKEN" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://registry.hub.docker.com/v2/kellenschmidt/interactive-resume-and-url-shortener/manifests/latest | jq -r '.config.digest' > image_sha.txt
+            curl -H "Authorization: Bearer $DOCKER_HUB_TOKEN" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://registry.hub.docker.com/v2/$DOCKER_USER/$CIRCLE_PROJECT_REPONAME/manifests/latest | jq -r '.config.digest' > image_sha.txt
+            cat image_sha.txt
       - restore_cache:
           keys:
-          - dist-v1-$IMAGE_SHA
+          - dist-v1-{{ checksum "image_sha.txt" }}
       - restore_cache:
           keys:
           - version-v1-{{ checksum "image_sha.txt" }}
