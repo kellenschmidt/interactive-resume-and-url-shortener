@@ -9,10 +9,12 @@ import { PageVisitService } from './shared/pagevisit-graphql.service';
 export class AppComponent {
   constructor(private pageVisitService: PageVisitService) {
     this.pageVisitService.addPageVisit()
-      .subscribe(({ data }) => {
-        // Do nothing on success
-      }, (error) => {
-        console.log('there was an error sending the query: addPageVisit, ', error);
+      .then(( resObservable ) => {
+        resObservable.subscribe(({ data }) => {
+          // 'data' contains the graphql response
+        }, (error) => {
+          console.log('there was an error sending the query: addPageVisit, ', error);
+        });
       });
   }
 }
