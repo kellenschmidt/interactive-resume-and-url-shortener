@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PageVisitService } from './shared/pagevisit-graphql.service';
+import { PageVisitGQL } from './shared/pagevisit-gql.service';
 
 @Component({
   selector: 'ks-root',
@@ -7,8 +7,8 @@ import { PageVisitService } from './shared/pagevisit-graphql.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private pageVisitService: PageVisitService) {
-    this.pageVisitService.addPageVisit()
+  constructor(private pageVisitGQL: PageVisitGQL) {
+    this.pageVisitGQL.createPageVisit()
       .then(( resObservable ) => {
         resObservable.subscribe(({ data }) => {
           // 'data' contains the graphql response

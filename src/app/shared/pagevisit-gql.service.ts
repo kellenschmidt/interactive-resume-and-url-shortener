@@ -5,18 +5,18 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class PageVisitService {
+export class PageVisitGQL {
   mutation = gql`
-    mutation addPageVisit($path: String!, $referrer: String, $ipAddress: String!) {
-      addPageVisit(path: $path, referrer: $referrer, ipAddress: $ipAddress) {
-        id
+    mutation createPageVisit($path: String!, $referrer: String, $ipAddress: String!) {
+      createPageVisit(path: $path, referrer: $referrer, ipAddress: $ipAddress) {
+        _id
       }
     }
   `;
 
   constructor(private apollo: Apollo, private location: Location, private http: HttpClient) { }
 
-  async addPageVisit() {
+  async createPageVisit() {
     var ipData: IpData = await this.http.get<IpData>('https://api.ipify.org?format=json').toPromise();
     var ipAddress: string = ipData.ip;
 

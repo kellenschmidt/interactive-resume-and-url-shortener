@@ -11,7 +11,7 @@ import { UserAuthenticationModule } from './user-authentication/user-authenticat
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { UrlVariablesService } from './shared/url-variables.service';
-import { PageVisitService } from './shared/pagevisit-graphql.service';
+import { PageVisitGQL } from './shared/pagevisit-gql.service';
 
 import fontawesome from '@fortawesome/fontawesome';
 import { faTh } from '@fortawesome/fontawesome-free-solid';
@@ -36,7 +36,7 @@ fontawesome.library.add(faTh, faCopy, faGithub);
   providers: [
     Title,
     UrlVariablesService,
-    PageVisitService,
+    PageVisitGQL,
   ],
   bootstrap: [ AppComponent ],
   schemas: [ NO_ERRORS_SCHEMA ],
