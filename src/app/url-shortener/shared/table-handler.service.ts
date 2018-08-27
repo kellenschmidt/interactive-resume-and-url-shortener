@@ -28,8 +28,6 @@ export class TableHandlerService {
     this.linkRepository.getLinks().subscribe(
       (responseBody) => {
         // Set table equal to response from GET request
-        console.log("Setting new table data to: ");
-        console.log(responseBody.data);
         if (responseBody.data.length > 0) {
           this.setTableEmptiness(false);
           this.table.next(responseBody.data);

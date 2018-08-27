@@ -25,11 +25,12 @@ export class ProjectCardComponent implements OnInit {
   }
 
   stripTrailingHtml(input: string): string {
-    let firstHtml = input.indexOf('<');
-    if(firstHtml > 0) {
-      return input.substring(0, firstHtml);
+    let noBr = input.replace("<br>", "");
+    let smallTag = noBr.indexOf('</small>');
+    if(smallTag > 0) {
+      return noBr.substring(0, smallTag+8);
     } else {
-      return input;
+      return noBr;
     }
   }
 

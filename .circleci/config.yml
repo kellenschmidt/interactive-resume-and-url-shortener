@@ -11,8 +11,6 @@ jobs:
       TEST_RESULTS: /tmp/test-results
     steps:
       - checkout
-      - attach_workspace:
-          at: .
       - run:
           name: Save version number
           command: echo "v$CIRCLE_BUILD_NUM" > app-version.txt

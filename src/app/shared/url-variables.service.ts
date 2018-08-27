@@ -20,6 +20,7 @@ export class UrlVariablesService {
       this.urls = {
         siteUrl: `${url}`,
         apiUrl: `${url}/api/v1`,
+        apiv2Url: `${url}/api/v2`,
         phpLinkShortenerUrl: `${url}/urlshortenerphp`,
         projectsUrl: `${url}/projects`,
         analyticsUrl: `${url}/analytics`,
@@ -33,6 +34,9 @@ export class UrlVariablesService {
   }
   get apiUrl(): string {
     return this.urls.apiUrl;
+  }
+  get apiv2Url(): string {
+    return this.urls.apiv2Url;
   }
   get phpLinkShortenerUrl(): string {
     return this.urls.phpLinkShortenerUrl;
@@ -62,6 +66,8 @@ export class UrlVariablesService {
 const serve: UrlEnvironment = {
   siteUrl: "http://localhost:4200",
   apiUrl: "https://kellenschmidt.com/api/v1",
+  // apiv2Url: "https://kellenforthe.win/api/v2",
+  apiv2Url: "http://localhost:3000",
   phpLinkShortenerUrl: "https://kellenschmidt.com/urlshortenerphp",
   projectsUrl: "https://kellenschmidt.com/projects",
   analyticsUrl: "https://kellenschmidt.com/analytics",
@@ -71,6 +77,7 @@ const serve: UrlEnvironment = {
 const kspw: UrlEnvironment = {
   siteUrl: "http://kspw",
   apiUrl: "http://kspw/api/v1",
+  apiv2Url: "http://kspw/api/v2",
   phpLinkShortenerUrl: "http://kspw/urlshortenerphp",
   projectsUrl: "http://kspw/projects",
   analyticsUrl: "http://kspw/analytics",
@@ -80,6 +87,7 @@ const kspw: UrlEnvironment = {
 const kellenforthewin: UrlEnvironment = {
   siteUrl: "https://kellenforthe.win",
   apiUrl: "https://kellenforthe.win/api/v1",
+  apiv2Url: "https://kellenforthe.win/api/v2",
   phpLinkShortenerUrl: "https://kellenforthe.win/urlshortenerphp",
   projectsUrl: "https://kellenforthe.win/projects",
   analyticsUrl: "https://kellenforthe.win/analytics",
@@ -89,6 +97,7 @@ const kellenforthewin: UrlEnvironment = {
 const kellenschmidtcom: UrlEnvironment = {
   siteUrl: "https://kellenschmidt.com",
   apiUrl: "https://kellenschmidt.com/api/v1",
+  apiv2Url: "https://kellenschmidt.com/api/v2",
   phpLinkShortenerUrl: "https://kellenschmidt.com/urlshortenerphp",
   projectsUrl: "https://kellenschmidt.com/projects",
   analyticsUrl: "https://kellenschmidt.com/analytics",
@@ -98,6 +107,7 @@ const kellenschmidtcom: UrlEnvironment = {
 interface UrlEnvironment {
   siteUrl: string,
   apiUrl: string,
+  apiv2Url: string,
   phpLinkShortenerUrl: string,
   projectsUrl: string,
   analyticsUrl: string,
