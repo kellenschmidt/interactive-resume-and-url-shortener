@@ -13,7 +13,7 @@ export class AppComponent {
         resObservable.subscribe(({ data }) => {
           // 'data' contains the graphql response
         }, (error) => {
-          console.log('there was an error sending the query: addPageVisit, ', error);
+          console.log('there was an error sending the query: createPageVisit, ', error);
         });
       });
   }
