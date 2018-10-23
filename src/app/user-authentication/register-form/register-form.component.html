@@ -43,8 +43,8 @@
         <mat-form-field>
             <input matInput [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" formControlName="password" maxlength="128">
             <mat-icon matSuffix (click)="toggleVisible(0)" class="mr-2"><i [ngClass]="{'fa': true, 'fa-eye': passwordVisible, 'fa-eye-slash': !passwordVisible}"></i></mat-icon>
-            <mat-hint align="start">Use at least 8 characters including letters, numbers, and symbols</mat-hint>
-            <mat-hint align="end">{{password.value.length}} / 128</mat-hint>
+            <mat-hint align="start">Use at least 8 characters including letters&#44; numbers&#44; and symbols</mat-hint>
+            <mat-hint align="end">{{password.value.length}} &#47; 128</mat-hint>
             <mat-error *ngIf="password.hasError('required')">
                 Password is required
             </mat-error>
