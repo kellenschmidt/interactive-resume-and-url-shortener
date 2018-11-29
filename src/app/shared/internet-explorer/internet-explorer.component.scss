@@ -1,0 +1,25 @@
+div {
+    background-color: #14B8F7;
+    text-align: center;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+img {
+    width: 30vw;
+}
+
+#not-supported {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 14vh;
+}
