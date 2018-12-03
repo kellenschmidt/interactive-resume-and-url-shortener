@@ -1,7 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { InternetExplorerComponent } from './shared/internet-explorer/internet-explorer.component';
 
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +22,6 @@ fontawesome.library.add(faTh, faCopy, faGithub);
 @NgModule({
   declarations: [
     AppComponent,
-    InternetExplorerComponent,
   ],
   imports: [
     BrowserModule,
