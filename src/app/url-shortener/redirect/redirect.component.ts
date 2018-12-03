@@ -29,7 +29,7 @@ export class RedirectComponent implements OnInit {
         if(responseBody["long_url"] !== null) {
           // Log GraphQL Page Visit
           const userId = responseBody["user_id"]
-          this.pageVisitGQL.createPageVisit(userId, code)
+          this.pageVisitGQL.createPageVisit(userId, '/'+code)
             .then((resObservable) => {
               resObservable.subscribe(({ data }) => {
                 // 'data' contains the graphql response
