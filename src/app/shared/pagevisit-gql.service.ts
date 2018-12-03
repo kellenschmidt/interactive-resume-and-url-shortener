@@ -7,8 +7,8 @@ import gql from 'graphql-tag';
 @Injectable()
 export class PageVisitGQL {
   mutation = gql`
-    mutation createPageVisit($path: String!, $referrer: String, $ipAddress: String!) {
-      createPageVisit(path: $path, referrer: $referrer, ipAddress: $ipAddress) {
+    mutation createPageVisit($userId: Int, $path: String!, $referrer: String, $ipAddress: String!) {
+      createPageVisit(userId: $userId, path: $path, referrer: $referrer, ipAddress: $ipAddress) {
         _id
       }
     }
@@ -16,14 +16,15 @@ export class PageVisitGQL {
 
   constructor(private apollo: Apollo, private location: Location, private http: HttpClient) { }
 
-  async createPageVisit() {
+  async createPageVisit(userId: number, path: string) {
     var ipData: IpData = await this.http.get<IpData>('https://api.ipify.org?format=json').toPromise();
     var ipAddress: string = ipData.ip;
 
     return this.apollo.mutate({
       mutation: this.mutation,
       variables: {
-        path: this.location.path(),
+        userId: userId,
+        path: path || this.location.path(),
         referrer: document.referrer,
         ipAddress: ipAddress
       }

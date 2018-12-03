@@ -8,7 +8,7 @@ import { PageVisitGQL } from './shared/pagevisit-gql.service';
 })
 export class AppComponent {
   constructor(private pageVisitGQL: PageVisitGQL) {
-    this.pageVisitGQL.createPageVisit()
+    this.pageVisitGQL.createPageVisit(null, null)
       .then(( resObservable ) => {
         resObservable.subscribe(({ data }) => {
           // 'data' contains the graphql response
