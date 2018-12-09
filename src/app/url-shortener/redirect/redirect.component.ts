@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { LinkRepositoryService } from '../shared/link-repository.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { PageVisitGQL } from '../../shared/pagevisit-gql.service';
 
 @Component({
   selector: 'ks-redirect',
@@ -26,6 +27,17 @@ export class RedirectComponent implements OnInit {
     this.linkRepository.getRedirectLink(code).subscribe(
       (responseBody) => {
         if(responseBody["long_url"] !== null) {
+          // Log GraphQL Page Visit
+          const userId = responseBody["user_id"]
+          this.pageVisitGQL.createPageVisit(userId, '/'+code)
+            .then((resObservable) => {
+              resObservable.subscribe(({ data }) => {
+                // 'data' contains the graphql response
+              }, (error) => {
+                console.log('there was an error sending the query: createPageVisit, ', error);
+              });
+            });
+
           // Redirect to new URL
           window.location.href = responseBody["long_url"];
         } else {
@@ -48,7 +60,8 @@ export class RedirectComponent implements OnInit {
   constructor(private linkRepository: LinkRepositoryService,
               private route: ActivatedRoute,
               private location: Location,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private pageVisitGQL: PageVisitGQL) { }
 
   ngOnInit() {
     let code = this.route.snapshot.paramMap.get('code');
