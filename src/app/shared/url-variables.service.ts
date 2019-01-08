@@ -65,7 +65,7 @@ export class UrlVariablesService {
 
 const serve: UrlEnvironment = {
   siteUrl: "http://localhost:4200",
-  apiUrl: "https://kellenschmidt.com/api/v1",
+  apiUrl: "https://kellenforthe.win/api/v1",
   // apiv2Url: "https://kellenforthe.win/api/v2",
   apiv2Url: "http://localhost:3000",
   phpLinkShortenerUrl: "https://kellenschmidt.com/urlshortenerphp",

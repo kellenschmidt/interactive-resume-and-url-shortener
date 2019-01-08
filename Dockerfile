@@ -3,7 +3,7 @@
 # docker build --build-arg APP_VERSION=v1 -t kellenschmidt/interactive-resume-and-url-shortener .
 # docker run -p 80:80 -d kellenschmidt/interactive-resume-and-url-shortener
 
-FROM node:9-alpine as build-stage
+FROM node:10-alpine as build-stage
 ARG APP_VERSION
 RUN mkdir /app
 WORKDIR /app
