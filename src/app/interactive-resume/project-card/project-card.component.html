@@ -21,7 +21,7 @@
     <h4 *ngIf="!project.link && !project.router_link" class="card-title" [innerHTML]="project.title"></h4>
     <!--Text-->
     <p class="card-text">{{project.caption}}</p>
-    <button class="btn waves-light" mdbRippleRadius [style.background-color]="project.theme_color" id="{{project.id}}-btn" (click)="this.loadModalBody(project.description); learnMoreModal.show()">Learn More</button>
+    <button class="btn waves-light learnMoreBtn" mdbRippleRadius [style.background-color]="project.theme_color" id="{{project.id}}-btn" (click)="this.loadModalBody(project.description); learnMoreModal.show()">Learn More</button>
 
     <!--Modal-->
     <div mdbModal #learnMoreModal="mdb-modal" class="modal fade" id="learnMoreModal" tabindex="-1" role="dialog" aria-labelledby="learnMoreModalLabel" aria-hidden="true">

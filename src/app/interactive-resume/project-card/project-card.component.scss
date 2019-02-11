@@ -30,8 +30,14 @@ a.card-title {
   }
 }
 
-.card .card-body .modal-title {
-  margin-bottom: 0;
+.card .card-body{
+  .modal-title {
+    margin-bottom: 0;
+  }
+
+  .learnMoreBtn:hover {
+    color: white;
+  }
 }
 
 #learnMoreModal {

@@ -20,7 +20,7 @@ https://kellenschmidt.com/url
 
 ## Technologies used
 
-- Angular 6 for the front-end
+- Angular 7 for the front-end
   - Bootstrap 4 https://getbootstrap.com
   - MDBootstrap for Angular https://mdbootstrap.com/angular
   - Material Angular https://material.angular.io
